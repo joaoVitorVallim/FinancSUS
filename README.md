@@ -33,3 +33,4 @@
 - **Gerenciamento de Tarefas**: Notion | Trello
 - **Método**: Kanban
 - **Modelo**: Cascata
+- **Connection String Cluester**: mongodb+srv://trabalhoPA:trabalhoODS@financsus.zuwb0.mongodb.net/
