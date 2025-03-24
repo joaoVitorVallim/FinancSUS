@@ -33,4 +33,31 @@
 - **Gerenciamento de Tarefas**: Notion | Trello
 - **Método**: Kanban
 - **Modelo**: Cascata
-- **Connection String Cluester**: ```mongodb+srv://trabalhoPA:trabalhoODS@financsus.zuwb0.mongodb.net/```
+- **Connection String Cluster**: 
+  ```mongodb+srv://trabalhoPA:trabalhoODS@financsus.zuwb0.mongodb.net/```
+
+# Endpoints
+
+- **GET /vakinha**
+- **POST /vakinha**
+- **PUT /vakinha/ID_DA_VAKINHA**
+- **DELETE /vakinha/ID_DA_VAKINHA**
+
+# Exemplos JSON (API)
+
+- **POST**
+  ```json
+  {
+    "title": "Projeto Energia Limpa",
+    "value": 99.99,
+    "description": "Projeto onde consiste em implantar placas solares",
+    "pix_key": "rgreg¨&%Grger%*Tshs245",
+    "pictures": "https:\\foto.png"
+  }
+
+- **PUT** - Podendo alterar todos ou apenas alguns campos
+  ```json
+  {
+    "title": "Projeto Energia Limpa",
+    "description": "Projeto onde consiste em implantar placas solares"
+  }
