@@ -1,0 +1,19 @@
+{
+  "name": "financsus",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "- **João Vitor Gonçalves Vallim** - 114910\r - **Breno Lana Teixeira** - 114852\r - **Matheus Henrique Dos Santos** - 114703\r - **Vinícius Butrico De Freitas** - 114696\r - **Pedro Henrique Gomes Dos Santos** - 114863\r - **Marco Pereira Cesar Silva** - 115892",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongodb": "^6.15.0"
+  }
+}

@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+
+# Arquivos de log
+*.log
+npm-debug.log*
+
+# Diretórios e arquivos de configuração do IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Arquivos de ambiente
+.env
+
+# Arquivos gerados pelo sistema operacional
+.DS_Store      # macOS
+Thumbs.db      # Windows
+
+# Diretórios de builds ou distribuição
+dist/
+build/
+
+# Arquivos temporários
+*.tmp
+*.bak
