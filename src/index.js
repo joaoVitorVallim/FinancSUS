@@ -6,6 +6,7 @@ import express, { json } from "express";
 import { autenticar } from "./Middlewares/authMiddleware.js";
 import paymentRouter from "./Routes/paymentRoutes.js";
 import userRouter from "./Routes/userRoutes.js";
+import vakinhaRouter from "./Routes/vakinhaRoutes.js";
 
 config();
 
@@ -30,6 +31,7 @@ app.use("/auth", router);
 app.use("/pay", paymentRouter);
 
 app.use("/", userRouter);
+app.use("/vakinha", vakinhaRouter);
 
 
 app.listen(process.env.PORT, () => {
