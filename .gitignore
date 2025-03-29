@@ -1,27 +1,30 @@
-# Node.js
-node_modules/
-
-# Arquivos de log
+# Logs
+logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Diretórios e arquivos de configuração do IDE
-.vscode/
-.idea/
-*.sublime-workspace
-*.sublime-project
+node_modules
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local
 
-# Arquivos de ambiente
-.env
+/cypress/videos/
+/cypress/screenshots/
 
-# Arquivos gerados pelo sistema operacional
-.DS_Store      # macOS
-Thumbs.db      # Windows
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Diretórios de builds ou distribuição
-dist/
-build/
-
-# Arquivos temporários
-*.tmp
-*.bak
+*.tsbuildinfo

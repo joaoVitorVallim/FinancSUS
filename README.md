@@ -1,63 +1,35 @@
-# Equipe
+# .
 
-- **João Vitor Gonçalves Vallim** - 114910
-- **Breno Lana Teixeira** - 114852
-- **Matheus Henrique Dos Santos** - 114703
-- **Vinícius Butrico De Freitas** - 114696
-- **Pedro Henrique Gomes Dos Santos** - 114863
-- **Marco Pereira Cesar Silva** - 115892
+This template should help get you started developing with Vue 3 in Vite.
 
-# Funcionalidades
+## Recommended IDE Setup
 
-1. Cadastro de conta
-2. Cadastro de doação
-3. Menu inicial / LP sem cadastro
-4. Os investidores devem poder visualizar relatórios detalhados de como o dinheiro foi utilizado.
-5. Doação integrada com ODS, sendo o mais crítico no momento, retorna mais créditos.
-6. Dashboards para cada ODS ou “setores” / Filtro
-7. Administração de projetos próprios (acompanhamento)
-8. API de pagamento (Stripe, PayPal ou MercadoPago)
-9. Resgate de cupons no próprio site para sites externos (Desconto ou valor na carteira)
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-# Regras de Negócio
+## Customize configuration
 
-- Moedas verdes
-- Cupons de desconto
+See [Vite Configuration Reference](https://vite.dev/config/).
 
-# Tecnologias
+## Project Setup
 
-- **Versionamento**: GitHub
-- **Front-end**: Vue.js
-- **Back-end**: Node.js
-- **Banco de Dados**: MongoDB
-- **Gerenciamento de Tarefas**: Notion | Trello
-- **Método**: Kanban
-- **Modelo**: Cascata
-- **Connection String Cluster**: 
-  ```mongodb+srv://trabalhoPA:trabalhoODS@financsus.zuwb0.mongodb.net/```
+```sh
+npm install
+```
 
-# Endpoints
+### Compile and Hot-Reload for Development
 
-- **GET /vakinha**
-- **POST /vakinha**
-- **PUT /vakinha/ID_DA_VAKINHA**
-- **DELETE /vakinha/ID_DA_VAKINHA**
+```sh
+npm run dev
+```
 
-# Exemplos JSON (API)
+### Compile and Minify for Production
 
-- **POST**
-  ```json
-  {
-    "title": "Projeto Energia Limpa",
-    "value": 99.99,
-    "description": "Projeto onde consiste em implantar placas solares",
-    "pix_key": "rgreg¨&%Grger%*Tshs245",
-    "pictures": "https:\\foto.png"
-  }
+```sh
+npm run build
+```
 
-- **PUT** - Podendo alterar todos ou apenas alguns campos
-  ```json
-  {
-    "title": "Projeto Energia Limpa",
-    "description": "Projeto onde consiste em implantar placas solares"
-  }
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
