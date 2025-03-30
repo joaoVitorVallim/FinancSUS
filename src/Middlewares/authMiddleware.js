@@ -1,5 +1,7 @@
 import pkg from 'jsonwebtoken';
 const { verify } = pkg;
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const autenticar = async (req, res, next) => {
 
@@ -35,8 +37,6 @@ export const autorizarAdmin = async (req, res, next) => {
   const auth = req.headers.authorization;
   const bearer = auth.split(' ');
   const token = bearer[1];
-
-  if (!token) return res.status(401).json({ mensagem: 'Token não fornecido' });
 
   try {
     const payload = verify(token, process.env.SECRET);

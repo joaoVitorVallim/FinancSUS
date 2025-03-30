@@ -7,6 +7,7 @@ import { autenticar } from "./Middlewares/authMiddleware.js";
 import paymentRouter from "./Routes/paymentRoutes.js";
 import userRouter from "./Routes/userRoutes.js";
 import vakinhaRouter from "./Routes/vakinhaRoutes.js";
+import searchRouter from "./Routes/searchRouter.js";
 
 config();
 
@@ -25,6 +26,7 @@ app.use(cors(corsOptions));
 
 connect(process.env.CONN);
 
+app.use("/search", searchRouter);
 
 app.use("/auth", router);
 
