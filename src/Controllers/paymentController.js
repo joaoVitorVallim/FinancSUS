@@ -11,6 +11,8 @@ const cardPayment = async (req, res) => {
     try {
         let { transaction_amount, token, description, installments, payment_method_id, issuer_id, payer } = req.body;
 
+        
+        
 
         const response = await payment.create({
             body: {
