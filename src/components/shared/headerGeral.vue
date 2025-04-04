@@ -1,49 +1,57 @@
 <template>
-  <nav class="componente-main-header">
-    <div class="section-header">
-      <img src="" alt="Logo FinancSUS">
-      <ul class="componente-main-header-botoes">
-        <li>Home</li>
-        <li>Sobre nós</li>
-        <li>Teste</li>
-      </ul> 
-    </div>
-    <div class="componente-main-header-login">
-      <ul>
-        <li>teste</li>
-        <li>teste</li>
-      </ul>
-    </div>
+  <nav class="componente-navbar">
+    <section class="componente-navbar-section">
+      <div class="componente-navbar-nav">
+        <img src="https://fakeimg.pl/100x50/">
+        <a class="navbar-botoes" href="">Como funciona?</a>
+        <a class="navbar-botoes" href="">Projetos</a>
+      </div>
+      <div class="componente-navbar-cadastro">
+        <a class="componente-navbar-cadastro-a">Cadastre seu projeto!</a>
+        <a class="componente-navbar-cadastro-a" href=""><img src="https://fakeimg.pl/30x30/">Login/Cadastrar-se</a>
+      </div>
+      
+    </section>
   </nav>
 </template>
 
-<style scoped>
-  .componente-main-header{
+<style>
+  .componente-navbar{
+    
+  }
+
+  .componente-navbar-section{
     display: flex;
-    width: 100%;
-    max-width: 100%;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding-inline: 1rem;
+    padding-block: .5rem;
+    
+    background-color: antiquewhite;
   }
 
-  .section-header{
+  .componente-navbar-nav{
     display: flex;
     align-items: center;
-  }
-
-  .componente-main-header-botoes{
-    text-decoration: none;
-    list-style: none;
-    display: flex;
-    font-size: 2rem;
     gap: 1rem;
   }
 
-  .componente-main-header-login ul{
+  .navbar-botoes{
     text-decoration: none;
-    list-style: none;
-    display: flex;
-    align-items: center;
+    color: #000;;
   }
 
+  .componente-navbar-cadastro{
+    display: flex;
+    gap: 1rem;
+    align-items: center;    
+  }
+
+  .componente-navbar-cadastro-a{
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    text-decoration: none;
+    color: #000;
+  }
 </style>
