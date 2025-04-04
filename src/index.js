@@ -8,7 +8,7 @@ import paymentRouter from "./Routes/paymentRoutes.js";
 import userRouter from "./Routes/userRoutes.js";
 import vakinhaRouter from "./Routes/vakinhaRoutes.js";
 import searchRouter from "./Routes/searchRouter.js";
-import helmet, { xssFilter } from "helmet";
+import helmet from "helmet";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
 
@@ -22,7 +22,7 @@ const corsOptions = {
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100
-  });
+});
 
 export const app = express();
 
@@ -37,10 +37,7 @@ app.use(limiter);
 
 app.use(cors(corsOptions));
 
-connect(process.env.CONN, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+connect(process.env.CONN);
 
 app.use("/search", searchRouter);
 
