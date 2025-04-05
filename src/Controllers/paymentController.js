@@ -1,4 +1,4 @@
-import { Payment, MercadoPagoConfig, PaymentRefund } from 'mercadopago';
+import { Payment, MercadoPagoConfig } from 'mercadopago';
 import { config } from 'dotenv';
 config();
 
