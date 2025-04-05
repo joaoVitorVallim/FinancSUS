@@ -1,143 +1,79 @@
 import { Vakinha } from "../Model/userModel.js";
 
 export const search = async (req, res) => {
-<<<<<<< HEAD
-    try {
-      const query = req.query.q;
-        
-      if (!query) {
-        return res.status(400).json({
-          error: "é necessario um termo de busca"
-        });
-      }
-      
-      const normalizedQuery = query
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '') 
-        .toLowerCase();
-  
-      
-      const fuzzyRegex = new RegExp(
-        normalizedQuery.split('').join('.*?'), 
-        'i'
-      );
-  
-      
-      const [semanticResults, fuzzyResults] = await Promise.all([
-        
-        Vakinha.find(
-          { $text: { $search: query } },
-          { score: { $meta: 'textScore' } }
-        ).sort({ score: { $meta: 'textScore' } }),
-  
-        
-        Vakinha.find({
-          $or: [
-            { title: { $regex: fuzzyRegex } },
-          ]
-        })
-      ]);
-  
-      
-      const resultsMap = new Map();
-      
-      [...semanticResults, ...fuzzyResults].forEach(vakinha => {
-        const vakinhaId = vakinha._id.toString();
-      
-        if (!resultsMap.has(vakinhaId)) {
-          const matchType = semanticResults.includes(vakinha) ? 'semantic' : 'fuzzy';
-      
-          resultsMap.set(vakinhaId, {
-            ...vakinha.toObject(),
-            matchType
-          });
-        }
-      });
-  
-      const results = Array.from(resultsMap.values());
-  
-      
-      results.sort((a, b) => {
-        if (a.matchType === 'semantic' && b.matchType !== 'semantic') return -1;
-        if (b.matchType === 'semantic' && a.matchType !== 'semantic') return 1;
-        return (b.score || 0) - (a.score || 0);
-      });
-      
-      if(results.length === 0) {
-        return res.status(404).json({
-          error: "nenhum resultado encontrado"
-        });
-      }
-      res.status(200).json({
-        results,
-      });
-  
-    } catch (error) {
-      res.status(500).json({
-        error: "Erro na busca"
-=======
   try {
     const query = req.query.q;
-
+      
     if (!query) {
       return res.status(400).json({
-        error: "é necessario um termo de busca",
->>>>>>> 95dbcca83f3f5d2e5fa6046be45403e6ffda71cd
+        error: "é necessario um termo de busca"
       });
     }
-
+    
     const normalizedQuery = query
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') 
       .toLowerCase();
 
-    const fuzzyRegex = new RegExp(normalizedQuery.split("").join(".*?"), "i");
+    
+    const fuzzyRegex = new RegExp(
+      normalizedQuery.split('').join('.*?'), 
+      'i'
+    );
 
+    
     const [semanticResults, fuzzyResults] = await Promise.all([
+      
       Vakinha.find(
         { $text: { $search: query } },
-        { score: { $meta: "textScore" } }
-      ).sort({ score: { $meta: "textScore" } }),
+        { score: { $meta: 'textScore' } }
+      ).sort({ score: { $meta: 'textScore' } }),
 
+      
       Vakinha.find({
-        $or: [{ title: { $regex: fuzzyRegex } }],
-      }),
+        $or: [
+          { title: { $regex: fuzzyRegex } },
+        ]
+      })
     ]);
 
+    
     const resultsMap = new Map();
-
-    [...semanticResults, ...fuzzyResults].forEach((vakinha) => {
-      if (!resultsMap.has(vakinha._id.toString())) {
-        resultsMap.set(vakinha._id.toString(), {
+    
+    [...semanticResults, ...fuzzyResults].forEach(vakinha => {
+      const vakinhaId = vakinha._id.toString();
+    
+      if (!resultsMap.has(vakinhaId)) {
+        const matchType = semanticResults.includes(vakinha) ? 'semantic' : 'fuzzy';
+    
+        resultsMap.set(vakinhaId, {
           ...vakinha.toObject(),
-          matchType: resultsMap.has(vakinha._id.toString())
-            ? "both"
-            : semanticResults.includes(vakinha)
-            ? "semantic"
-            : "fuzzy",
+          matchType
         });
       }
     });
 
     const results = Array.from(resultsMap.values());
 
+    
     results.sort((a, b) => {
-      if (a.matchType === "semantic" && b.matchType !== "semantic") return -1;
-      if (b.matchType === "semantic" && a.matchType !== "semantic") return 1;
+      if (a.matchType === 'semantic' && b.matchType !== 'semantic') return -1;
+      if (b.matchType === 'semantic' && a.matchType !== 'semantic') return 1;
       return (b.score || 0) - (a.score || 0);
     });
-
-    if (results.length === 0) {
+    
+    if(results.length === 0) {
       return res.status(404).json({
-        error: "nenhum resultado encontrado",
+        error: "nenhum resultado encontrado"
       });
     }
     res.status(200).json({
       results,
     });
+
   } catch (error) {
     res.status(500).json({
-      error: "Erro na busca",
+      error: "Erro na busca"
     });
   }
-};
+}
