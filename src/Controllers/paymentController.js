@@ -1,5 +1,6 @@
 import { Payment, MercadoPagoConfig } from 'mercadopago';
 import { config } from 'dotenv';
+
 config();
 
 const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
@@ -20,7 +21,7 @@ const cardPayment = async (req, res) => {
                 payer:{
                     email: email,
                     identification: {
-                        type: type,
+                        type: "CPF",
                         number: number
                     }
                 },
