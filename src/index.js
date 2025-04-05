@@ -8,6 +8,9 @@ import paymentRouter from "./Routes/paymentRoutes.js";
 import userRouter from "./Routes/userRoutes.js";
 import vakinhaRouter from "./Routes/vakinhaRoutes.js";
 import searchRouter from "./Routes/searchRouter.js";
+import helmet from "helmet";
+import ExpressMongoSanitize from "express-mongo-sanitize";
+import rateLimit from "express-rate-limit";
 
 config();
 
@@ -16,11 +19,21 @@ const corsOptions = {
     origin: '*'
 }
 
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100
+});
+
 export const app = express();
 
 
 app.use(json());
 
+app.use(ExpressMongoSanitize());
+
+app.use(helmet());
+
+app.use(limiter);
 
 app.use(cors(corsOptions));
 
@@ -33,6 +46,7 @@ app.use("/auth", router);
 app.use("/pay", paymentRouter);
 
 app.use("/", userRouter);
+
 app.use("/vakinha", vakinhaRouter);
 
 

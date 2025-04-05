@@ -53,7 +53,7 @@ export const getAllVakinhas = async (req, res) => {
 
 export const getVakinhaId = async (req, res) => {
     try {
-        const vakinha = await Vakinha.findById(req.params.id);
+        const vakinha = await Vakinha.findById(req.query.id);
         return res.status(200).send(vakinha);
     } catch (error) {
         return res.status(400).send(error);
@@ -62,8 +62,8 @@ export const getVakinhaId = async (req, res) => {
 
 export const deleteVakinha = async (req, res) => {
     try {
-        const vakinha = await Vakinha.findById(req.body.id);
-        await vakinha.deleteOne();
+        await Vakinha.findByIdAndDelete(req.query.id);
+        
         return res.status(200).send();
     } catch (error) {
         return res.status(400).send(error);
