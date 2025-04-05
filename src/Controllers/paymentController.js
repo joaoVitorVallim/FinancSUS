@@ -9,7 +9,7 @@ const paymentRefund = new PaymentRefund(client);
 const cardPayment = async (req, res) => {
 
     try {
-        let { transaction_amount, token, description, installments, payment_method_id, issuer_id, payer } = req.body;
+        let { transaction_amount, token, description, installments, payment_method_id, email, type, number } = req.body;
 
 
         const response = await payment.create({
@@ -19,7 +19,13 @@ const cardPayment = async (req, res) => {
                 description: description,
                 installments: installments,
                 payment_method_id: payment_method_id,
-                payer: payer
+                payer:{
+                    email: email,
+                    identification: {
+                        type: type,
+                        number: number
+                    }
+                }
             },
         });
 

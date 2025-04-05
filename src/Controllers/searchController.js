@@ -39,14 +39,16 @@ export const search = async (req, res) => {
   
       
       const resultsMap = new Map();
-  
+      
       [...semanticResults, ...fuzzyResults].forEach(vakinha => {
-        if (!resultsMap.has(vakinha._id.toString())) {
-          resultsMap.set(vakinha._id.toString(), {
+        const vakinhaId = vakinha._id.toString();
+      
+        if (!resultsMap.has(vakinhaId)) {
+          const matchType = semanticResults.includes(vakinha) ? 'semantic' : 'fuzzy';
+      
+          resultsMap.set(vakinhaId, {
             ...vakinha.toObject(),
-            matchType: resultsMap.has(vakinha._id.toString()) ? 
-              'both' : 
-              (semanticResults.includes(vakinha) ? 'semantic' : 'fuzzy')
+            matchType
           });
         }
       });
