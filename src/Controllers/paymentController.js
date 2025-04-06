@@ -1,40 +1,24 @@
-import { Payment, MercadoPagoConfig } from 'mercadopago';
-import { config } from 'dotenv';
+import { card } from "../Services/paymenteService.js";
 
-config();
-
-const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
-const payment = new Payment(client);
 
 const cardPayment = async (req, res) => {
 
     try {
         let { transaction_amount, token, description, installments, payment_method_id, payer, application_fee, id } = req.body;
 
-        const response = await payment.create({
-            body: {
-                transaction_amount: transaction_amount,
-                token: token,
-                description: description,
-                installments: installments,
-                payment_method_id: payment_method_id,
-                payer:{
-                    email: email,
-                    identification: {
-                        type: "CPF",
-                        number: number
-                    }
-                },
-                payer: payer,
-                application_fee: application_fee,
-                disbursements: {
-                    collector_id: id, 
-                    amount: amount   
-                } 
-            },
+
+        const response = await card({
+            transaction_amount, 
+            token, 
+            description, 
+            installments, 
+            payment_method_id, 
+            payer, 
+            application_fee, 
+            id
         });
 
-        return res.status(200).send(response);
+        return res.status(201).send(response);
     }
     catch (error) {
         return res.status(400).send(error.message);
@@ -62,7 +46,7 @@ const boletoPayment = async (req, res) => {
             },
         });
 
-        return res.status(200).send(response);
+        return res.status(201).send(response);
     }
     catch (error) {
         return res.status(400).send(error);
@@ -88,7 +72,7 @@ const pixPayment = async (req, res) => {
             },
         })
 
-        return res.status(200).send(response);
+        return res.status(201).send(response);
     }
     catch (error) {
         return res.status(400).send(error);
