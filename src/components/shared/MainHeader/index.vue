@@ -1,12 +1,12 @@
 <script setup>
-    import {ref, onMounted, onMounted, onUnmounted} from 'vue'
+    import {ref, onMounted, onUnmounted} from 'vue'
 
     import DesktopNav from './DesktopNav.vue'
     import MobileNav from './MobileNav.vue'
 
     const navs = {
         DesktopNav,
-        MobileNav
+        MobileNav,
     }
 
     const props = defineProps({
@@ -24,6 +24,7 @@
         } else {
             currentNav.value = 'DesktopNav'
         }
+        console.log('current nav:', currentNav.value)
     }
 
     onMounted(() => {
