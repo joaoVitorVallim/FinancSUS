@@ -6,7 +6,7 @@ config();
 const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
 const payment = new Payment(client);
 
-const card = async ({transaction_amount, token, description, installments, payment_method_id, payer, application_fee, id}) => {
+export const card = async ({transaction_amount, token, description, installments, payment_method_id, payer, application_fee, id}) => {
     const response = await payment.create({
         body: {
             transaction_amount: transaction_amount,
@@ -14,21 +14,20 @@ const card = async ({transaction_amount, token, description, installments, payme
             description: description,
             installments: installments,
             payment_method_id: payment_method_id,
-            payer:{
-                email: email,
+            payer: {
+                email: payer.email,
                 identification: {
                     type: "CPF",
-                    number: number
+                    number: payer.identification.number
                 }
             },
-            payer: payer,
             application_fee: application_fee,
             disbursements: {
                 collector_id: id, 
-                amount: amount   
+                amount: transaction_amount   
             } 
         },
     });
 
     return response;
-}
+};
