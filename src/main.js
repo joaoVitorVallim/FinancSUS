@@ -7,12 +7,14 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import MainHeader from './components/shared/MainHeader/index.vue'
+import Login from './pages/Login.vue'
 
 
 
 const app = createApp(App)
 
 app.component('MainHeader', MainHeader)
+app.component('Login', Login)
 app.use(createPinia())
 app.use(router)
 

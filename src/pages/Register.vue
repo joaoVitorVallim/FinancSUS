@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <MainHeader />
+    
 </template>
 
 <style></style>
