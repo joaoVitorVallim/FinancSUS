@@ -23,8 +23,7 @@ export const card = async ({transaction_amount, token, description, installments
                 collector_id: id, 
                 amount: transaction_amount   
             } 
-        },
-    });
+        });
 
     return response;
 };
