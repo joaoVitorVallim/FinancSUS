@@ -29,7 +29,8 @@ export const createVakinha = async (req, res) => {
             title: req.body.title,
             description: req.body.description,
             goal: req.body.goal,
-            owner: payload.data._id
+            owner: payload.data._id,
+            collector_id: req.body.collector_id,
       });
       await vakinha.save();
       
