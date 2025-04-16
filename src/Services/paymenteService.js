@@ -20,10 +20,15 @@ export const card = async ({transaction_amount, token, description, installments
                 
             },
             disbursements: {
-                collector_id: id, 
+                collector_id: collector_id,
                 amount: transaction_amount   
             } 
         });
 
     return response;
+}
+
+    catch (error) {
+        throw new Error(error.message);
+    }
 };
