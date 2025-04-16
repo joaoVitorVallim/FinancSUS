@@ -1,6 +1,6 @@
 import { card } from "../Services/paymenteService.js"
 
-   
+
 
 const cardPayment = async (req, res) => {
 
@@ -51,28 +51,29 @@ const pixPayment = async (req, res) => {
         
 
         const body = {
-            transaction_amount: 50.52,
-            description: "Pagamento via PIX",
+            transaction_amount: req.body.transaction_amount,
+            description: req.body.description,
             payment_method_id: "pix",
             payer: {
-                email: "butrico0@gmail.com",
-                first_name: "APRO",
-                last_name: "",
+                email: req.body.payer.email,
+                first_name: req.body.payer.first_name,
+                last_name: req.body.payer.last_name,
                 identification: {
                     type: "CPF",
-                    number: "12345678909"
+                    number: req.body.payer.identification.number,
                 },
                 address: {
-                    street_name: "Rua Exemplo",
-                    street_number: "590",
-                    zip_code: "13844060"
+                    street_name: req.body.payer.address.street_name,
+                    street_number: req.body.payer.address.street_number,
+                    zip_code: req.body.payer.address.zip_code,
+                    neighborhood: req.body.payer.address.neighborhood,
                 },
                 phone: {
-                    area_code: "19",
-                    number: "989751609"
+                    area_code: req.body.payer.phone.area_code,
+                    number: req.body.payer.phone.number,
                 }
             },
-            date_of_expiration: new Date(Date.now() + 30 * 60 * 1000).toISOString() // 30 minutos para expirar
+            date_of_expiration: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
         };
 
         const response = await payment.create({
