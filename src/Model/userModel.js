@@ -1,8 +1,20 @@
 import { Schema, model } from "mongoose";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const userSchema = new Schema({
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    email: { 
+        type: String, 
+        required: true, 
+        unique: true,
+        validate: {
+            validator: function(v) {
+                return emailRegex.test(v);
+            },
+            message: props => `${props.value} não é um email válido!`
+        }
+    },
     password: { type: String, required: true },
     admin: { type: Boolean, required: true },
     vakinhas: [{ type: Schema.Types.ObjectId, ref: 'Vakinha' }],
@@ -14,12 +26,12 @@ const vakinhaSchema = new Schema({
     title: { type: String, required: true, index: 'text' },
     description: { type: String, required: true },
     goal: { type: Number, required: true },
-    owner: { type: Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
+    owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    collectorId: { type: String, required: true }, // Adicionando collectorId como obrigatório
     image: String,
     received: { type: Number, default: 0 },
     collector_id: { type: Number, required: true },
 });
-
 
 const Vakinha = model("Vakinha", vakinhaSchema);
 
