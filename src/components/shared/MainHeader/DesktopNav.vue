@@ -3,7 +3,7 @@
     <section class="componente-navbar-section">
       <div class="componente-navbar-nav">
         <a href=""><img src="../../../assets/Logotipo-ICON-AZUL.png" alt="Logo" width="75px"></a>
-        <a class="navbar-botoes" href="">Como funciona?</a>
+        <a class="navbar-botoes" href="/HowItWorks">Como funciona?</a>
         <a class="navbar-botoes" href="">Projetos</a>
       </div>
       <div class="componente-navbar-cadastro">
