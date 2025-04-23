@@ -1,5 +1,5 @@
 <script>
-import HowItWorks from "../components/HowItWorks/index.vue";
+import HowItWorks from "../components/HowItWorks/Index.vue";
 
 export default {
     name: "HowItWorksPage",
