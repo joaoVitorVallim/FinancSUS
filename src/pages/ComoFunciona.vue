@@ -1,12 +1,5 @@
 <script>
-import HowItWorks from "../components/HowItWorks/Index.vue";
-
-export default {
-    name: "HowItWorksPage",
-    components: {
-        HowItWorks,
-    },
-};
+import { RouterView, RouterLink } from 'vue-router';
 </script>
 
 <style scoped>
@@ -14,7 +7,6 @@ export default {
 </style>
 
 <template>
-    <div>
-        <HowItWorks/>
-        </div>
+    <MainHeader />
+    <HowItWorks />
 </template>
