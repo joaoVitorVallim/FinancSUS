@@ -13,7 +13,7 @@ import HowItWorks from './components/HowItWorks/Index.vue'
 
 
 const app = createApp(App)
-
+app.component('Login', Login)
 app.component('MainHeader', MainHeader)
 app.component('Login', Login)
 app.component('HowItWorks', HowItWorks)
