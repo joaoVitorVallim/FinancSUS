@@ -3,7 +3,7 @@ import App from '../App.vue'
 import Login from '../pages/Login.vue'
 import Register from '../pages/Register.vue'
 import Apresentacao from '../pages/Apresentacao.vue'
-import ComoFunciona from '@/pages/ComoFunciona.vue'
+import ComoFunciona from '../pages/ComoFunciona.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

@@ -6,17 +6,14 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
-import MainHeader from './components/shared/MainHeader/index.vue'
-import Login from './pages/Login.vue'
-import HowItWorks from './components/HowItWorks/Index.vue'
+import registerGlobalComponents from './global-components'
 
 
 
 const app = createApp(App)
-app.component('Login', Login)
-app.component('MainHeader', MainHeader)
-app.component('Login', Login)
-app.component('HowItWorks', HowItWorks)
+registerGlobalComponents(app)
+
+
 app.use(createPinia())
 app.use(router)
 

@@ -1,12 +1,15 @@
 <script>
-import { RouterView, RouterLink } from 'vue-router';
+    import { defineAsyncComponent } from 'vue'
+
+// Registro dinâmico do componente ComoFunciona
+const ComoFunciona = defineAsyncComponent(() =>
+  import('../components/ComoFunciona/Index.vue')
+)
+
 </script>
-
-<style scoped>
-
-</style>
 
 <template>
     <MainHeader />
-    <HowItWorks />
+    <ComoFunciona />
 </template>
+
