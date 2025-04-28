@@ -4,7 +4,12 @@ export default function registerGlobalComponents(app) {
   const components = import.meta.glob('./components/shared/*.vue')
 
   for (const [path, definition] of Object.entries(components)) {
-    const componentName = path.split('/').pop().replace('.vue', '') 
+    const componentName = path
+      .split('/')
+      .pop()
+      .replace(/\.\w+$/, '')
     app.component(componentName, defineAsyncComponent(definition))
+    
+    console.log(`Registered global component: ${componentName}`)
   }
 }

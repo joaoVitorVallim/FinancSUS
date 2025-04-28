@@ -24,7 +24,6 @@
         } else {
             currentNav.value = 'DesktopNav'
         }
-        console.log('current nav:', currentNav.value)
     }
 
     const isHidden = ref(false)
