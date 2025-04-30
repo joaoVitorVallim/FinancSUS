@@ -1,88 +1,133 @@
 <script setup>
-    
 </script>
 
 <template>
-    <section class="login">
-        <div class="login-container">
-            <div class="login-titulo-container">
-                <img class="login-icon" src="../assets/Logotipo-ICON-AZUL.png" alt="Logotipo FinancSUS">
-                <h1 class="login-titulo">Seja bem vindo!</h1>
-            </div>
-            <div class="login-input-container">
-                <div class="login-input">
-                <input type="text" placeholder="Digite seu e-mail" class="login-input__email" />
-                <input type="password" placeholder="Digite sua senha" class="login-input__senha" />
-            </div>
-            </div>
-            
-            <div class="login-botoes">
-                <button class="login-botoes__entrar">Entrar</button>
-                <div class="login-cadastrar-container">
-                    <p class="login-botoes__cadastrar_aviso">Ainda não possui uma conta? <a class="login-botoes__cadastrar">Cadastrar</a></p>
-                    
-                </div>
-            </div>
+  <section class="login">
+    <div class="login-container">
+      <div class="login-esquerda">
+        <h1>Crie sua Conta!</h1>
+        <p>Para se manter conectado conosco</p>
+        <p>registre-se com suas informações pessoais</p>
+        <button class="botao-registrar">REGISTRAR</button>
+      </div>
+
+      <div class="login-direita">
+        <h1>Fazer Login</h1>
+        <div class="icones-sociais">
+          <button class="botao-social">f</button>
+          <button class="botao-social">G+</button>
+          <button class="botao-social">in</button>
         </div>
-    </section>
+        <p>ou use seu email para entrar:</p>
+        <form class="formulario-login">
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Senha" />
+          <button class="botao-login">ENTRAR</button>
+        </form>
+      </div>
+    </div>
+  </section>
 </template>
 
-<style>
+<style scoped>
 .login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f6f5f7;
 }
 
- .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    max-width: 700px;
-    background-color: #edeae3;
-    padding-inline: 5rem;
-    padding-block: 1.5rem;
- }
+.login-container {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+  min-height: 480px;
+  width: 768px;
+}
 
- .login-icon{
-    max-width: 100px;
- }
+.login-esquerda, .login-direita {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  width: 50%;
+}
 
- .login-titulo-container{
-    display: grid;
-    grid-template-columns: min-content auto;
-    margin-bottom: 1rem;
-    width: 100%;
- }
+.login-esquerda {
+  background-color: #66b5ab;
+  color: white;
+  border-radius: 10px 0 0 10px;
+}
 
- .login-titulo{
-    margin: 0;
- }
+.login-esquerda h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
 
- .login-input-container{
-    max-width: 600px;
-    width: 100vw;
- }
+.login-esquerda p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
 
- .login-input{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
- }
+.login-direita {
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+}
 
- .login-botoes{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    padding: 0;
-    margin-top: 1rem;
- }
+.login-direita h1 {
+  color: #66b5ab;
+  margin-bottom: 20px;
+}
 
- .login-botoes__cadastrar_aviso{
-    margin: 0;
- }
+.icones-sociais {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.botao-social {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.formulario-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+}
+
+input {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f6f5f7;
+}
+
+.botao-registrar, .botao-login {
+  border: 1px solid white;
+  background-color: transparent;
+  padding: 12px 45px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.botao-registrar {
+  color: white;
+}
+
+.botao-login {
+  background-color: #66b5ab;
+  color: white;
+  border: none;
+}
 </style>
