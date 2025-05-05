@@ -6,37 +6,37 @@
 <template>
   <section class="login">
     <div class="login-container">
+
       <div class="login-esquerda">
-        <h1>Crie sua Conta!</h1>
-        <p>Para se manter conectado conosco</p>
-        <p>registre-se com suas informações pessoais</p>
-        <RouterLink 
-            to="/register" 
-            class="botao-registrar" 
-          >
-            REGISTRAR
-        </RouterLink>
-
-
-      </div>
-
-
-      <div class="login-direita">
         <img id="login-img" src="../assets/Logotipo-ICON-AZUL.png" alt="">
-        <h1>Fazer Login</h1>
+        <h1>Registre sua conta</h1>
         <form class="formulario-login">
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Senha" />
-          <button class="botao-login">ENTRAR</button>
+          <button class="botao-registrar">CADASTRAR-SE</button>
           <RouterLink 
-            to="/register" 
-            class="botao-registrar" 
-            id="botao-registrar-mobile"
+            to="/login" 
+            class="botao-login" 
+            id="botao-login-mobile"
           >
-            REGISTRAR
+            ENTRAR
           </RouterLink>
 
         </form>
+      </div>
+
+      <div class="login-direita">
+        <h1>Já possui uma conta?</h1>
+        <p>Entre com a sua conta</p>
+        <RouterLink 
+            to="/login" 
+            class="botao-login" 
+            id="botao-login-desktop"
+          >
+            ENTRAR
+        </RouterLink>
+
+
       </div>
     </div>
   </section>
@@ -60,7 +60,7 @@
   width: 768px;
 }
 
-.login-esquerda, .login-direita {
+.login-direita, .login-esquerda {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,18 +69,18 @@
   width: 50%;
 }
 
-.login-esquerda {
+.login-direita {
   background-color: #3e7f98;
   color: white;
-  border-radius: 10px 0 0 10px;
+  border-radius: 0px 10px 10px 0px;
 }
 
-.login-esquerda h1 {
+.login-direita h1 {
   margin-bottom: 20px;
   font-size: 2rem;
 }
 
-.login-esquerda p {
+.login-direita p {
   margin: 5px 0;
   font-size: 0.9rem;
 }
@@ -89,12 +89,12 @@
   max-width: 150px;
 }
 
-.login-direita {
+.login-esquerda {
   background-color: white;
   border-radius: 0 10px 10px 0;
 }
 
-.login-direita h1 {
+.login-esquerda h1 {
   color: #3e7f98;
   margin-top: 0;
   margin-bottom: 20px;
@@ -130,7 +130,7 @@ input {
   background-color: #f6f5f7;
 }
 
-.botao-registrar, .botao-login {
+.botao-login, .botao-registrar {
   border: 1px solid white;
   background-color: transparent;
   padding: 12px 45px;
@@ -139,38 +139,41 @@ input {
   margin-top: 20px;
 }
 
-.botao-registrar {
+.botao-login {
   color: white;
-  width: 100%;
-  max-width: 150px;
   text-decoration: none;
   text-align: center;
 }
 
-#botao-registrar-mobile{
+#botao-login-mobile{
   display: none;
 }
 
-.botao-registrar:hover {
+#botao-login-desktop{
+  width: 100%;
+  max-width: 150px;
+}
+
+.botao-login:hover {
   background-color: white;
   color: #3e7f98;
   border: 1px solid #3e7f98;
 }
 
-.botao-login {
+.botao-registrar {
   background-color: #3e7f98;
   color: white;
   border: none;
 }
 
-.botao-login:hover {
+.botao-registrar:hover {
   background-color: #2f5b7a;
   color: white;
   border: none;
 }
 
 @media (max-width: 1024px){
-  .login-esquerda{
+  .login-direita{
     display: none;
   }
   
@@ -180,7 +183,7 @@ input {
     margin: 0 20px;
   }
 
-  .login-direita{
+  .login-esquerda{
     width: 100%;
     border-radius: 10px;
   }
@@ -189,11 +192,11 @@ input {
     width: 50%;
   }
 
-  #botao-registrar-mobile{
+  #botao-login-mobile{
     display: block;
     color: #3e7f98;
     border-color: #3e7f98;
-    margin-top: 0;
+    margin-top: 0;;
     text-decoration: none;
     text-align: center;
   }
