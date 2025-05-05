@@ -1,4 +1,6 @@
 <script setup>
+  import { RouterLink } from 'vue-router';
+
 </script>
 
 <template>
@@ -8,21 +10,33 @@
         <h1>Crie sua Conta!</h1>
         <p>Para se manter conectado conosco</p>
         <p>registre-se com suas informações pessoais</p>
-        <button class="botao-registrar">REGISTRAR</button>
+        <RouterLink 
+            to="/register" 
+            class="botao-registrar" 
+            id="botao-registrar-desktop"
+          >
+            REGISTRAR
+        </RouterLink>
+
+
       </div>
 
+
       <div class="login-direita">
+        <img id="login-img" src="../assets/Logotipo-ICON-AZUL.png" alt="">
         <h1>Fazer Login</h1>
-        <div class="icones-sociais">
-          <button class="botao-social">f</button>
-          <button class="botao-social">G+</button>
-          <button class="botao-social">in</button>
-        </div>
-        <p>ou use seu email para entrar:</p>
         <form class="formulario-login">
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Senha" />
           <button class="botao-login">ENTRAR</button>
+          <RouterLink 
+            to="/register" 
+            class="botao-registrar" 
+            id="botao-registrar-mobile"
+          >
+            REGISTRAR
+          </RouterLink>
+
         </form>
       </div>
     </div>
@@ -57,7 +71,7 @@
 }
 
 .login-esquerda {
-  background-color: #66b5ab;
+  background-color: #3e7f98;
   color: white;
   border-radius: 10px 0 0 10px;
 }
@@ -72,13 +86,18 @@
   font-size: 0.9rem;
 }
 
+#login-img{
+  max-width: 150px;
+}
+
 .login-direita {
   background-color: white;
   border-radius: 0 10px 10px 0;
 }
 
 .login-direita h1 {
-  color: #66b5ab;
+  color: #3e7f98;
+  margin-top: 0;
   margin-bottom: 20px;
 }
 
@@ -123,11 +142,64 @@ input {
 
 .botao-registrar {
   color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+#botao-registrar-desktop{
+  width: 100%;
+  max-width: 150px;
+}
+
+#botao-registrar-mobile{
+  display: none;
+}
+
+.botao-registrar:hover {
+  background-color: white;
+  color: #3e7f98;
+  border: 1px solid #3e7f98;
 }
 
 .botao-login {
-  background-color: #66b5ab;
+  background-color: #3e7f98;
   color: white;
   border: none;
+}
+
+.botao-login:hover {
+  background-color: #2f5b7a;
+  color: white;
+  border: none;
+}
+
+@media (max-width: 1024px){
+  .login-esquerda{
+    display: none;
+  }
+  
+  .login-container{
+    width: 100%;
+    max-width: 400px;
+    margin: 0 20px;
+  }
+
+  .login-direita{
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  #login-img{
+    width: 50%;
+  }
+
+  #botao-registrar-mobile{
+    display: block;
+    color: #3e7f98;
+    border-color: #3e7f98;
+    margin-top: 0;
+    text-decoration: none;
+    text-align: center;
+  }
 }
 </style>
