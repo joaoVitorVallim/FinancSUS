@@ -23,7 +23,7 @@
 
 
       <div class="login-direita">
-        <img id="login-img" src="../assets/Logotipo-ICON-AZUL.png" alt="">
+        <img id="login-img" src="../assets/LogoPequenoEnergia.png" alt="">
         <h1>Fazer Login</h1>
         <form class="formulario-login">
           <input type="email" placeholder="Email" />
@@ -71,7 +71,7 @@
 }
 
 .login-esquerda {
-  background-color: #3e7f98;
+  background-color: #b4b494;
   color: white;
   border-radius: 10px 0 0 10px;
 }
@@ -96,7 +96,7 @@
 }
 
 .login-direita h1 {
-  color: #3e7f98;
+  color: #b4b494;
   margin-top: 0;
   margin-bottom: 20px;
 }
@@ -156,21 +156,21 @@ input {
 }
 
 .botao-registrar:hover {
-  background-color: white;
-  color: #3e7f98;
-  border: 1px solid #3e7f98;
+  background-color: #fff;
+  color: #b4b494;
+  border: 1px solid #b4b494;
 }
 
 .botao-login {
-  background-color: #3e7f98;
+  background-color: #b4b494;
   color: white;
   border: none;
 }
 
 .botao-login:hover {
-  background-color: #2f5b7a;
-  color: white;
-  border: none;
+  background-color: #fff;
+  border: 1px solid #b4b494;
+  color: #b4b494;
 }
 
 @media (max-width: 1024px){
