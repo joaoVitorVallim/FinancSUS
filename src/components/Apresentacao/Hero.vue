@@ -7,31 +7,40 @@
   
   const heroTitulo = ref(null);
   const heroDescricao = ref(null);
+  const heroSkip = ref(null);
   
   onMounted(() => {
     gsap.from(heroTitulo.value, {
       opacity: 0,
       x: -300,
-      duration: 1,
+      duration: 1.5,
     });
 
-    gsap.from(heroDescricao.value,{
+    gsap.from(heroDescricao.value, {
       opacity: 0,
       x: 300,
-      duration: 1,
-    });
+      duration: 1.5,
+    })
+
+    gsap.from(heroSkip.value, {
+      opacity: 1,
+      y: -200,
+      duration: 5,
+    })
   });
   </script>
 
 <template>
     <section class="hero">
       <div class="hero-container">
-        <div class="hero-titulo-container" ref="heroTitulo">
-          <h1 class="hero-titulo"><img src="../../assets/LogoPequenoEnergia.png" class="hero-logo" alt="Logo Financsus">FinancSUS</h1>
-        </div>
-        <div class="hero-descricao-container" ref="heroDescricao">
-          <h1>Uma doação para o mundo</h1>
-        </div>
+        <a href="" id="hero-skip" ref="heroSkip">Ir para a página principal >>></a>
+        <h1 class="hero-titulo" ref="heroTitulo">
+            <img src="../../assets/LogoPequenoEnergia.png" class="hero-logo" alt="Logo Financsus">
+            FinancSUS
+        </h1>
+        <div class="hero-descricao-container">
+          <h1 class="hero-descricao" ref="heroDescricao">Uma doação para o mundo</h1>
+        </div>    
       </div>
     </section>
   </template>
@@ -44,22 +53,32 @@
     font-style: normal;
   }
 
-  .hero{
+  .hero {
     height: 100vh;
     display: flex;
     justify-content: start;
     align-items: center;
     background-color: #f1f1ed;
+    flex-direction: column;
   }
 
-  .hero-titulo-container{
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-titulo-container {
     display: flex;
     justify-content: start;
   }
 
-  .hero-titulo{
+  .hero-titulo {
     font-family: CgAthenaeum;
-    font-size: 10rem;
+    font-size: clamp(3rem, 10vw, 10rem);
     background: linear-gradient(175deg, #b4b494, #70705b);
     background-size: 200% auto;
     color: transparent;
@@ -67,23 +86,40 @@
     animation: fade 4s ease-in-out infinite; 
     margin: 0;
     display: flex;
-    margin-left: 8rem;
+    align-items: center;
+    margin-left: clamp(1rem, 8vw, 8rem);
   }
 
-  .hero-descricao-container{
-    display: flex;
-    justify-content: center;
-    width: 95%;
-    margin-top: 0;
-    background: linear-gradient(300deg, #b4b494, #70705b);
+  .hero-descricao{
+    font-family: CgAthenaeum;
+    font-size: clamp(16px, 4vw, 48px);
+    background: linear-gradient(175deg, #b4b494, #70705b);
     background-size: 200% auto;
     color: transparent;
-    -webkit-background-clip: text; 
-    
+    -webkit-background-clip: text;
+    animation: fade 4s ease-in-out infinite;
+
+    display: flex;
+    justify-content: end;
+    margin-right: clamp(1rem, 8vw, 8rem);
   }
 
-  .hero-logo{
-    max-width: 200px;
+  .hero-logo {
+    height: clamp(6rem, 10vw, 10rem);
+    width: auto;
+    object-fit: contain;
+    margin-right: 1vw;
+  }
+
+  #hero-skip {
+    justify-self: end;
+    align-self: flex-end;
+    position: absolute;
+    top: 5%;
+    right: 7vw;
+    text-decoration: none;
+    color: #70705b;
+    font-family: CgAthenaeum;
+    font-weight: bold;
   }
   </style>
-  
