@@ -1,39 +1,16 @@
 <script setup>
-    import { RouterLink, RouterView } from 'vue-router';
+import Hero from '../components/Apresentacao/Hero.vue';
+import About from '../components/Apresentacao/About.vue';
+import Services from '../components/Apresentacao/Services.vue';
+import Contact from '../components/Apresentacao/Contact.vue';
 </script>
 
 <template>
-    <section class="componente-apresentacao">
-        <div>
-        <div class="container-apresentacao">
-            <img src="../assets/Slogan-FINANCSUS-AZUL.PNG" alt="Logo" class="logo" />
-        </div>
-        
-        </div>
-        <h1>Bem-vindo ao FinanCSUS</h1>
-    </section>
+  <div class="landing">
+    <Hero />
+  </div>
 </template>
 
-<style>
-    .componente-apresentacao{
-        background-color: #edeae3;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-    }
+<style scoped>
 
-
-    .logo{
-        width: 100%;
-    }
-
-    .container-apresentacao{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin-bottom: 2rem;
-    }
 </style>
