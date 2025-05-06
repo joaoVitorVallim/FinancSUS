@@ -2,22 +2,11 @@ import pkg from "jsonwebtoken";
 const { verify } = pkg;
 import { Vakinha } from "../Model/userModel.js";
 import { config } from "dotenv";
+import { getBearer } from "../Fixtures/bearer.js";
+
 
 config();
 
-const getBearer = (req) => {
-    const auth = req.headers.authorization;
-
-    const bearer = auth.split(' ');
-    const token = bearer[1];
-
-    try {
-        const payload = verify(token, process.env.SECRET);
-        return payload;
-    } catch (error) {
-        throw new Error("Token inválido ou expirado.");
-    }
-};
 
 export const createVakinha = async (req, res) => {
     try {

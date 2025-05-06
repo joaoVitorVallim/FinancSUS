@@ -1,9 +1,14 @@
-import { pixPayment, cardPayment, boletoPayment } from "../Controllers/paymentController.js";
+import { preference } from "../Controllers/paymentController.js";
 import { Router } from "express";
 const paymentRouter = Router();
 
-paymentRouter.post('/card', cardPayment);
-paymentRouter.post('/boleto', boletoPayment);
-paymentRouter.post('/pix', pixPayment);
+
+paymentRouter.post('/preference', preference);
+
+paymentRouter.post("/webhook", (req, res) => {
+    if (req.body.action === "disbursement.transferred") {
+      console.log("Repasse concluído:", req.body.data);
+    }
+  });
 
 export default paymentRouter;
