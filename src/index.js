@@ -12,6 +12,8 @@ import helmet from "helmet";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
 import { validateCollectorId } from "./Fixtures/mercadoPago.js";
+import oauthRouter from "./Routes/oauthRoutes.js";
+
 
 config();
 
@@ -47,6 +49,8 @@ app.use("/auth", router);
 app.use("/pay", paymentRouter, validateCollectorId);
 
 app.use("/", userRouter);
+
+app.use("/oauth", oauthRouter);
 
 app.use("/vakinha", vakinhaRouter);
 

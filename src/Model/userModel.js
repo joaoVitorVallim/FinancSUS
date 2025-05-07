@@ -18,6 +18,9 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     admin: { type: Boolean, required: true },
     vakinhas: [{ type: Schema.Types.ObjectId, ref: 'Vakinha' }],
+    client_id: { type: String },
+    client_secret: { type: String },
+    refresh_token: { type: String },
 });
 
 const User = model("User", userSchema);
@@ -27,10 +30,8 @@ const vakinhaSchema = new Schema({
     description: { type: String, required: true },
     goal: { type: Number, required: true },
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    collectorId: { type: String, required: true }, // Adicionando collectorId como obrigatório
     image: String,
     received: { type: Number, default: 0 },
-    collector_id: { type: Number, required: true },
 });
 
 const Vakinha = model("Vakinha", vakinhaSchema);
