@@ -1,9 +1,11 @@
 <template>
-    <section class="about" ref="about">
-      <h2>Sobre Nós</h2>
-      <p>
-        Somos especialistas em criar experiências digitais memoráveis, com foco em animações suaves e design moderno.
-      </p>
+    <section class="about">
+      <div class="about-container">
+        <h1 class="about-titulo">FinanSUS: energia limpa, financiada por todos.</h1>
+        <div class="about-descricao-container">
+          <h1 class="about-descricao">Uma plataforma de crowdfunding sustável que conecta pessoas a projetos de energia limpa. Incentive ideias inovadoras, fortaleça a consicência ambiental e ajude a construir r</h1>
+        </div>
+      </div>
     </section>
   </template>
   
@@ -16,29 +18,9 @@
   
   const about = ref(null);
   
-  onMounted(() => {
-    gsap.from(about.value, {
-      scrollTrigger: {
-        trigger: about.value,
-        start: 'top 80%',
-        end: 'top 30%',
-        toggleActions: 'play none none reverse',
-      },
-      opacity: 0,
-      x: -400,
-      duration: 1,
-      stagger: 0.2,
-    });
-  });
   </script>
   
   <style scoped>
-  .about {
-    background: white;
-    margin: 40px auto;
-    max-width: 800px;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  }
+
   </style>
   
