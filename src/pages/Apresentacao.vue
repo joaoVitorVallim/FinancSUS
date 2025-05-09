@@ -9,6 +9,7 @@ import Contact from '../components/Apresentacao/Contact.vue';
   <div class="landing">
     <Hero />
     <About />
+    <Services />
   </div>
 </template>
 

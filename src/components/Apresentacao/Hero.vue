@@ -59,8 +59,8 @@
     justify-content: start;
     align-items: center;
     background-color: #f1f1ed;
-    flex-direction: column;
   }
+
 
   .hero-container {
     display: flex;
