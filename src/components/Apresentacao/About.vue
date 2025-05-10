@@ -25,7 +25,7 @@
     gsap.from(aboutTitulo.value, {
       scrollTrigger: {
         trigger: aboutTitulo.value,
-        start: 'top 95%',
+        start: 'top 100%',
       },
       opacity: 0,
       y: 200,
@@ -35,7 +35,7 @@
     gsap.from(aboutDescricao1.value, {
       scrollTrigger: {
         trigger: aboutTitulo.value,
-        start: 'top 95%',
+        start: 'top 80%',
       },
       opacity: 0,
       x: -200,
@@ -45,7 +45,7 @@
     gsap.from(aboutDescricao2.value, {
       scrollTrigger: {
         trigger: aboutTitulo.value,
-        start: 'top 200%',
+        start: 'top 40%',
       },
       opacity: 0,
       x: 200,
@@ -74,6 +74,7 @@
 
     .about{
       height: 100vh;
+      max-height: 70vh;
       display: flex;
       justify-content: start;
       align-items: center;

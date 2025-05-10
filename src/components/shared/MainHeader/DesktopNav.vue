@@ -2,7 +2,7 @@
   <nav class="componente-navbar">
     <section class="componente-navbar-section">
       <div class="componente-navbar-nav">
-        <a href=""><img src="../../../assets/Logotipo-ICON-AZUL.png" alt="Logo" width="75px"></a>
+        <a href=""><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" width="75px"></a>
         <a class="navbar-botoes" href="/como-funciona">Como funciona?</a>
         <a class="navbar-botoes" href="">Projetos</a>
       </div>
@@ -21,7 +21,7 @@
     align-items: center;
     padding-inline: 1rem;
     padding-block: .1rem;
-    background-color: #fbfbfb;
+    background-color: #f7f7f5;
   }
 
   .componente-navbar-nav{
@@ -35,7 +35,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
-    color: #3e7f98;
+    color: #70705b;
     text-transform: uppercase; 
   }
 
@@ -50,7 +50,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
-    color: #3e7f98;
+    color: #70705b;
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -58,7 +58,7 @@
   }
 
   #cadastre-projeto {
-    border: 2px solid #3e7f98;
+    border: 2px solid #70705b;
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
   }

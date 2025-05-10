@@ -33,7 +33,7 @@
 <template>
     <section class="hero">
       <div class="hero-container">
-        <a href="" id="hero-skip" ref="heroSkip">Ir para a página principal >>></a>
+        <a href="" id="hero-skip" ref="heroSkip">CONTRIBUIR</a>
         <h1 class="hero-titulo" ref="heroTitulo">
             <img src="../../assets/LogoPequenoEnergia.png" class="hero-logo" alt="Logo Financsus">
             FinancSUS
@@ -119,7 +119,15 @@
     right: 7vw;
     text-decoration: none;
     color: #70705b;
-    font-family: CgAthenaeum;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 1px solid #70705b;
+    padding: 5px 1rem;
+    border-radius: 20px;
     font-weight: bold;
+  }
+
+  #hero-skip:hover{
+    color: #f1f1ed;
+    background-color: #70705b;
   }
   </style>

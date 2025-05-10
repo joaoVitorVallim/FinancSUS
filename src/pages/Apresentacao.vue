@@ -1,15 +1,16 @@
 <script setup>
 import Hero from '../components/Apresentacao/Hero.vue';
 import About from '../components/Apresentacao/About.vue';
-import Services from '../components/Apresentacao/Services.vue';
-import Contact from '../components/Apresentacao/Contact.vue';
+import Projects from '../components/Apresentacao/Projects.vue';
+import Redirect from '../components/Apresentacao/Redirect.vue';
 </script>
 
 <template>
   <div class="landing">
     <Hero />
     <About />
-    <Services />
+    <Projects />
+    <Redirect />
   </div>
 </template>
 
