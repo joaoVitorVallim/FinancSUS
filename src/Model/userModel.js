@@ -18,8 +18,6 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     admin: { type: Boolean, required: true },
     vakinhas: [{ type: Schema.Types.ObjectId, ref: 'Vakinha' }],
-    client_id: { type: String },
-    client_secret: { type: String },
     refresh_token: { type: String },
 });
 

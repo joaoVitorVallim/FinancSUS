@@ -36,7 +36,7 @@ app.use(ExpressMongoSanitize());
 
 app.use(helmet());
 
-app.use(limiter);
+
 
 app.use(cors(corsOptions));
 

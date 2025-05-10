@@ -1,26 +1,26 @@
 import { MercadoPagoConfig, Payment } from "mercadopago";
 import { config } from "dotenv";
-import { User } from "../Model/userModel";
-import { getBearer } from "../Fixtures/bearer";
+import { User } from "../Model/userModel.js";
+import { getBearer } from "../Fixtures/bearer.js";
 config();
 
 export const createPayment = async ({ payerEmail, transactionAmount }) => {
   try {
 
-    const { client_id, client_secret, refresh_token } = User.findOne(getBearer(req.headers.authorization));
+    const { refresh_token } = User.findOne(getBearer(req.headers.authorization));
 
-    const a = await axios.post('https://api.mercadopago.com/oauth/token', {
+    const data = await axios.post('https://api.mercadopago.com/oauth/token', {
         grant_type: 'authorization_code',
-        client_id: client_id,
-        client_secret: client_secret,
+        client_id: process.env.MP_CLIENT_ID,
+        client_secret: process.env.MP_CLIENT_SECRET,
         code: refresh_token,
         redirect_uri: process.env.REDIRECT_URI,
       }).data;
 
-      console.log(a);
+      console.log(data);
 
     const client = new MercadoPagoConfig({
-      accessToken: process.env.MP_ACCESS_TOKEN,
+      accessToken: data.access_token,
     });
 
     const payment = new Payment(client);

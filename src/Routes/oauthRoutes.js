@@ -1,7 +1,5 @@
 import express from "express";
-import axios from "axios";
-import dotenv from "dotenv";
-import { oauth } from "../Services/oauthService";
+import { oauth } from "../Services/oauthService.js";
 const oauthRouter = express.Router();
 
 oauthRouter.get("/callback", oauth);

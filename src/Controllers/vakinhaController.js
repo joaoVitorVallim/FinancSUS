@@ -10,7 +10,7 @@ config();
 
 export const createVakinha = async (req, res) => {
     try {
-        const payload = getBearer(req);
+        const payload = getBearer(req.headers.authorization);
 
         const vakinha = new Vakinha({
             title: req.body.title,
