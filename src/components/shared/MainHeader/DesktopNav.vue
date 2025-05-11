@@ -3,7 +3,7 @@
     <section class="componente-navbar-section">
       <div class="componente-navbar-nav">
         <a href=""><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" width="75px"></a>
-        <a class="navbar-botoes" href="/como-funciona">Como funciona?</a>
+        <a class="navbar-botoes" href="/como-funciona">Saiba Mais +</a>
         <a class="navbar-botoes" href="">Projetos</a>
       </div>
       <div class="componente-navbar-cadastro">

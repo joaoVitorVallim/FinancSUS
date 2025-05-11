@@ -24,8 +24,8 @@ const router = createRouter({
       component: Apresentacao,
     },
     {
-      path: '/como-funciona',
-      name: 'como-funciona',
+      path: '/SaibaMais',
+      name: 'SaibaMais',
       component: ComoFunciona,
     },
 
