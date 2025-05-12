@@ -9,7 +9,9 @@ export const createUser = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: await hash(req.body.password, 10),
-            admin: false,             
+            admin: false, 
+            refresh_token: null,
+            collector: req.body.collector,            
       });
       await user.save();
       return res.status(201).send();
@@ -43,7 +45,7 @@ export const loginUser = async (req, res) => {
 export const updateUser =  async (req, res) => {
     try{
         
-        const doc = await User.findByIdAndUpdate(req.params._id, req.body, { new: true });
+        const doc = await User.findByIdAndUpdate(req.params._id, req.body);
 
         if(!doc){
             return res.status(404).send({ mensagem: 'Documento não encontrado' });

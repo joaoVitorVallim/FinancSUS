@@ -1,6 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
 import dotenv from "dotenv";
-import crypto from "crypto"
 import { User } from "../Model/userModel.js";
 import qs from "qs";
 dotenv.config();
@@ -29,24 +28,15 @@ export const oauth = async (req, res) => {
       }
     );
 
-    const { access_token, refresh_token, public_key, user_id } = response.data;
+    const { refresh_token } = response.data;
 
-    console.log("Dados recebidos:", {
-      access_token,
-      refresh_token,
-      public_key,
-      user_id,
-      state,
-    });
 
-    User.findByIdAndUpdate(
+    const doc = await User.findByIdAndUpdate(
       state,
-      {
-        refresh_token: refresh_token,
-      },
+      { refresh_token },
     );
 
-    return res.send("Conectado com sucesso ao Mercado Pago!");
+    return res.status(200).send(doc);
   } catch (error) {
     return res.status(500).send(error.response?.data);
   }

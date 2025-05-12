@@ -11,7 +11,6 @@ import searchRouter from "./Routes/searchRouter.js";
 import helmet from "helmet";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
-import { validateCollectorId } from "./Fixtures/mercadoPago.js";
 import oauthRouter from "./Routes/oauthRoutes.js";
 
 
@@ -46,7 +45,7 @@ app.use("/search", searchRouter);
 
 app.use("/auth", router);
 
-app.use("/pay", paymentRouter, validateCollectorId);
+app.use("/pay", paymentRouter);
 
 app.use("/", userRouter);
 

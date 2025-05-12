@@ -5,7 +5,7 @@ import { createPayment } from "../Services/paymenteService.js"
 export const preference = async (req, res) => {
 
     try {
-        const response = await createPayment(req.body);
+        const response = await createPayment(req);
         
         return res.status(201).send(response);
     }
