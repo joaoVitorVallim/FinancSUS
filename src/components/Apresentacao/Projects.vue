@@ -108,7 +108,7 @@ onMounted(() => {
   }
 
  .project{
-    max-height: 1500px;
+    max-height: 1350px;
     height: 100vh;
     width: 100%;
     display: flex;

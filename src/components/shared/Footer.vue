@@ -8,7 +8,7 @@
         <div class="footer-right">
           <nav class="footer-nav">
             <router-link to="/" class="footer-link">Home</router-link>
-            <router-link to="/sobre" class="footer-link">Sobre</router-link>
+            <router-link to="/saibaMais" class="footer-link">Sobre</router-link>
             <router-link to="/projetos" class="footer-link">Projetos</router-link>
             <router-link to="/login" class="footer-link">Login</router-link>
           </nav>

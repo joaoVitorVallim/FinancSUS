@@ -1,7 +1,7 @@
 <template>
   <nav class="mobile-componente-navbar">
     <div class="mobile-componente-navbar-header">
-      <a href=""><img src="../../../assets/Logotipo-ICON-AZUL.png" alt="Logo" width="100px"></a>
+      <a href=""><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" class="mobile-navbar-logo"></a>
       <button class="mobile-menu-hamburguer" @click="toggleMenu">☰</button>
     </div>
     <Transition name="slide-fade">
@@ -42,12 +42,18 @@ function toggleMenu() {
         background-color: #edeae3;
     }
 
+    .mobile-navbar-logo{
+        width: 100px;
+        filter: brightness(0.8);
+    }
+
     .mobile-menu-hamburguer {
         background-color: transparent;
         border: none;
         font-size: 2rem;
         cursor: pointer;
-        color: #000;
+        color: #74745b;
+        filter: brightness(0.8);
     }
 
     .mobile-componente-navbar-section {

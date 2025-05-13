@@ -55,6 +55,7 @@
 
   .hero {
     height: 100vh;
+    max-height: 1350px;
     display: flex;
     justify-content: start;
     align-items: center;

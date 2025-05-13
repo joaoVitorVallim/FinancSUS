@@ -8,21 +8,38 @@
       </div>
 
       <div class="cadastro-projeto-direita">
+        <router-link to="/projetos" class="fechar-button">&times;</router-link>
         <img id="cadastro-projeto-img" src="../../assets/LogoPequenoEnergia.png" alt="">
         <h1>Novo Projeto</h1>
-        <form class="formulario-cadastro-projeto">
-          <input type="text" placeholder="Nome do Projeto" required />
-          <select required>
-            <option value="" disabled selected>Tipo de Energia</option>
-            <option value="solar">Energia Solar</option>
-            <option value="eolica">Energia Eólica</option>
-            <option value="hidrica">Energia Hídrica</option>
-            <option value="biogas">Biogás</option>
-          </select>
-          <input type="number" placeholder="Meta de Financiamento (R$)" required />
-          <textarea placeholder="Descrição do Projeto" rows="4" required></textarea>
-          <input type="file" accept="image/*" required />
-          <button class="botao-cadastrar">CADASTRAR PROJETO</button>
+        <form class="formulario-cadastro-projeto" @submit.prevent="submitProject">
+          <input 
+            v-model="projectData.title"
+            type="text" 
+            placeholder="Título do Projeto" 
+            required 
+          />
+          <textarea 
+            v-model="projectData.description"
+            placeholder="Descrição detalhada do projeto" 
+            rows="4" 
+            required
+          ></textarea>
+          <label for="number" id="label-number">Meta de Financiamento:</label>
+          <input 
+            v-model.number="projectData.goal"
+            type="number" 
+            placeholder="Meta de Financiamento (R$)" 
+            min="0"
+            step="0.01"
+            required 
+          />
+          <input 
+            type="file" 
+            accept="image/*" 
+            @change="handleImageUpload"
+            required 
+          />
+          <button type="submit" class="botao-cadastrar">CADASTRAR PROJETO</button>
         </form>
       </div>
     </div>
@@ -31,6 +48,25 @@
 
 <script setup>
 import { ref } from 'vue'
+
+const projectData = ref({
+  title: '',
+  description: '',
+  goal: 0,
+  image: null,
+  owner: null 
+})
+
+const handleImageUpload = (event) => {
+  const file = event.target.files[0]
+  if (file) {
+    projectData.value.image = file
+  }
+}
+
+const submitProject = async () => {
+  //faz a porra do envio aqui caralho
+}
 </script>
 
 <style scoped>
@@ -40,7 +76,7 @@ import { ref } from 'vue'
   align-items: center;
   min-height: 100vh;
   background-color: #f1f1ed;
-  padding: clamp(1rem, 3vw, 2rem);
+  width: 100%;
 }
 
 .cadastro-projeto-container {
@@ -48,8 +84,9 @@ import { ref } from 'vue'
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25);
-  width: 100%;
-  max-width: 1000px;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1000px;;
   min-height: 600px;
 }
 
@@ -63,25 +100,26 @@ import { ref } from 'vue'
 }
 
 .cadastro-projeto-esquerda {
-  background: linear-gradient(175deg, #b4b494, #70705b);
+  background: #70705b;
   color: white;
   border-radius: 10px 0 0 10px;
   text-align: center;
 }
 
 .cadastro-projeto-esquerda h1 {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .cadastro-projeto-esquerda p {
-  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
   margin: 0.5rem 0;
 }
 
 .cadastro-projeto-direita {
   background-color: white;
   border-radius: 0 10px 10px 0;
+  position: relative;
 }
 
 #cadastro-projeto-img {
@@ -91,7 +129,7 @@ import { ref } from 'vue'
 
 .cadastro-projeto-direita h1 {
   color: #70705b;
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   margin-bottom: 2rem;
 }
 
@@ -113,13 +151,18 @@ import { ref } from 'vue'
   width: 100%;
 }
 
+#label-number {
+  font-size: clamp(0.9rem, 2vw, 1..5rem);
+  font-family: 'Times New Roman', Times, serif;
+}
+
 .formulario-cadastro-projeto textarea {
   resize: vertical;
   min-height: 100px;
 }
 
 .botao-cadastrar {
-  background: linear-gradient(175deg, #b4b494, #70705b);
+  background: #70705b;
   color: white;
   border: none;
   padding: 12px 45px;
@@ -130,7 +173,28 @@ import { ref } from 'vue'
 }
 
 .botao-cadastrar:hover {
-  background: linear-gradient(175deg, #70705b, #b4b494);
+  opacity: 0.9;
+}
+
+.fechar-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: #70705b;
+  text-decoration: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.fechar-button:hover {
+  background-color: #70705b;
+  color: white;
 }
 
 @media (max-width: 768px) {
@@ -138,18 +202,19 @@ import { ref } from 'vue'
     flex-direction: column;
   }
 
-  .cadastro-projeto-esquerda,
-  .cadastro-projeto-direita {
-    width: 100%;
-    border-radius: 10px;
+  .cadastro-projeto-esquerda {
+    display: none;
   }
 
-  .cadastro-projeto-esquerda {
-    padding: clamp(1.5rem, 3vw, 2rem);
+  .cadastro-projeto-direita {
+    justify-self: center;
+    align-self: center;
+    border-radius: 10px;
+    width: 100%;
   }
 
   .formulario-cadastro-projeto {
-    padding: 0 clamp(1rem, 2vw, 1.5rem);
+    width: 80%
   }
 }
 </style>

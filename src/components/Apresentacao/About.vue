@@ -74,7 +74,7 @@
 
     .about{
       height: 100vh;
-      max-height: 70vh;
+      max-height: 1350px;
       display: flex;
       justify-content: start;
       align-items: center;

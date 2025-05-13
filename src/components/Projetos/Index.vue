@@ -5,7 +5,7 @@
     </div>
 
     <div class="projetos-grid">
-      <div v-for="projeto in projetosFiltrados" :key="projeto.id" class="projeto-card">
+      <RouterLink v-for="projeto in projetosFiltrados" :key="projeto.id" to="/project-details" class="projeto-card">
         <img :src="projeto.imagem" alt="Imagem do Projeto" class="projeto-imagem"/>
         <h2 class="projeto-titulo">{{ projeto.titulo }}</h2>
         <p class="projeto-descricao">{{ projeto.descricao }}</p>
@@ -23,7 +23,7 @@
         <p class="progresso-texto">
           {{ ((projeto.valorArrecadado / projeto.metaArrecadacao) * 100).toFixed(1) }}% arrecadado
         </p>
-      </div>
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -104,6 +104,7 @@ const projetosFiltrados = computed(() => {
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
+  text-decoration: none;
 }
 
 .projeto-card:hover {
