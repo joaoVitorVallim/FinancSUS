@@ -1,31 +1,39 @@
 <template>
   <div class="projetos-container">
+    <div class="barra-pesquisa">
+      <input type="text" v-model="filtro" placeholder="Buscar projetos" class="input-pesquisa"/>
+    </div>
+
     <div class="projetos-grid">
-      <div v-for="projeto in projetosVisiveis" :key="projeto.id" class="projeto-card">
+      <div v-for="projeto in projetosFiltrados" :key="projeto.id" class="projeto-card">
         <img :src="projeto.imagem" alt="Imagem do Projeto" class="projeto-imagem"/>
         <h2 class="projeto-titulo">{{ projeto.titulo }}</h2>
         <p class="projeto-descricao">{{ projeto.descricao }}</p>
         <p class="projeto-valor">
-        <span class="valor-arrecadado">R$ {{ projeto.valorArrecadado.toFixed(2) }}</span>
-        de
-        <span class="valor-meta">R$ {{ projeto.metaArrecadacao.toFixed(2) }}</span>
+          <span class="valor-arrecadado">R$ {{ projeto.valorArrecadado.toFixed(2) }}</span>
+          de
+          <span class="valor-meta">R$ {{ projeto.metaArrecadacao.toFixed(2) }}</span>
         </p>
         <div class="progresso-container">
-            <div class="progresso-barra" :style="{ width: `${(projeto.valorArrecadado / projeto.metaArrecadacao) * 100}%` }"></div>
+          <div 
+            class="progresso-barra" 
+            :style="{ width: `${(projeto.valorArrecadado / projeto.metaArrecadacao) * 100}%` }"
+          ></div>
         </div>
         <p class="progresso-texto">
-            {{ ((projeto.valorArrecadado / projeto.metaArrecadacao) * 100).toFixed(1) }}% arrecadado
+          {{ ((projeto.valorArrecadado / projeto.metaArrecadacao) * 100).toFixed(1) }}% arrecadado
         </p>
-    </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const projetos = ref([])
 const projetosVisiveis = ref([])
+const filtro = ref('')
 
 const api_url = 'link-api'
 
@@ -46,15 +54,27 @@ onMounted(async () => {
       descricao: 'Descrição do projeto temporário.',
       imagem: 'https://placehold.co/400x200.png',
       valorArrecadado: Math.floor(Math.random() * 10000),
-      metaArrecadacao: 20000,
+      metaArrecadacao: Math.floor(Math.random() * 100000),
     }))
   }
 
   projetosVisiveis.value = projetos.value.slice(0, 12)
 })
+
+const projetosFiltrados = computed(() => {
+  if (!filtro.value.trim()) {
+    return projetosVisiveis.value
+  }
+  return projetosVisiveis.value.filter(projeto =>
+    projeto.titulo.toLowerCase().includes(filtro.value.toLowerCase())
+  )
+})
 </script>
 
 <style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400;600&display=swap');
+
 .projetos-container {
   padding: 7rem 10rem 2rem 10rem;
   background-color: #ffffff;
@@ -99,30 +119,35 @@ onMounted(async () => {
 }
 
 .projeto-titulo {
-  font-size: 1.2rem;
-  font-family: 'Arial', sans-serif;
+  font-size: 1.5rem;
+  font-family: 'Gabarito', sans-serif;
   font-weight: 600;
   margin-bottom: 0.25rem;
-  color: #70705b;
+  background: linear-gradient(90deg, #b4b494, #70705b);
+  background-size: 100% auto;
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 .projeto-descricao {
-  color: #6b7280;
-  font-family: 'Arial', sans-serif;
-  font-size: 0.95rem;
+  color: #2d2f31;
+  font-family: 'Gabarito', sans-serif;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
 .valor-arrecadado {
   color: #16a34a;
+  font-size: 1.1rem;
   font-weight: 600;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Gabarito', sans-serif;
 }
 
 .valor-meta {
   color: #464646;
+  font-size: 1.1rem;
   font-weight: 600;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Gabarito', sans-serif;
 }
 
 .progresso-container {
@@ -145,5 +170,26 @@ onMounted(async () => {
   color: #6b7280;
   margin-top: 0.25rem;
   text-align: right;
+}
+
+.barra-pesquisa {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.input-pesquisa {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input-pesquisa:focus {
+  border-color: #16a34a;
 }
 </style>
