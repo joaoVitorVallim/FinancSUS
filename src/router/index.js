@@ -5,6 +5,7 @@ import Register from '../pages/Register.vue'
 import Apresentacao from '../pages/Apresentacao.vue'
 import ComoFunciona from '../pages/ComoFunciona.vue'
 import Projetos from '../pages/Projetos.vue'
+import CadastroProjeto from '../pages/CadastroProjeto.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/projetos',
       name: 'projetos',
       component: Projetos,
+    },
+    {
+      path: '/cadastroProjeto',
+      name: 'cadastroProjeto',
+      component: CadastroProjeto,
     },
 
   ],

@@ -5,4 +5,5 @@
 <template>
     <MainHeader />
     <Index />
+    <Footer />
 </template>

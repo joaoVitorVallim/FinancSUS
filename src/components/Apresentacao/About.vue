@@ -92,7 +92,8 @@
 
     .about-titulo{
       font-family: CgAthenaeum;
-      font-size: clamp(1rem, 4vw, 10rem);
+      font-size: clamp(2.5rem, 4vw, 10rem);
+      text-align: center;
       background: linear-gradient(90deg, #b4b494, #70705b);
       background-size: 100% auto;
       color: transparent;
@@ -106,9 +107,9 @@
 
     .about-descricao-container{
       display: grid;
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: repeat(2, auto);
       grid-template-rows: repeat(2, auto);
-      row-gap: 5vw;
+      row-gap: 3vw;
       width: 100%;
       justify-content: center;
       align-items: center;
@@ -118,7 +119,7 @@
       grid-column: 1 / 2;
       grid-row: 1 / 2;
       font-family: CgAthenaeum;
-      font-size: clamp(1rem, 2.5vw, 3rem);
+      font-size: clamp(1.5rem, 2.5vw, 3rem);
       background: linear-gradient(110deg, #b4b494, #70705b);
       background-size: 100% auto;
       color: transparent;
@@ -131,13 +132,25 @@
       grid-column: 4 / 5;
       grid-row: 2 / 3;
       font-family: CgAthenaeum;
-      font-size: clamp(1rem, 2.5vw, 3rem);
+      font-size: clamp(1.5rem, 2.5vw, 3rem);
        background: linear-gradient(320deg, #b4b494, #70705b);
       background-size: 100% auto;
       color: transparent;
       -webkit-background-clip: text; 
       text-align: center;
       max-width: 500px;
+    }
+
+    @media(max-width: 400px){
+      .about-titulo{
+        font-size: 2rem;
+      }
+
+      .about-descricao-container{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+      }
     }
 
   </style>

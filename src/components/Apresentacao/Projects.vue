@@ -30,7 +30,7 @@
           <button class="carousel-button next" @click="next">&gt;</button>
         </div>
 
-        <div class="carousel-dots">
+        <div class="carousel-dots" ref="dots">
           <button 
             v-for="(_, index) in 4" 
             :key="index"
@@ -53,13 +53,15 @@ gsap.registerPlugin(ScrollTrigger);
 const currentSlide = ref(0);
 const carousel = ref(null);
 const projectsTitulo = ref(null);
+const dots = ref(null);
+
 
 const next = () => {
-  currentSlide.value = (currentSlide.value + 1) % 5;
+  currentSlide.value = (currentSlide.value + 1) % 4;
 };
 
 const prev = () => {
-  currentSlide.value = (currentSlide.value - 1 + 5) % 5;
+  currentSlide.value = (currentSlide.value - 1 + 5) % 4;
 };
 
 const goToSlide = (index) => {
@@ -82,7 +84,16 @@ onMounted(() => {
       start: 'top 80%',
     },
     opacity: 0,
-    y: 100,
+    x: 100,
+    duration: 1,
+  });
+  gsap.from(dots.value, {
+    scrollTrigger: {
+      trigger: carousel.value,
+      start: 'top 80%',
+    },
+    opacity: 0,
+    x: 100,
     duration: 1,
   });
 });
@@ -97,7 +108,7 @@ onMounted(() => {
   }
 
  .project{
-    max-height: 1300px;
+    max-height: 1500px;
     height: 100vh;
     width: 100%;
     display: flex;
@@ -106,9 +117,13 @@ onMounted(() => {
     background-color: #f1f1ed;
  }
 
+ .project-container{
+  margin-inline: 2vw;
+ }
+
  .project-titulo{
     font-family: CgAthenaeum;
-    font-size: clamp(1rem, 4vw, 10rem);
+    font-size: clamp(2.5rem, 4vw, 10rem);
     background: linear-gradient(90deg, #b4b494, #70705b);
     background-size: 100% auto;
     color: transparent;
@@ -122,7 +137,7 @@ onMounted(() => {
 
  .carousel{
   position: relative;
-  width: 100%;
+  width: fit-content;
   max-width: 1200px;
   margin: 0;
   display: flex;
@@ -151,7 +166,6 @@ onMounted(() => {
   border-radius: 10px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  min-height: 200px;
   text-align: center;
  }
 
@@ -192,7 +206,7 @@ onMounted(() => {
  }
  
  .tituloProjetos{
-  font-size: clamp(1.5rem, 3vw, 5rem);
+  font-size: clamp(2rem, 3vw, 5rem);
   font-family: CgAthenaeum;
   margin-bottom: 1rem;
   margin-top: 1.5rem;
@@ -209,7 +223,13 @@ onMounted(() => {
 
  @media(max-width: 1270px){
   .carousel{
-    max-width: 864px;
+    max-width: 80vw;;
+  }
+ }
+
+ @media(max-width: 340px){
+  .project-titulo{
+    font-size: 2rem;
   }
  }
 

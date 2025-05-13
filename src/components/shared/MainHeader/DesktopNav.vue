@@ -2,12 +2,12 @@
   <nav class="componente-navbar">
     <section class="componente-navbar-section">
       <div class="componente-navbar-nav">
-        <a href=""><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" width="75px"></a>
+        <a href="/"><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" width="75px"></a>
         <a class="navbar-botoes" href="/saibamais">Saiba Mais +</a>
         <a class="navbar-botoes" href="/projetos">Projetos</a>
       </div>
       <div class="componente-navbar-cadastro">
-        <a id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</a>
+        <a href="/cadastroProjeto" id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</a>
         <a class="componente-navbar-cadastro-a" href=""><img src="../../../assets/user.png" width="30px" color="red">Cadastrar-se</a>
       </div>
     </section>

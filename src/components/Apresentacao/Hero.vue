@@ -33,7 +33,7 @@
 <template>
     <section class="hero">
       <div class="hero-container">
-        <a href="" id="hero-skip" ref="heroSkip">CONTRIBUIR</a>
+        <a href="projetos" id="hero-skip" ref="heroSkip">CONTRIBUIR</a>
         <h1 class="hero-titulo" ref="heroTitulo">
             <img src="../../assets/LogoPequenoEnergia.png" class="hero-logo" alt="Logo Financsus">
             FinancSUS
@@ -69,16 +69,12 @@
     width: 100%;
     height: 100%;
     position: relative;
-  }
-
-  .hero-titulo-container {
-    display: flex;
-    justify-content: start;
+    margin-inline: clamp(1rem, 2vw, 2rem);
   }
 
   .hero-titulo {
     font-family: CgAthenaeum;
-    font-size: clamp(3rem, 10vw, 10rem);
+    font-size: clamp(4rem, 10vw, 10rem);
     background: linear-gradient(175deg, #b4b494, #70705b);
     background-size: 200% auto;
     color: transparent;
@@ -87,25 +83,23 @@
     margin: 0;
     display: flex;
     align-items: center;
-    margin-left: clamp(1rem, 8vw, 8rem);
+    justify-content: start;
   }
 
   .hero-descricao{
     font-family: CgAthenaeum;
-    font-size: clamp(16px, 4vw, 48px);
+    font-size: clamp(20px, 4vw, 48px);
     background: linear-gradient(175deg, #b4b494, #70705b);
     background-size: 200% auto;
     color: transparent;
     -webkit-background-clip: text;
     animation: fade 4s ease-in-out infinite;
-
     display: flex;
     justify-content: end;
-    margin-right: clamp(1rem, 8vw, 8rem);
   }
 
   .hero-logo {
-    height: clamp(6rem, 10vw, 10rem);
+    height: clamp(3rem, 10vw, 10rem);
     width: auto;
     object-fit: contain;
     margin-right: 1vw;
@@ -116,7 +110,7 @@
     align-self: flex-end;
     position: absolute;
     top: 5%;
-    right: 7vw;
+    right: 5vw;
     text-decoration: none;
     color: #70705b;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -124,10 +118,17 @@
     padding: 5px 1rem;
     border-radius: 20px;
     font-weight: bold;
+    font-size: 1rem
   }
 
   #hero-skip:hover{
     color: #f1f1ed;
     background-color: #70705b;
+  }
+
+  @media (max-width: 500px){
+    .hero-titulo{
+      font-size: clamp(3rem, 5vw, 5rem)
+    }
   }
   </style>
