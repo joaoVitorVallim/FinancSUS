@@ -1,14 +1,10 @@
-import { preference } from "../Controllers/paymentController.js";
+import { payment } from "../Controllers/paymentController.js";
 import { Router } from "express";
 const paymentRouter = Router();
 
 
-paymentRouter.post('/preference', preference);
+paymentRouter.post('/payment', payment);
 
-paymentRouter.post("/webhook", (req, res) => {
-    if (req.body.action === "disbursement.transferred") {
-      console.log("Repasse concluído:", req.body.data);
-    }
-  });
+
 
 export default paymentRouter;

@@ -2,7 +2,7 @@ import { createPayment } from "../Services/paymenteService.js"
 
 
 
-export const preference = async (req, res) => {
+export const payment = async (req, res) => {
 
     try {
         const response = await createPayment(req);
