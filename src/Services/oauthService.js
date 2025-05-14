@@ -15,18 +15,13 @@ export const oauth = async (req, res) => {
   try {
     const response = await axios.post(
       "https://api.mercadopago.com/oauth/token",
-      qs.stringify({
+      {
         grant_type: "authorization_code",
         client_id: process.env.MP_CLIENT_ID,
         client_secret: process.env.MP_CLIENT_SECRET,
         code: code,
         redirect_uri: process.env.REDIRECT_URI
-      }),
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
+      },
     );
 
     const { refresh_token } = response.data;
