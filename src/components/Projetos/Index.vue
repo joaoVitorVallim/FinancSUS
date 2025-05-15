@@ -1,10 +1,14 @@
 <template>
-  <div class="projetos-container">
+  <div class="projetos-container" :class="{ 'empty-container': projetosFiltrados.length === 0 }">
     <div class="barra-pesquisa">
       <input type="text" v-model="filtro" placeholder="Buscar projetos" class="input-pesquisa"/>
     </div>
 
-    <div class="projetos-grid">
+    <div v-if="projetosFiltrados.length === 0" class="mensagem-vazio">
+      <p>Nenhum projeto encontrado.</p>
+    </div>
+
+    <div v-else class="projetos-grid">
       <RouterLink v-for="projeto in projetosFiltrados" :key="projeto.id" to="/project-details" class="projeto-card">
         <img :src="projeto.imagem" alt="Imagem do Projeto" class="projeto-imagem"/>
         <h2 class="projeto-titulo">{{ projeto.titulo }}</h2>
@@ -124,10 +128,8 @@ const projetosFiltrados = computed(() => {
   font-family: 'Gabarito', sans-serif;
   font-weight: 600;
   margin-bottom: 0.25rem;
-  background: linear-gradient(90deg, #b4b494, #70705b);
-  background-size: 100% auto;
-  color: transparent;
-  -webkit-background-clip: text;
+  color: black;
+
 }
 
 .projeto-descricao {
@@ -145,7 +147,7 @@ const projetosFiltrados = computed(() => {
 }
 
 .valor-meta {
-  color: #464646;
+  color: #323131;
   font-size: 1.1rem;
   font-weight: 600;
   font-family: 'Gabarito', sans-serif;
@@ -154,7 +156,7 @@ const projetosFiltrados = computed(() => {
 .progresso-container {
   width: 100%;
   height: 10px;
-  background-color: #f7f7f5;
+  background-color: #fff;
   border-radius: 5px;
   overflow: hidden;
   margin-top: 0.5rem;
@@ -164,6 +166,7 @@ const projetosFiltrados = computed(() => {
   height: 100%;
   background-color: #16a34a;
   transition: width 0.3s ease;
+  border-right: 2px solid black;
 }
 
 .progresso-texto {
@@ -192,5 +195,27 @@ const projetosFiltrados = computed(() => {
 
 .input-pesquisa:focus {
   border-color: #16a34a;
+}
+
+.mensagem-vazio {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #70705b;
+  font-family: 'Gabarito', sans-serif;
+}
+
+.empty-container {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media(max-width: 1024px){
+  .input-pesquisa{ 
+    max-width: 100%;
+  }
 }
 </style>

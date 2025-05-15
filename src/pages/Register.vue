@@ -11,9 +11,11 @@
         <img id="login-img" src="../assets/LogoPequenoEnergia.png" alt="">
         <h1>Registre sua conta</h1>
         <form class="formulario-login">
+          <input type="name" placeholder="Nome" />
+          <input type="lastName" placeholder="Sobrenome" />
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Senha" />
-          <button class="botao-registrar">CADASTRAR-SE</button>
+          <RouterLink to="/login" class="botao-registrar">CADASTRAR-SE</RouterLink>
           <RouterLink 
             to="/login" 
             class="botao-login" 
@@ -164,6 +166,8 @@ input {
   background-color: #b4b494;
   color: white;
   border: none;
+  text-align: center;
+  text-decoration: none;
 }
 
 .botao-registrar:hover {
@@ -194,8 +198,8 @@ input {
 
   #botao-login-mobile{
     display: block;
-    color: #3e7f98;
-    border-color: #3e7f98;
+    color: #b4b494;
+    border-color: #b4b494;
     margin-top: 0;;
     text-decoration: none;
     text-align: center;

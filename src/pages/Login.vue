@@ -28,7 +28,12 @@
         <form class="formulario-login">
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Senha" />
-          <button class="botao-login">ENTRAR</button>
+          <RouterLink 
+            to="/projetos" 
+            class="botao-login" 
+          >
+            ENTRAR
+          </RouterLink>
           <RouterLink 
             to="/register" 
             class="botao-registrar" 
@@ -165,6 +170,9 @@ input {
   background-color: #b4b494;
   color: white;
   border: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+  text-decoration: none;
 }
 
 .botao-login:hover {
@@ -195,8 +203,8 @@ input {
 
   #botao-registrar-mobile{
     display: block;
-    color: #3e7f98;
-    border-color: #3e7f98;
+    color: #b4b494;
+    border-color: #b4b494;
     margin-top: 0;
     text-decoration: none;
     text-align: center;

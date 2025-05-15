@@ -1,7 +1,7 @@
 <template>
   <nav class="mobile-componente-navbar">
     <div class="mobile-componente-navbar-header">
-      <a href=""><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" class="mobile-navbar-logo"></a>
+      <a href="/home"><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" class="mobile-navbar-logo"></a>
       <button class="mobile-menu-hamburguer" @click="toggleMenu">☰</button>
     </div>
     <Transition name="slide-fade">
@@ -9,7 +9,7 @@
             <a class="mobile-navbar-botoes" href="/saibamais">Saiba Mais +</a>
             <a class="mobile-navbar-botoes" href="/projetos">Projetos</a>
             <a id="mobile-cadastre-projeto" class="mobile-navbar-botoes">Cadastre seu projeto!</a>
-            <a class="mobile-componente-navbar-cadastro-a" href="">
+            <a class="mobile-componente-navbar-cadastro-a" href="/register">
             <img src="../../../assets/user.png" width="30px">Cadastrar-se
             </a>
         </section>
@@ -70,7 +70,7 @@ function toggleMenu() {
         font-size: 1.2rem;
         font-weight: 600;
         font-family: 'Poppins', sans-serif;
-        color: #3e7f98;
+        color: #70705b;
         text-transform: uppercase; 
     }
 
@@ -79,14 +79,13 @@ function toggleMenu() {
         font-size: 1.2rem;
         font-weight: 600;
         font-family: 'Poppins', sans-serif;
-        color: #3e7f98;
+        color: #70705b;
         text-transform: uppercase;
         display: flex;
         align-items: center;
         gap: .3rem; 
     }
 
-        /* Animation */
     .slide-fade-enter-active,
     .slide-fade-leave-active {
     transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);

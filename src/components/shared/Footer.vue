@@ -11,6 +11,7 @@
             <router-link to="/saibaMais" class="footer-link">Sobre</router-link>
             <router-link to="/projetos" class="footer-link">Projetos</router-link>
             <router-link to="/login" class="footer-link">Login</router-link>
+            <router-link to="/termos" class="footer-link">Termos de uso</router-link>
           </nav>
         </div>
       </div>
@@ -29,6 +30,7 @@
   background-color: #70705b;
   padding: clamp(2rem, 4vw, 3rem) 0 clamp(1rem, 2vw, 1.5rem);
   width: 100%;
+  margin-top: auto;
 }
 
 .footer-container {

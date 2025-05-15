@@ -2,13 +2,13 @@
   <nav class="componente-navbar">
     <section class="componente-navbar-section">
       <div class="componente-navbar-nav">
-        <a href="/"><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" width="75px"></a>
+        <a href="/home"><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" width="75px"></a>
         <a class="navbar-botoes" href="/saibamais">Saiba Mais +</a>
         <a class="navbar-botoes" href="/projetos">Projetos</a>
       </div>
       <div class="componente-navbar-cadastro">
         <a href="/cadastroProjeto" id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</a>
-        <a class="componente-navbar-cadastro-a" href=""><img src="../../../assets/user.png" width="30px" color="red">Cadastrar-se</a>
+        <a class="componente-navbar-cadastro-a" href="/register"><img src="../../../assets/user.png" width="30px" color="red">Cadastrar-se</a>
       </div>
     </section>
   </nav>
@@ -21,7 +21,7 @@
     align-items: center;
     padding-inline: 1rem;
     padding-block: .1rem;
-    background-color: #f7f7f5;
+    background-color: #edeae3;
   }
 
   .componente-navbar-nav{
