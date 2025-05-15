@@ -13,6 +13,13 @@
         <img :src="projeto.imagem" alt="Imagem do Projeto" class="projeto-imagem"/>
         <h2 class="projeto-titulo">{{ projeto.titulo }}</h2>
         <p class="projeto-descricao">{{ projeto.descricao }}</p>
+        <p class="projeto-status" :class="{
+          'status-concluido': projeto.status == 'Concluído',
+          'status-andamento': projeto.status == 'Em andamento',
+          'status-encerrado': projeto.status == 'Encerrado'
+        }">
+          {{ projeto.status }}
+        </p>
         <p class="projeto-valor">
           <span class="valor-arrecadado">R$ {{ projeto.valorArrecadado.toFixed(2) }}</span>
           de
@@ -59,6 +66,7 @@ onMounted(async () => {
       imagem: 'https://placehold.co/400x200.png',
       valorArrecadado: Math.floor(Math.random() * 10000),
       metaArrecadacao: Math.floor(Math.random() * 100000),
+      status: ['Concluído', 'Em andamento', 'Encerrado'][i % 3]
     }))
   }
 
@@ -77,7 +85,7 @@ const projetosFiltrados = computed(() => {
 
 <style scoped>
 
-@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 .projetos-container {
   padding: 7rem 10rem 2rem 10rem;
@@ -88,18 +96,6 @@ const projetosFiltrados = computed(() => {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .projetos-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .projetos-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
 
 .projeto-card {
@@ -116,41 +112,60 @@ const projetosFiltrados = computed(() => {
 }
 
 .projeto-imagem {
-  width: 100%;
-  height: 180px;
   object-fit: cover;
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
+  max-width: 100%;
+  display:flex;
+  flex-basis: 23%;
 }
 
 .projeto-titulo {
   font-size: 1.5rem;
-  font-family: 'Gabarito', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 600;
   margin-bottom: 0.25rem;
   color: black;
-
 }
 
 .projeto-descricao {
   color: #2d2f31;
-  font-family: 'Gabarito', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
+}
+
+.projeto-status {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.status-concluido {
+  color: #16a34a;
+  font-weight: bold;
+}
+.status-andamento {
+  color: #e9c044;
+  font-weight: bold;
+}
+.status-encerrado {
+  color: #dc2626;
+  font-weight: bold;
 }
 
 .valor-arrecadado {
   color: #16a34a;
   font-size: 1.1rem;
   font-weight: 600;
-  font-family: 'Gabarito', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .valor-meta {
   color: #323131;
   font-size: 1.1rem;
   font-weight: 600;
-  font-family: 'Gabarito', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .progresso-container {
@@ -160,20 +175,22 @@ const projetosFiltrados = computed(() => {
   border-radius: 5px;
   overflow: hidden;
   margin-top: 0.5rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .progresso-barra {
   height: 100%;
   background-color: #16a34a;
   transition: width 0.3s ease;
-  border-right: 2px solid black;
+  border-right: 1px solid black;
 }
 
 .progresso-texto {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #6b7280;
   margin-top: 0.25rem;
   text-align: right;
+  font-family: 'Roboto', sans-serif;
 }
 
 .barra-pesquisa {
@@ -204,13 +221,31 @@ const projetosFiltrados = computed(() => {
   align-items: center;
   font-size: 1.2rem;
   color: #70705b;
-  font-family: 'Gabarito', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .empty-container {
   min-height: 70vh;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .projetos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projetos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1500px) {
+  .projetos-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media(max-width: 1024px){
