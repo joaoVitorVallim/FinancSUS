@@ -231,7 +231,7 @@ const projetosFiltrados = computed(() => {
   font-weight: 400;
   text-align: left;
   margin-bottom: 0.75rem;
-  max-width: 1200px;
+  max-width: 750px;
 }
 
 .destaque{

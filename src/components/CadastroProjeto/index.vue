@@ -87,7 +87,7 @@ const submitProject = async () => {
   width: 80%;
   margin: 0 auto;
   max-width: 1000px;;
-  min-height: 600px;
+  max-height: fit-content;
 }
 
 .cadastro-projeto-esquerda, .cadastro-projeto-direita {
@@ -95,7 +95,7 @@ const submitProject = async () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(2rem, 4vw, 3rem);
+  padding: clamp(2rem, 4vw, 2.5rem);
   width: 50%;
 }
 
