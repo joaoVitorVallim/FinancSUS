@@ -3,9 +3,7 @@
     
     <div class="descricao">
       <h1 class="descricao-titulo">Pequenas Contribuições, Grandes Transformações</h1>
-      <p class="paragrafo-1">O FinancSUS nasce com o propósito de impulsionar a transição para um futuro mais sustentável. Por meio dela, pessoas e organizações com ideias inovadoras podem apresentar seus projetos e receber apoio financeiro direto de doadores engajados com causas ambientais.</p>
-      <p class="paragrafo-2">Acreditamos que, ao conectar quem tem ideias transformadoras com quem deseja contribuir para um mundo melhor, o FinancSUS pode acelerar o desenvolvimento de tecnologias limpas e acessíveis para todos.</p>
-      <p class="paragrafo-3">Conheça agora os projetos já cadastrados na plataforma e escolha aqueles que você quer ajudar a transformar em realidade.<span class="destaque"> Seu apoio faz a diferença!</span></p>
+      <p class="descricao-texto">O FinancSUS é uma plataforma de financiamento coletivo que conecta projetos de energia limpa a doadores engajados com causas ambientais. Nosso objetivo é acelerar a transição para um futuro sustentável, apoiando ideias inovadoras e acessíveis. <br><span class="destaque"> Veja os projetos disponíveis e faça parte dessa transformação!</span></p>
       <div class="barra-pesquisa">
         <input type="text" v-model="filtro" placeholder="Buscar projetos" class="input-pesquisa"/>
       </div>
@@ -227,8 +225,8 @@ const projetosFiltrados = computed(() => {
   margin-bottom: 1rem;
 }
 
-.paragrafo-1, .paragrafo-2, .paragrafo-3{
-  font-size: 1rem;
+.descricao-texto{
+  font-size: 1.2rem;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   text-align: left;
@@ -237,7 +235,7 @@ const projetosFiltrados = computed(() => {
 }
 
 .destaque{
-  font-weight: 600;
+  font-weight:600;
   color: black;
 }
 
@@ -269,7 +267,7 @@ const projetosFiltrados = computed(() => {
   .descricao-titulo {
     font-size: 2.3rem;
   }
-  .paragrafo-1, .paragrafo-2, .paragrafo-3 {
+  .descricao-texto {
     font-size: 1.08rem;
     text-align: justify;
   }
@@ -279,7 +277,7 @@ const projetosFiltrados = computed(() => {
   .descricao-titulo {
     font-size: 2.7rem;
   }
-  .paragrafo-1, .paragrafo-2, .paragrafo-3 {
+  .descricao-texto {
     font-size: 1.13rem;
   }
 }
@@ -288,7 +286,7 @@ const projetosFiltrados = computed(() => {
   .descricao-titulo {
     font-size: 3rem;
   }
-  .paragrafo-1, .paragrafo-2, .paragrafo-3 {
+  .descricao-texto {
     font-size: 1.18rem;
   }
 }
