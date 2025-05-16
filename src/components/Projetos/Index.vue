@@ -1,5 +1,14 @@
 <template>
   <div class="projetos-container" :class="{ 'empty-container': projetosFiltrados.length === 0 }">
+    
+    <div class="descricao">
+      <h1 class="descricao-titulo">Pequenas Contribuições, Grandes Transformações</h1>
+      <p class="paragrafo-1">O FinancSUS nasce com o propósito de impulsionar a transição para um futuro mais sustentável. Por meio dela, pessoas e organizações com ideias inovadoras podem apresentar seus projetos e receber apoio financeiro direto de doadores engajados com causas ambientais.</p>
+      <p class="paragrafo-2">Acreditamos que, ao conectar quem tem ideias transformadoras com quem deseja contribuir para um mundo melhor, o FinancSUS pode acelerar o desenvolvimento de tecnologias limpas e acessíveis para todos.</p>
+      <p class="paragrafo-3">Conheça agora os projetos já cadastrados na plataforma e escolha aqueles que você quer ajudar a transformar em realidade.<span class="destaque"> Seu apoio faz a diferença!</span></p>
+
+    </div>
+    
     <div class="barra-pesquisa">
       <input type="text" v-model="filtro" placeholder="Buscar projetos" class="input-pesquisa"/>
     </div>
@@ -13,17 +22,10 @@
         <img :src="projeto.imagem" alt="Imagem do Projeto" class="projeto-imagem"/>
         <h2 class="projeto-titulo">{{ projeto.titulo }}</h2>
         <p class="projeto-descricao">{{ projeto.descricao }}</p>
-        <p class="projeto-status" :class="{
-          'status-concluido': projeto.status == 'Concluído',
-          'status-andamento': projeto.status == 'Em andamento',
-          'status-encerrado': projeto.status == 'Encerrado'
-        }">
-          {{ projeto.status }}
-        </p>
         <p class="projeto-valor">
           <span class="valor-arrecadado">R$ {{ projeto.valorArrecadado.toFixed(2) }}</span>
-          de
-          <span class="valor-meta">R$ {{ projeto.metaArrecadacao.toFixed(2) }}</span>
+          
+          <span class="valor-meta"> de R$ {{ projeto.metaArrecadacao.toFixed(2) }}</span>
         </p>
         <div class="progresso-container">
           <div 
@@ -74,12 +76,12 @@ onMounted(async () => {
 })
 
 const projetosFiltrados = computed(() => {
+  const projetosAtivos = projetosVisiveis.value.filter(projeto => projeto.status !== 'Encerrado')
+  
   if (!filtro.value.trim()) {
-    return projetosVisiveis.value
-  }
-  return projetosVisiveis.value.filter(projeto =>
-    projeto.titulo.toLowerCase().includes(filtro.value.toLowerCase())
-  )
+    return projetosAtivos
+  } 
+  return projetosAtivos.filter(projeto => projeto.titulo.toLowerCase().includes(filtro.value.toLowerCase()))
 })
 </script>
 
@@ -88,8 +90,8 @@ const projetosFiltrados = computed(() => {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 .projetos-container {
-  padding: 7rem 10rem 2rem 10rem;
-  background-color: #ffffff;
+  padding: 7rem 10rem 5rem 10rem;
+  background-color: #f1f1ed;
 }
 
 .projetos-grid {
@@ -111,13 +113,15 @@ const projetosFiltrados = computed(() => {
   transform: translateY(-4px);
 }
 
-.projeto-imagem {
+.projeto-imagem { /* mudou */
+  width: 100%;
+  aspect-ratio: 2 / 1;
   object-fit: cover;
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
+  display: block;
   max-width: 100%;
-  display:flex;
-  flex-basis: 23%;
+  height: auto;
 }
 
 .projeto-titulo {
@@ -133,25 +137,6 @@ const projetosFiltrados = computed(() => {
   font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
-}
-
-.projeto-status {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.status-concluido {
-  color: #16a34a;
-  font-weight: bold;
-}
-.status-andamento {
-  color: #e9c044;
-  font-weight: bold;
-}
-.status-encerrado {
-  color: #dc2626;
-  font-weight: bold;
 }
 
 .valor-arrecadado {
@@ -230,6 +215,31 @@ const projetosFiltrados = computed(() => {
   flex-direction: column;
 }
 
+.descricao-titulo{
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  text-align: center;
+  background: linear-gradient(90deg, #b4b494, #70705b);
+  background-size: 100% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.paragrafo-1, .paragrafo-2, .paragrafo-3{
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  text-align: left;
+  margin-bottom: 0.75rem;
+}
+
+.destaque{
+  font-weight: 600;
+  color: black;
+}
+
 @media (min-width: 768px) {
   .projetos-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -251,6 +261,55 @@ const projetosFiltrados = computed(() => {
 @media(max-width: 1024px){
   .input-pesquisa{ 
     max-width: 100%;
+  }
+}
+
+@media (min-width: 600px) {
+  .descricao-titulo {
+    font-size: 2.3rem;
+  }
+  .paragrafo-1, .paragrafo-2, .paragrafo-3 {
+    font-size: 1.08rem;
+    text-align: justify;
+  }
+}
+
+@media (min-width: 900px) {
+  .descricao-titulo {
+    font-size: 2.7rem;
+  }
+  .paragrafo-1, .paragrafo-2, .paragrafo-3 {
+    font-size: 1.13rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .descricao-titulo {
+    font-size: 3rem;
+  }
+  .paragrafo-1, .paragrafo-2, .paragrafo-3 {
+    font-size: 1.18rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .projetos-container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .projetos-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .projetos-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
