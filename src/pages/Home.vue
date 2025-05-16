@@ -1,3 +1,12 @@
+<script setup>
+    import Hero from '../components/Home/hero.vue'
+    import categorias from '@/components/Home/categorias.vue';
+    import comoFunciona from '../components/Home/comoFunciona.vue'
+</script>
+
 <template>
-    <h1>ta com algum erro</h1>
+    <MainHeader />
+    <Hero />
+    <categorias />
+    <comoFunciona />
 </template>

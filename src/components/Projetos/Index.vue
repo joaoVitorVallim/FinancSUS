@@ -6,12 +6,12 @@
       <p class="paragrafo-1">O FinancSUS nasce com o propósito de impulsionar a transição para um futuro mais sustentável. Por meio dela, pessoas e organizações com ideias inovadoras podem apresentar seus projetos e receber apoio financeiro direto de doadores engajados com causas ambientais.</p>
       <p class="paragrafo-2">Acreditamos que, ao conectar quem tem ideias transformadoras com quem deseja contribuir para um mundo melhor, o FinancSUS pode acelerar o desenvolvimento de tecnologias limpas e acessíveis para todos.</p>
       <p class="paragrafo-3">Conheça agora os projetos já cadastrados na plataforma e escolha aqueles que você quer ajudar a transformar em realidade.<span class="destaque"> Seu apoio faz a diferença!</span></p>
-
+      <div class="barra-pesquisa">
+        <input type="text" v-model="filtro" placeholder="Buscar projetos" class="input-pesquisa"/>
+      </div>
     </div>
     
-    <div class="barra-pesquisa">
-      <input type="text" v-model="filtro" placeholder="Buscar projetos" class="input-pesquisa"/>
-    </div>
+    
 
     <div v-if="projetosFiltrados.length === 0" class="mensagem-vazio">
       <p>Nenhum projeto encontrado.</p>
@@ -219,7 +219,7 @@ const projetosFiltrados = computed(() => {
   font-size: 2rem;
   font-family: 'Roboto', sans-serif;
   font-weight: 800;
-  text-align: center;
+  text-align: start;
   background: linear-gradient(90deg, #b4b494, #70705b);
   background-size: 100% auto;
   color: transparent;
@@ -233,6 +233,7 @@ const projetosFiltrados = computed(() => {
   font-weight: 400;
   text-align: left;
   margin-bottom: 0.75rem;
+  max-width: 1200px;
 }
 
 .destaque{
