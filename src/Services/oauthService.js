@@ -33,7 +33,7 @@ export const oauth = async (req, res) => {
       { refresh_token },
     );
 
-    return res.status(200);
+    return res.status(200).send();
   } catch (error) {
     return res.status(500).send(error.response?.data);
   }

@@ -12,6 +12,7 @@ import helmet from "helmet";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
 import oauthRouter from "./Routes/oauthRoutes.js";
+import notRouter from "./Routes/emailRoutes.js";
 
 
 config();
@@ -47,6 +48,8 @@ app.use("/auth", router);
 app.use("/pay", paymentRouter);
 
 app.use("/", userRouter);
+
+app.use('/notifications', notRouter);
 
 app.use("/oauth", oauthRouter);
 
