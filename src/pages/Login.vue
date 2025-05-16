@@ -29,7 +29,7 @@
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Senha" />
           <RouterLink 
-            to="/projetos" 
+            to="/home" 
             class="botao-login" 
           >
             ENTRAR

@@ -13,12 +13,6 @@
         </p>
       </div>
     </div>
-    <RouterLink 
-            to="/projetos" 
-            class="botao-contribuir" 
-          >
-            CONTRIBUIR
-    </RouterLink>
   </section>
 </template>
 
@@ -81,21 +75,6 @@
   color: #70705b;
   line-height: 1.5;
   margin-top: 0;
-}
-
-.botao-contribuir{
-  font-size: clamp(1.5rem, 2.5vw, 5rem);
-  font-family: Arial, Helvetica, sans-serif;
-  border: 1px solid #70705b;
-  border-radius: 20px;
-  text-decoration: none;
-  color: #70705b;
-  padding-inline: 2rem;
-}
-
-.botao-contribuir:hover{
-    color: #f1f1ed;
-    background: #70705b;
 }
 
 

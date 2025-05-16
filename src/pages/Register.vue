@@ -15,6 +15,10 @@
           <input type="lastName" placeholder="Sobrenome" />
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Senha" />
+          <div class="checkbox-termos">
+            <input type="checkbox" id="termos" required />
+            <label for="termos">Aceito os <RouterLink to="/termos" id="termos">Termos de Uso</RouterLink></label>
+          </div>
           <RouterLink to="/login" class="botao-registrar">CADASTRAR-SE</RouterLink>
           <RouterLink 
             to="/login" 
@@ -132,13 +136,30 @@ input {
   background-color: #f6f5f7;
 }
 
+.checkbox-termos {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.checkbox-termos label {
+  color: #70705b;
+}
+
+#termos{
+  text-decoration: underline;
+  color: #70705b;
+  font-weight: bold;
+}
+
 .botao-login, .botao-registrar {
   border: 1px solid white;
   background-color: transparent;
   padding: 12px 45px;
   border-radius: 20px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .botao-login {

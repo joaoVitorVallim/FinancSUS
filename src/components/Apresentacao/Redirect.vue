@@ -2,7 +2,7 @@
     <section class="redirect">
       <div class="redirect-container" ref="redirectContainer">
         <h1 class="redirect-titulo">Deseja contribuir com o mundo?</h1>
-        <a href="/projetos" class="redirect-anchor">CONTRIBUIR</a>
+        <a href="home" class="redirect-anchor">CONTRIBUIR</a>
       </div>
     </section>
   </template>

@@ -26,7 +26,7 @@
 
 <style scoped>
 .categorias {
-  background-color: #f1f1ed;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;

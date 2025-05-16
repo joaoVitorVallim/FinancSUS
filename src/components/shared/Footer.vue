@@ -10,13 +10,12 @@
             <router-link to="/" class="footer-link">Home</router-link>
             <router-link to="/saibaMais" class="footer-link">Sobre</router-link>
             <router-link to="/projetos" class="footer-link">Projetos</router-link>
-            <router-link to="/login" class="footer-link">Login</router-link>
             <router-link to="/termos" class="footer-link">Termos de uso</router-link>
           </nav>
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-text">© 2024 FinancSUS. Todos os direitos reservados.</p>
+        <p class="footer-text">© 2025 FinancSUS. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>

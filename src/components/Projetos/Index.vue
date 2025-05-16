@@ -3,7 +3,7 @@
     
     <div class="descricao">
       <h1 class="descricao-titulo">Pequenas Contribuições, Grandes Transformações</h1>
-      <p class="descricao-texto">O FinancSUS é uma plataforma de financiamento coletivo que conecta projetos de energia limpa a doadores engajados com causas ambientais. Nosso objetivo é acelerar a transição para um futuro sustentável, apoiando ideias inovadoras e acessíveis. <br><span class="destaque"> Veja os projetos disponíveis e faça parte dessa transformação!</span></p>
+      <p class="descricao-texto"><span class="destaque"> Veja os projetos disponíveis e faça parte dessa transformação!</span></p>
       <div class="barra-pesquisa">
         <input type="text" v-model="filtro" placeholder="Buscar projetos" class="input-pesquisa"/>
       </div>
@@ -89,7 +89,7 @@ const projetosFiltrados = computed(() => {
 
 .projetos-container {
   padding: 7rem 10rem 5rem 10rem;
-  background-color: #f1f1ed;
+  background-color: #fff;
 }
 
 .projetos-grid {
@@ -111,7 +111,7 @@ const projetosFiltrados = computed(() => {
   transform: translateY(-4px);
 }
 
-.projeto-imagem { /* mudou */
+.projeto-imagem { 
   width: 100%;
   aspect-ratio: 2 / 1;
   object-fit: cover;

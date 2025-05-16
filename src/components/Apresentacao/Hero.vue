@@ -33,7 +33,7 @@
 <template>
     <section class="hero">
       <div class="hero-container">
-        <a href="projetos" id="hero-skip" ref="heroSkip">CONTRIBUIR</a>
+        <a href="home" id="hero-skip" ref="heroSkip">CONTRIBUIR</a>
         <h1 class="hero-titulo" ref="heroTitulo">
             <img src="../../assets/LogoPequenoEnergia.png" class="hero-logo" alt="Logo Financsus">
             FinancSUS
