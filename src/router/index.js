@@ -9,6 +9,7 @@ import Projetos from '../pages/Projetos.vue'
 import CadastroProjeto from '../pages/CadastroProjeto.vue'
 import ProjectDetails from '../pages/ProjectDetails.vue'
 import Termos from '../pages/Termos.vue'
+import Pagamento from '../pages/Pagamento.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,6 +58,11 @@ const router = createRouter({
       path: '/termos',
       name: 'termos',
       component: Termos,
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: Pagamento,
     },
 
   ],
