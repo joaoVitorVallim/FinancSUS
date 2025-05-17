@@ -76,7 +76,7 @@
 }
 
 .login-esquerda {
-  background-color: #b4b494;
+  background-color: #70705b;
   color: white;
   border-radius: 10px 0 0 10px;
 }
@@ -101,7 +101,7 @@
 }
 
 .login-direita h1 {
-  color: #b4b494;
+  color: #70705b;
   margin-top: 0;
   margin-bottom: 20px;
 }
@@ -162,12 +162,12 @@ input {
 
 .botao-registrar:hover {
   background-color: #fff;
-  color: #b4b494;
-  border: 1px solid #b4b494;
+  color: #70705b;
+  border: 1px solid #70705b;
 }
 
 .botao-login {
-  background-color: #b4b494;
+  background-color: #70705b;
   color: white;
   border: none;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -177,8 +177,8 @@ input {
 
 .botao-login:hover {
   background-color: #fff;
-  border: 1px solid #b4b494;
-  color: #b4b494;
+  border: 1px solid #70705b;
+  color: #70705b;
 }
 
 @media (max-width: 1024px){
@@ -203,8 +203,8 @@ input {
 
   #botao-registrar-mobile{
     display: block;
-    color: #b4b494;
-    border-color: #b4b494;
+    color: #70705b;
+    border-color: #70705b;
     margin-top: 0;
     text-decoration: none;
     text-align: center;
