@@ -82,7 +82,25 @@
           <p>Estes Termos e Condições poderão ser alterados a qualquer momento. É responsabilidade do usuário manter-se atualizado com a versão mais recente. A continuidade no uso do sistema após alterações significará aceitação tácita dos novos termos.</p>
         </div>
 
-
+        <div class="termo-section">
+          <h2>10. Cookies</h2>
+          <p>
+            Esta plataforma utiliza cookies e tecnologias semelhantes para melhorar a experiência do usuário, personalizar conteúdo e analisar o tráfego do site.
+            Ao continuar navegando, você concorda com o uso dessas ferramentas.
+          </p>
+          <p>
+            Os cookies podem ser utilizados para:
+          </p>
+          <ul>
+            <li>Lembrar suas preferências de navegação;</li>
+            <li>Melhorar o desempenho da plataforma;</li>
+            <li>Coletar informações estatísticas de uso;</li>
+            <li>Facilitar seu login e navegação entre sessões.</li>
+          </ul>
+          <p>
+            Você pode configurar seu navegador para recusar cookies, porém isso poderá limitar algumas funcionalidades da plataforma.
+          </p>
+        </div>
   
       </div>
     </div>

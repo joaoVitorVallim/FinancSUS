@@ -76,7 +76,7 @@
 }
 
 .login-direita {
-  background-color: #b4b494;
+  background-color: #70705b;
   color: white;
   border-radius: 0px 10px 10px 0px;
 }
@@ -101,7 +101,7 @@
 }
 
 .login-esquerda h1 {
-  color: #b4b494;
+  color: #70705b;
   margin-top: 0;
   margin-bottom: 20px;
 }
@@ -179,12 +179,12 @@ input {
 
 .botao-login:hover {
   background-color: white;
-  color: #b4b494;
-  border: 1px solid #b4b494;
+  color: #70705b;
+  border: 1px solid #70705b;
 }
 
 .botao-registrar {
-  background-color: #b4b494;
+  background-color: #70705b;
   color: white;
   border: none;
   text-align: center;
@@ -193,8 +193,8 @@ input {
 
 .botao-registrar:hover {
   background-color: white;
-  color: #b4b494;
-  border: 1px solid #b4b494;
+  color: #70705b;
+  border: 1px solid #70705b;
 }
 
 @media (max-width: 1024px){
@@ -219,8 +219,8 @@ input {
 
   #botao-login-mobile{
     display: block;
-    color: #b4b494;
-    border-color: #b4b494;
+    color: #70705b;
+    border-color: #70705b;
     margin-top: 0;;
     text-decoration: none;
     text-align: center;
