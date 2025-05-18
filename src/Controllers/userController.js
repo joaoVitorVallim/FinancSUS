@@ -1,61 +1,45 @@
-import { hash, compare } from "bcrypt";
-import pkg from "jsonwebtoken";
-const { sign } = pkg;
-import { User } from "../Model/userModel.js";
+import { UserService } from "../Services/userService.js";
+
+const userService = new UserService();
 
 export const createUser = async (req, res) => {
     try {
-        const user = new User({
-            name: req.body.name,
-            email: req.body.email,
-            password: await hash(req.body.password, 10),
-            admin: false, 
-            refresh_token: null,
-            collector: req.body.collector,            
-      });
-      await user.save();
-      return res.status(201).send();
+        const { name, email, password, collector } = req.body;
+        await userService.createUser(name, email, password, collector);
+        return res.status(201).send({ message: 'Usuário criado com sucesso' });
     } catch (error) {
-      return res.status(400).send(error);
+        return res.status(400).send({
+            message: "Erro ao criar usuário",
+            error: error.message
+        });
     }
 };
 
 export const loginUser = async (req, res) => {
-    try{
+    try {
         const { email, password } = req.body;
-
-        const jwtConfig = {
-            expiresIn: '5d',
-            algorithm: 'HS256',
-        };
-
-        const user = await User.findOne({ email });
-
-        if (user && await compare(password, user.password)) {
-            const token = sign({ data: user }, process.env.SECRET, jwtConfig);
-            return res.status(200).send(token);
-        }
-        return res.status(401).send({ mensagem: 'Credenciais inválidas' });
-    }
-    catch(error){
-        return res.status(400).send(error);
+        const token = await userService.loginUser(email, password);
+        return res.status(200).send(token);
+    } catch (error) {
+        return res.status(401).send({
+            message: "Erro no login",
+            error: error.message
+        });
     }
 };
 
-export const updateUser =  async (req, res) => {
-    try{
-        
-        const doc = await User.findByIdAndUpdate(req.params._id, req.body);
-
-        if(!doc){
-            return res.status(404).send({ mensagem: 'Documento não encontrado' });
-        }
-        
-        return res.status(200).send();
-        
-
-    } catch(error){
-        return res.status(500).send({ mensagem: 'Erro ao atualizar o documento' });
+export const updateUser = async (req, res) => {
+    try {
+        const updatedUser = await userService.updateUser(req.params._id, req.body);
+        return res.status(200).send({
+            message: 'Usuário atualizado com sucesso',
+            user: updatedUser
+        });
+    } catch (error) {
+        return res.status(400).send({
+            message: "Erro ao atualizar usuário",
+            error: error.message
+        });
     }
-}
+};
 
