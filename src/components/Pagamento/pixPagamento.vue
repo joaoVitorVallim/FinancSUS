@@ -1,17 +1,3 @@
-<template>
-  <div class="conteudo-pix">
-    <div v-if="carregando" class="loading">
-      <p>Gerando QR Code...</p>
-    </div>
-
-    <div v-else class="qr-code">
-      <img :src="dados.qrCodeBase64" alt="QR Code PIX" />
-      <p>{{ dados.copiaECola }}</p>
-      <button @click="$emit('confirmar')">Confirmar</button>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
 
@@ -31,10 +17,28 @@ onMounted(async () => {
   } catch (e) {
     console.error('Erro ao gerar PIX:', e)
   } finally {
-    carregando.value = false
+    carregando.value = false;
   }
 })
 </script>
+
+
+<template>
+  <div class="conteudo-pix">
+    <div v-if="carregando" class="loading">
+      <p>Gerando QR Code...</p>
+    </div>
+
+    <div v-else class="qr-code">
+      <img :src="dados.qrCodeBase64" alt="QR Code PIX" />
+      <p>{{ dados.copiaECola }}</p>
+      <p>oiii</p>
+      <button @click="$emit('confirmar')">Confirmar</button>
+    </div>
+  </div>
+</template>
+
+
 
 <style scoped>
 .loading {

@@ -1,38 +1,8 @@
-<template>
-  <div class="container-pagamento">
-    <div class="painel-principal">
-      
-      <div class="area-escolha" :class="{ escondido: metodoSelecionado }">
-        <h2>Quanto deseja doar?</h2>
-        <input v-model="valor" type="number" placeholder="Valor em R$" min="1" step="0.01" />
-
-        <h3>Escolha a forma de pagamento</h3>
-        <div class="botoes-pagamento">
-          <button @click="selecionarMetodo('cartao')">💳 Cartão</button>
-          <button @click="selecionarMetodo('pix')">⚡ PIX</button>
-          <button @click="selecionarMetodo('boleto')">📄 Boleto</button>
-        </div>
-      </div>
-
-     
-      <div class="painel-detalhes" :class="{ visivel: metodoSelecionado }">
-        <button class="voltar" @click="resetar">← Voltar</button>
-        <component
-          :is="componenteAtual"
-          :valor="valor"
-          class="componente-forma-pagamento"
-          @confirmar="resetar"
-        />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, computed } from 'vue'
-import CartaoPagamento from './CartaoPagamento.vue'
-import PixPagamento from './PixPagamento.vue'
-import BoletoPagamento from './BoletoPagamento.vue'
+import CartaoPagamento from './cartaoPagamento.vue'
+import PixPagamento from './pixPagamento.vue'
+import BoletoPagamento from './boletoPagamento.vue'
 
 const valor = ref('')
 const metodoSelecionado = ref(null)
@@ -55,7 +25,47 @@ const componenteAtual = computed(() => {
 })
 </script>
 
+
+<template>
+  <div class="container-pagamento">
+    <div class="painel-principal">
+      
+      <div class="area-escolha" :class="{ escondido: metodoSelecionado }">
+        <h2>Quanto deseja doar?</h2>
+        <input v-model="valor" type="number" placeholder="Valor em R$" min="1" step="0.01" />
+
+        <h3>Escolha a forma de pagamento</h3>
+        <div class="botoes-pagamento">
+          <button @click="selecionarMetodo('cartao')"><img id="card_icon" src="../../assets/contactless.png" alt=""> Cartão</button>
+          <button @click="selecionarMetodo('pix')"><img id="card-icon" src="../../assets/pix.png" alt=""> PIX</button>
+          <button @click="selecionarMetodo('boleto')"><img id="card_icon" src="../../assets/icons8-boleto-64.png" alt=""> Boleto</button>
+        </div>
+      </div>
+
+     
+      <div class="painel-detalhes" :class="{ visivel: metodoSelecionado }">
+        <button class="voltar" @click="resetar">← Voltar</button>
+        <component
+          :is="componenteAtual"
+          :valor="valor"
+          class="componente-forma-pagamento"
+          @confirmar="resetar"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+
+
 <style scoped>
+
+
+#card_icon {
+  width: 30px;
+  height: 30px;
+}
+
 .container-pagamento {
   height: 100vh;
   display: flex;
@@ -77,6 +87,20 @@ const componenteAtual = computed(() => {
   transition: all 0.6s ease;
 }
 
+.area-escolha{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.botoes-pagamento {
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 16px;
+}
+
 .area-escolha,
 .painel-detalhes {
   width: 50%;
@@ -89,7 +113,7 @@ const componenteAtual = computed(() => {
 }
 
 .area-escolha.escondido {
-  opacity: 0;
+  display: none;
   transform: translateX(-30px);
   pointer-events: none;
   position: absolute;
@@ -97,13 +121,13 @@ const componenteAtual = computed(() => {
 }
 
 .painel-detalhes {
-  opacity: 0;
+  display: flex;
   transform: translateX(30px);
   pointer-events: none;
 }
 
 .painel-detalhes.visivel {
-  opacity: 1;
+  display: flex;
   transform: translateX(0);
   pointer-events: auto;
   z-index: 2;
