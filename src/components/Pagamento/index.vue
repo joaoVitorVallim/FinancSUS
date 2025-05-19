@@ -15,6 +15,7 @@ function resetar() {
   metodoSelecionado.value = null
 }
 
+
 const componenteAtual = computed(() => {
   switch (metodoSelecionado.value) {
     case 'cartao': return CartaoPagamento
@@ -29,7 +30,9 @@ const componenteAtual = computed(() => {
 <template>
   <div class="container-pagamento">
     <div class="painel-principal">
-      
+      <div class="voltar">
+          <button  @click="exitPayment">← Voltar</button>
+        </div>
       <div class="area-escolha" :class="{ escondido: metodoSelecionado }">
         <h2>Quanto deseja doar?</h2>
         <input v-model="valor" type="number" placeholder="Valor em R$" min="1" step="0.01" />
@@ -44,7 +47,9 @@ const componenteAtual = computed(() => {
 
      
       <div class="painel-detalhes" :class="{ visivel: metodoSelecionado }">
-        <button class="voltar" @click="resetar">← Voltar</button>
+        <div class="voltar">
+          <button  @click="resetar">← Voltar</button>
+        </div>
         <component
           :is="componenteAtual"
           :valor="valor"
@@ -60,6 +65,12 @@ const componenteAtual = computed(() => {
 
 <style scoped>
 
+div.voltar{
+  padding-top:1.5vh;
+  padding-left: 1vh;
+  justify-self: flex-start;
+  align-self: flex-start;
+}
 
 #card_icon {
   width: 30px;
@@ -77,6 +88,7 @@ const componenteAtual = computed(() => {
 
 .painel-principal {
   display: flex;
+  flex-direction: column;
   width: 900px;
   height: 500px;
   background: white;
@@ -103,7 +115,6 @@ const componenteAtual = computed(() => {
 
 .area-escolha,
 .painel-detalhes {
-  width: 50%;
   padding: 32px;
   transition: all 0.5s ease;
   opacity: 1;
@@ -121,13 +132,16 @@ const componenteAtual = computed(() => {
 }
 
 .painel-detalhes {
-  display: flex;
+  display:none;
+  justify-content: center;
+  align-items: center;
   transform: translateX(30px);
   pointer-events: none;
 }
 
 .painel-detalhes.visivel {
   display: flex;
+  flex-direction: column;
   transform: translateX(0);
   pointer-events: auto;
   z-index: 2;
@@ -158,15 +172,6 @@ button {
 
 button:hover {
   background: #0056b3;
-}
-
-button.voltar {
-  background: none;
-  border: none;
-  font-size: 16px;
-  color: #007bff;
-  margin-bottom: 10px;
-  cursor: pointer;
 }
 
 .componente-forma-pagamento {
