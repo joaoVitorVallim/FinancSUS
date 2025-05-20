@@ -1,5 +1,39 @@
 <script setup>
   import { RouterLink } from 'vue-router';
+  import { useRouter } from 'vue-router';
+  import { ref } from 'vue';
+  import axios from 'axios';
+
+  const router = useRouter()
+
+  const name = ref('');
+  const lastName = ref('');
+  const email = ref('');
+  const password = ref('');
+  const termosAceitos = ref(false);
+  
+  const registrar = async () => {
+    if (!termosAceitos.value) {
+      alert('Você deve aceitar os termos de uso.');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:3000/auth/register', {
+        name: `${name.value}`,
+        email: email.value,
+        password: password.value
+      });
+      console.log(response.data);
+      router.push('/login');
+    } catch (error) {
+      if(error.response && error.response.data) {
+        alert(error.response.data.message);
+      } else {
+        alert('Erro ao registrar. Tente novamente mais tarde.');
+      }
+    }
+  };
 
 </script>
 
@@ -10,16 +44,15 @@
       <div class="login-esquerda">
         <img id="login-img" src="../assets/LogoPequenoEnergia.png" alt="">
         <h1>Registre sua conta</h1>
-        <form class="formulario-login">
-          <input type="name" placeholder="Nome" />
-          <input type="lastName" placeholder="Sobrenome" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Senha" />
+        <form class="formulario-login" @submit.prevent="registrar">
+          <input type="name" placeholder="Nome completo" v-model="name" required/>
+          <input type="email" placeholder="Email" v-model="email" required/>
+          <input type="password" placeholder="Senha" v-model="password" required/>
           <div class="checkbox-termos">
-            <input type="checkbox" id="termos" required />
+            <input type="checkbox" id="termos" v-model="termosAceitos" required/>
             <label for="termos">Aceito os <RouterLink to="/termos" id="termos">Termos de Uso</RouterLink></label>
           </div>
-          <RouterLink to="/login" class="botao-registrar">CADASTRAR-SE</RouterLink>
+          <button type="submit" class="botao-registrar">CADASTRAR-SE</button>
           <RouterLink 
             to="/login" 
             class="botao-login" 

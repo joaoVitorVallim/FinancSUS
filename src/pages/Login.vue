@@ -1,6 +1,29 @@
 <script setup>
   import { RouterLink } from 'vue-router';
+  import { useRouter } from 'vue-router';
+  import { ref } from 'vue';
+  import axios from 'axios';
 
+  const email = ref('');
+  const password = ref('');
+  const router = useRouter();
+  
+  const login = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/auth/login', {
+        email: email.value,
+        password: password.value
+      });
+      console.log(response.data);
+      router.push('/home');
+    } catch (error) {
+      if(error.response && error.response.data) {
+        alert(error.response.data.message);
+      } else {
+        alert('Erro ao fazer login. Tente novamente mais tarde.');
+      }
+    }
+  };
 </script>
 
 <template>
@@ -25,15 +48,10 @@
       <div class="login-direita">
         <img id="login-img" src="../assets/LogoPequenoEnergia.png" alt="">
         <h1>Fazer Login</h1>
-        <form class="formulario-login">
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Senha" />
-          <RouterLink 
-            to="/home" 
-            class="botao-login" 
-          >
-            ENTRAR
-          </RouterLink>
+        <form class="formulario-login" @submit.prevent="login">
+          <input type="email" placeholder="Email" v-model="email" required/>
+          <input type="password" placeholder="Senha" v-model="password" required/>
+          <button type="submit" class="botao-login">ENTRAR</button>
           <RouterLink 
             to="/register" 
             class="botao-registrar" 
