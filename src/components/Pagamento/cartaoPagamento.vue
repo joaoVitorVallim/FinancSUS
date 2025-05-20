@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
   <div class="cartao-wrapper">
     <div class="cartao" :class="{ virado: mostrarVerso }" @click="mostrarVerso = !mostrarVerso">
@@ -11,10 +15,16 @@
         <div class="cvv">CVV: {{ cvv || '***' }}</div>
       </div>
     </div>
-    <input v-model="numero" placeholder="Número do Cartão" @focus="mostrarVerso = false" />
+    <input
+  v-model="numero"
+  placeholder="Número do Cartão"
+  maxlength="16"
+  @focus="mostrarVerso = false"
+  @input="formatarNumero"
+/>
     <input v-model="nome" placeholder="Nome no Cartão" @focus="mostrarVerso = false" />
     <div class="linha">
-      <input v-model="validade" placeholder="Validade (MM/AA)" />
+      <input v-model="validade" placeholder="Validade (MM/AA)" @focus="mostrarVerso = false"/>
       <input v-model="cvv" placeholder="CVV" @focus="mostrarVerso = true" />
     </div>
     <button @click="confirmar">Pagar R$ {{ valor }}</button>

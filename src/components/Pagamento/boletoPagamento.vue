@@ -33,6 +33,6 @@ function confirmar() {
 
 <style scoped>
 .boleto-wrapper {
-  max-width: 400px;
+  display: flex;
 }
 </style>

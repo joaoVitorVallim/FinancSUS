@@ -30,32 +30,37 @@ const componenteAtual = computed(() => {
 <template>
   <div class="container-pagamento">
     <div class="painel-principal">
-      <div class="voltar">
-          <button  @click="exitPayment">← Voltar</button>
-        </div>
       <div class="area-escolha" :class="{ escondido: metodoSelecionado }">
-        <h2>Quanto deseja doar?</h2>
-        <input v-model="valor" type="number" placeholder="Valor em R$" min="1" step="0.01" />
+        <div class="voltar">
+        <button class="button__voltar" @click="exitPayment">← Voltar</button>
+        </div>
+          <div class="area-escolha-content">
+          <h2>Quanto deseja doar?</h2>
+          <input class="doacao" v-model="valor" type="number" placeholder="Valor em R$" min="0.01" step="0.01"/>
 
-        <h3>Escolha a forma de pagamento</h3>
-        <div class="botoes-pagamento">
-          <button @click="selecionarMetodo('cartao')"><img id="card_icon" src="../../assets/contactless.png" alt=""> Cartão</button>
-          <button @click="selecionarMetodo('pix')"><img id="card-icon" src="../../assets/pix.png" alt=""> PIX</button>
-          <button @click="selecionarMetodo('boleto')"><img id="card_icon" src="../../assets/icons8-boleto-64.png" alt=""> Boleto</button>
+          <h3>Escolha a forma de pagamento</h3>
+          <div class="botoes-pagamento">
+            <button @click="selecionarMetodo('cartao')"><img id="card_icon" src="../../assets/contactless.png" alt=""> Cartão</button>
+            <button @click="selecionarMetodo('pix')"><img id="card-icon" src="../../assets/pix.png" alt=""> PIX</button>
+            <button @click="selecionarMetodo('boleto')"><img id="card_icon" src="../../assets/icons8-boleto-64.png" alt=""> Boleto</button>
+          </div>
         </div>
       </div>
 
      
       <div class="painel-detalhes" :class="{ visivel: metodoSelecionado }">
         <div class="voltar">
-          <button  @click="resetar">← Voltar</button>
+          <button class="button__voltar" @click="resetar">← Voltar</button>
         </div>
+        <div class="painel-detalhes-content">
+        <h2>Forma de Pagamento: {{ metodoSelecionado }}</h2>
         <component
           :is="componenteAtual"
           :valor="valor"
           class="componente-forma-pagamento"
           @confirmar="resetar"
         />
+        </div>
       </div>
     </div>
   </div>
@@ -65,12 +70,43 @@ const componenteAtual = computed(() => {
 
 <style scoped>
 
+.doacao{
+  border-radius: 12px;
+  border: transparent;
+  border-bottom: black 2px solid;
+}
+
+.doacao:focus{
+  outline: none;
+  border: transparent;
+  border-bottom: black 2px solid;
+}
+
+.doacao:focus::-webkit-inner-spin-button{
+  appearance: none;
+}
+
+.doacao:hover::-webkit-inner-spin-button{
+  appearance: none;
+}
+
+.button__voltar {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 div.voltar{
   padding-top:1.5vh;
   padding-left: 1vh;
   justify-self: flex-start;
   align-self: flex-start;
 }
+
+
 
 #card_icon {
   width: 30px;
@@ -102,8 +138,13 @@ div.voltar{
 .area-escolha{
   display:flex;
   flex-direction: column;
-  justify-content: center;
+}
+
+.area-escolha-content {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .botoes-pagamento {
@@ -133,8 +174,6 @@ div.voltar{
 
 .painel-detalhes {
   display:none;
-  justify-content: center;
-  align-items: center;
   transform: translateX(30px);
   pointer-events: none;
 }
@@ -145,6 +184,12 @@ div.voltar{
   transform: translateX(0);
   pointer-events: auto;
   z-index: 2;
+}
+
+.painel-detalhes-content {
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
 }
 
 input {
@@ -170,9 +215,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background: #0056b3;
-}
 
 .componente-forma-pagamento {
   width: 100%;
