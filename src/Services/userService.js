@@ -59,4 +59,34 @@ export class UserService {
             throw new Error(`Erro ao atualizar usuário: ${error.message}`);
         }
     }
+    async getUserById(userId) {
+        try {
+            const user = await User.findById(userId);
+            if (!user) {
+                throw new Error('Usuário não encontrado');
+            }
+            return user;
+        } catch (error) {
+            throw new Error(`Erro ao buscar usuário: ${error.message}`);
+        }
+    }
+    async deleteUser(userId){
+        try {
+            const user = await User.findByIdAndDelete(userId);
+            if (!user) {
+                throw new Error('Usuário não encontrado');
+            }
+            return user;
+        } catch (error) {
+            throw new Error(`Erro ao deletar usuário: ${error.message}`);
+        }
+    }
+
+    async getAll(){
+        try{
+            return await User.find();
+        } catch (error){
+            throw new Error(error.message);
+        }
+    }
 } 
