@@ -74,14 +74,14 @@ export const deleteVakinha = async (req, res) => {
 
 export const getVakinhaImage = async (req, res) => {
     try {
-        const vakinha = await vakinhaService.getVakinhaImage(req.params.id);
-        if (!vakinha || !vakinha.image) {
+        const image = await vakinhaService.getVakinhaImage(req.params.id);
+        if (!image) {
             return res.status(404).send({
                 message: "Imagem não encontrada"
             });
         }
         
-        const base64Image = vakinha.image.toString('base64');
+        const base64Image = image.toString('base64');
         const imageSrc = `data:image/png;base64,${base64Image}`;
     } catch (error) {
         return res.status(400).send({

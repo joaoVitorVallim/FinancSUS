@@ -51,4 +51,16 @@ export class VakinhaService {
             throw new Error(`Erro ao deletar vakinha: ${error.message}`);
         }
     }
+
+    async getVakinhaImage(id) {
+        try {
+            const { image } = await Vakinha.findById(id);
+            if (!image) {
+                throw new Error('imagem não encontrada');
+            }
+            return image;
+        } catch(error){
+            throw new Error(`Erro ao encontrar imagem: ${error.message}`);
+        }
+    }
 } 
