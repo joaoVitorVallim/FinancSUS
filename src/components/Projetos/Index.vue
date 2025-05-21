@@ -9,8 +9,6 @@
       </div>
     </div>
     
-    
-
     <div v-if="projetosFiltrados.length === 0" class="mensagem-vazio">
       <p>Nenhum projeto encontrado.</p>
     </div>
@@ -22,7 +20,6 @@
         <p class="projeto-descricao">{{ projeto.descricao }}</p>
         <p class="projeto-valor">
           <span class="valor-arrecadado">R$ {{ projeto.valorArrecadado.toFixed(2) }}</span>
-          
           <span class="valor-meta"> de R$ {{ projeto.metaArrecadacao.toFixed(2) }}</span>
         </p>
         <div class="progresso-container">
@@ -46,31 +43,32 @@ const projetos = ref([])
 const projetosVisiveis = ref([])
 const filtro = ref('')
 
-const api_url = 'link-api'
+const api_url = 'http://localhost:3000/vakinha/all'
 
 onMounted(async () => {
   try {
     const res = await fetch(api_url)
-    if (!res.ok){ 
-        throw new Error('Erro ao buscar projetos')
+    const res_image = await fetch('http://localhost:3000/vakinha/682d330c264282ce83ec3855/image')
+    console.log(res_image)
+    if (!res.ok) {
+      throw new Error('Erro ao buscar projetos')
     }
     const data = await res.json()
-    projetos.value = data
+    console.log(data)
+    projetos.value = data.map(p => ({
+      id: p._id,
+      titulo: p.title,
+      descricao: p.description,
+      imagem: p.image,
+      valorArrecadado: p.received,
+      metaArrecadacao: p.goal,
+      status: p.active ? 'Ativo' : 'Inativo'
+    }))
+
+    projetosVisiveis.value = projetos.value.slice(0, 12)
   } catch (error) {
     console.error('Erro ao carregar projetos:', error)
-
-    projetos.value = Array.from({ length: 12 }).map((_, i) => ({
-      id: i + 1,
-      titulo: `Projeto Temporário ${i + 1}`,
-      descricao: 'Descrição do projeto temporário.',
-      imagem: 'https://placehold.co/400x200.png',
-      valorArrecadado: Math.floor(Math.random() * 10000),
-      metaArrecadacao: Math.floor(Math.random() * 100000),
-      status: ['Concluído', 'Em andamento', 'Encerrado'][i % 3]
-    }))
   }
-
-  projetosVisiveis.value = projetos.value.slice(0, 12)
 })
 
 const projetosFiltrados = computed(() => {
