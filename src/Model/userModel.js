@@ -30,7 +30,6 @@ const vakinhaSchema = new Schema({
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     image: String,
     received: { type: Number, default: 0 },
-    collector: { type: String, required: true },
     active: { type: Boolean, default: true },
 });
 

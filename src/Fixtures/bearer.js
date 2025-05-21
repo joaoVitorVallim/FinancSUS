@@ -3,7 +3,6 @@ const { verify } = pkg;
 
 export const getBearer = (auth) => {
 
-
     const bearer = auth.split(' ');
     const token = bearer[1];
 

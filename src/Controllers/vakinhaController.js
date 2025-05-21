@@ -13,14 +13,13 @@ const vakinhaService = new VakinhaService();
 export const createVakinha = async (req, res) => {
     try {
         const payload = getBearer(req.headers.authorization);
-        const { title, description, goal, collectorId } = req.body;
-
+        const { title, description, goal , received} = req.body;
         const vakinha = await vakinhaService.createVakinha(
             title,
             description,
             goal,
-            payload.data._id,
-            collectorId
+            received,
+            payload._id
         );
         
         return res.status(200).send(vakinha);
