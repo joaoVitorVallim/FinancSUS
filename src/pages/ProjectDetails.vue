@@ -83,6 +83,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@font-face {
+    font-family: 'Ancizar Sans';
+    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .project-details {
   min-height: 100vh;
   background-color: #f1f1ed;
@@ -90,6 +97,7 @@ onMounted(() => {
 }
 
 .project-details-container {
+  font-family: Ancizar Sans, sans-serif;
   max-width: 1200px;
   margin: 0 auto;
   background: white;

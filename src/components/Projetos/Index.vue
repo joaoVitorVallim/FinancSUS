@@ -84,8 +84,12 @@ const projetosFiltrados = computed(() => {
 </script>
 
 <style scoped>
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+    font-family: 'Ancizar Sans';
+    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
 
 .projetos-container {
   padding: 7rem 10rem 5rem 10rem;
@@ -123,32 +127,32 @@ const projetosFiltrados = computed(() => {
 }
 
 .projeto-titulo {
+  font-family: Ancizar Sans, sans-serif;
   font-size: 1.5rem;
-  font-family: 'Roboto', sans-serif;
   font-weight: 600;
   margin-bottom: 0.25rem;
   color: black;
 }
 
 .projeto-descricao {
+  font-family: Ancizar Sans, sans-serif;
   color: #2d2f31;
-  font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
 .valor-arrecadado {
+  font-family: Ancizar Sans, sans-serif;
   color: #16a34a;
   font-size: 1.1rem;
   font-weight: 600;
-  font-family: 'Roboto', sans-serif;
 }
 
 .valor-meta {
+  font-family: Ancizar Sans, sans-serif;
   color: #323131;
   font-size: 1.1rem;
   font-weight: 600;
-  font-family: 'Roboto', sans-serif;
 }
 
 .progresso-container {
@@ -169,11 +173,11 @@ const projetosFiltrados = computed(() => {
 }
 
 .progresso-texto {
+  font-family: Ancizar Sans, sans-serif;
   font-size: 0.75rem;
   color: #6b7280;
   margin-top: 0.25rem;
   text-align: right;
-  font-family: 'Roboto', sans-serif;
 }
 
 .barra-pesquisa {
@@ -198,13 +202,13 @@ const projetosFiltrados = computed(() => {
 }
 
 .mensagem-vazio {
+  font-family: Ancizar Sans, sans-serif;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
   color: #70705b;
-  font-family: 'Roboto', sans-serif;
 }
 
 .empty-container {
@@ -214,8 +218,8 @@ const projetosFiltrados = computed(() => {
 }
 
 .descricao-titulo{
+  font-family: Ancizar Sans, sans-serif;
   font-size: 2rem;
-  font-family: 'Roboto', sans-serif;
   font-weight: 800;
   text-align: start;
   background: linear-gradient(90deg, #b4b494, #70705b);
@@ -226,8 +230,8 @@ const projetosFiltrados = computed(() => {
 }
 
 .descricao-texto{
+  font-family: Ancizar Sans, sans-serif;
   font-size: 1.2rem;
-  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   text-align: left;
   margin-bottom: 0.75rem;

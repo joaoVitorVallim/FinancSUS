@@ -23,6 +23,14 @@
     font-weight: normal;
     font-style: normal;
   }
+
+@font-face {
+    font-family: 'Ancizar Sans';
+    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .hero {
   display: flex;
   align-items: center;
@@ -54,6 +62,7 @@
 }
 
 .hero-title {
+  font-family: Ancizar Sans, sans-serif;
   font-size: clamp(2rem, 3vw, 3.5rem);
   color: #b4b494;
   font-weight: bold;
@@ -71,6 +80,7 @@
 }
 
 .hero-desc {
+  font-family: Ancizar Sans, sans-serif;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   color: #70705b;
   line-height: 1.5;
