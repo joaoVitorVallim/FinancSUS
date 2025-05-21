@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import BotaoVoltar from './BotaoVoltar.vue'
+import BotaoVoltar from './botaoVoltar.vue'
 
 const estadosBR = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO']
 

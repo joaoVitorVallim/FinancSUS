@@ -3,9 +3,11 @@
 </script>
 
 <template>
+  <div>
     <MainHeader />
     <Index />
     <Footer />
+  </div>
 </template>
 
 
