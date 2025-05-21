@@ -1,14 +1,15 @@
 import { Vakinha } from "../Model/userModel.js";
 
 export class VakinhaService {
-    async createVakinha(title, description, goal, received, ownerId) {
+    async createVakinha(title, description, goal, received, ownerId, image) {
         try {
             const vakinha = new Vakinha({
                 title,
                 description,
                 goal,
                 received,
-                owner: ownerId
+                owner: ownerId,
+                image 
             });
 
             await vakinha.save();
