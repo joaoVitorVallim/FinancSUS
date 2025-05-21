@@ -70,7 +70,15 @@ const submitProject = async () => {
 </script>
 
 <style scoped>
+@font-face {
+    font-family: 'Ancizar Sans';
+    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .cadastro-projeto {
+  font-family: Ancizar Sans, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,6 +152,7 @@ const submitProject = async () => {
 .formulario-cadastro-projeto input,
 .formulario-cadastro-projeto select,
 .formulario-cadastro-projeto textarea {
+  font-family: Ancizar Sans, sans-serif;
   padding: 12px 15px;
   border: 1px solid #ddd;
   border-radius: 4px;

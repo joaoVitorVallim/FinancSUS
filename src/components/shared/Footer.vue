@@ -26,6 +26,7 @@
 
 <style scoped>
 .footer {
+  font-family: Poppins, sans-serif;
   background-color: #70705b;
   padding: clamp(2rem, 4vw, 3rem) 0 clamp(1rem, 2vw, 1.5rem);
   width: 100%;

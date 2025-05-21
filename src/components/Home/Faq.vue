@@ -54,10 +54,17 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: 'Ancizar Sans';
+  src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
 .faq-section {
+  font-family: Ancizar Sans, sans-serif;
   margin-inline: auto;
   padding: 0 1rem;
-  font-family: Arial, sans-serif;
   background-color: #fff;
   height: 80vh;
   display: flex;

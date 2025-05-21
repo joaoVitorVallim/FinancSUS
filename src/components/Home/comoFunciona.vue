@@ -32,6 +32,13 @@
 </template>
 
 <style scoped>
+@font-face {
+  font-family: 'Ancizar Sans';
+  src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
 .como-funciona {
   background-color: #fff;
   min-height: 50vh;
@@ -43,6 +50,7 @@
 }
 
 .titulo {
+  font-family: Ancizar Sans, sans-serif;
   font-size: clamp(3rem, 4vw, 4rem);
   color: #70705b;
   margin-bottom: 3rem;
@@ -57,6 +65,7 @@
 }
 
 .passo {
+  font-family: Ancizar Sans, sans-serif;
   background-color: #70705b;
   color: #fff;
   padding: 2rem;
