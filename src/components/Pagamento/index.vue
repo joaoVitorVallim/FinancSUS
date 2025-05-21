@@ -76,8 +76,14 @@ const componenteAtual = computed(() => {
   width: 20%;
 }
 
+.payment_method:hover{
+  background: linear-gradient(315deg, #003973, #E5E5BE);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
 .payment_method{
-  background-color: #007bff;
+  background-color: #70705b;
+  color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -89,6 +95,7 @@ const componenteAtual = computed(() => {
   height: 75px;
   width: 100px;
   gap: 5px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
 }
 
 .doacao:focus{
@@ -133,7 +140,7 @@ div.voltar{
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f6f6f6;
+  background: #f1f1ed;
   font-family: sans-serif;
 }
 
@@ -147,6 +154,12 @@ div.voltar{
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 100px), calc(100% - 100px) 100%, 0 100%);
+  background-image: url('../../assets/raio.svg');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+  
   transition: all 0.6s ease;
 }
 
@@ -205,6 +218,8 @@ div.voltar{
   flex-direction: column;
   align-self: center;
   justify-self: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 input {

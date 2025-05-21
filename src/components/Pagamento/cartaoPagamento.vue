@@ -8,6 +8,7 @@ const nome = ref('')
 const validade = ref('')
 const cvv = ref('')
 const mostrarVerso = ref(false)
+const numeroFormatado = ref('')
 
 function confirmar() {
   alert('Pagamento com cartão confirmado!')
@@ -15,13 +16,20 @@ function confirmar() {
 }
 
 
+function formatarNumeroCartao() {
+  const apenasDigitos = numero.value.replace(/\D/g, '').slice(0, 16)
+  const comEspacos = apenasDigitos.replace(/(\d{4})(?=\d)/g, '$1 ')
+  numero.value = comEspacos.trim()
+}
 
-const numeroFormatado = computed(() => {
-  return numero.value.replace(/\D/g, '')
-    .replace(/(.{4})/g, '$1 ')
-    .trim();
-})
+function formatarCvv() {
+  cvv.value = cvv.value.replace(/\D/g, '').slice(0, 3)
+}
 
+function formatarValidade() {
+  const apenasDigitos = validade.value.replace(/\D/g, '').slice(0, 4)
+  validade.value = apenasDigitos.replace(/(\d{2})(\d{1,2})/, '$1/$2')
+}
 
 </script>
 
@@ -30,7 +38,7 @@ const numeroFormatado = computed(() => {
     <div class="cartao" :class="{ virado: mostrarVerso }" @click="mostrarVerso = !mostrarVerso">
       <div class="frente">
         <div class="chip"></div>
-        <div class="numero">{{ numeroFormatado || '**** **** **** ****' }}</div>
+        <div class="numero">{{ numero || '**** **** **** ****' }}</div>
         <div class="nome">{{ nome || 'SEU NOME AQUI' }}</div>
       </div>
       <div class="verso">
@@ -38,28 +46,64 @@ const numeroFormatado = computed(() => {
         <div class="cvv">CVV: {{ cvv || '***' }}</div>
       </div>
     </div>
-    <div class="input__container">
-      <div class="linha">
-        <input v-model="numero" class="input" type="number" placeholder="Número do Cartão" maxlength="16"
-          @focus="mostrarVerso = false" />
-        <input v-model="nome" class="input" placeholder="Nome no Cartão" @focus="mostrarVerso = false" />
+    <div class="cartao__form">
+      <div class="input__container">
+        <div class="linha">
+          <input v-model="numero" @input="formatarNumeroCartao" maxlength="19" inputmode="numeric" class="input"
+            placeholder="Número do Cartão" @focus="mostrarVerso = false" />
+          <input v-model="nome" class="input" placeholder="Nome no Cartão" @focus="mostrarVerso = false" />
+        </div>
+        <div class="linha">
+          <input v-model="validade" @input="formatarValidade" class="input" maxlength="5" placeholder="Validade (MM/AA)"
+            @focus="mostrarVerso = false" />
+          <input v-model="cvv" @input="formatarCvv" class="input cvv" maxlength="3" placeholder="CVV"
+            @focus="mostrarVerso = true" />
+        </div>
       </div>
-      <div class="linha">
-        <input v-model="validade" class="input" type="number" maxlength="5" placeholder="Validade (MM/AA)"
-          @focus="mostrarVerso = false" />
-        <input v-model="cvv" class="input cvv" type="number" maxlength="3" placeholder="CVV"
-          @focus="mostrarVerso = true" />
-      </div>
+      <button class="confirm" @click="confirmar">Pagar R$ {{ valor }}</button>
     </div>
-    <button @click="confirmar">Pagar R$ {{ valor }}</button>
   </div>
 </template>
 
 
 
 <style scoped>
+
+.cartao__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+}
+
 .cartao-wrapper {
-  max-width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.confirm:hover {
+  background: linear-gradient(315deg, #003973, #E5E5BE);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30%;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+.confirm {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #415f7e;
+  color: white;
+  margin-top: 7px;
+  width: 30%;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
 }
 
 .cvv {
@@ -74,8 +118,15 @@ const numeroFormatado = computed(() => {
 
 .input {
   font-size: 15px;
-  border: 1px solid #ccc;
+  border:transparent;
   border-radius: 5px;
+  border-bottom: #000 1px solid;
+}
+
+.input:focus {
+  outline: none;
+  border: transparent;
+  border-bottom: #000 2px solid;
 }
 
 .input:focus::-webkit-inner-spin-button {
