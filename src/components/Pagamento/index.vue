@@ -1,46 +1,3 @@
-<template>
-  <div class="container-pagamento">
-    <div class="painel-principal">
-      <div class="area-escolha" :class="{ escondido: metodoSelecionado }">
-        <div class="voltar">
-          <button class="button__voltar" @click="exitPayment">← Voltar</button>
-        </div>
-        <div class="area-escolha-content">
-          <h2>Quanto deseja doar?</h2>
-          <input class="doacao" v-model="valor" type="number" placeholder="Valor em R$" min="0.01" step="0.01" />
-
-          <h3>Escolha a forma de pagamento</h3>
-          <div class="botoes-pagamento">
-            <button class="payment_method cartao" @click="selecionarMetodo('cartao')">
-              <img class="icon" src="../../assets/card.png" alt=""> Cartão
-            </button>
-            <button class="payment_method pix" @click="selecionarMetodo('pix')">
-              <img class="icon" src="../../assets/pix.png" alt=""> PIX
-            </button>
-            <button class="payment_method boleto" @click="selecionarMetodo('boleto')">
-              <img class="icon" src="../../assets/boleto.png" alt=""> Boleto
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="painel-detalhes" :class="{ visivel: metodoSelecionado }">
-        <div class="voltar">
-          <button class="button__voltar" @click="resetar">← Voltar</button>
-        </div>
-        <div class="painel-detalhes-content">
-          <component
-            :is="componenteAtual"
-            :valor="valor"
-            class="componente-forma-pagamento"
-            @confirmar="resetar"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, computed } from 'vue'
 import CartaoPagamento from './cartaoPagamento.vue'
@@ -68,173 +25,210 @@ const componenteAtual = computed(() => {
 })
 </script>
 
+<template>
+  <div class="container-pagamento">
+    <div class="painel-principal">
+
+
+      <section class="area-esquerda" v-if="!metodoSelecionado">
+        <div class="texto-promocional">
+          <h2>Cadastre sua Contribuição!</h2>
+          <p>Escolha o valor da sua doação<br />
+            e contribua para um futuro mais sustentável.</p>
+        </div>
+      </section>
+
+      <!-- LADO DIREITO: Formulário -->
+      <section v-if="!metodoSelecionado" class="area-direita">
+        <div class="topo-form">
+          <img class="logo__energia" src="../../assets/LogoPequenoEnergia.png" alt="Logo do projeto" />
+          <h3>Doação</h3>
+        </div>
+
+        <div class="formulario">
+          <input class="input-text" v-model="valor" type="number" placeholder="Valor em R$" min="0.01" step="0.01" />
+
+          <div class="botoes-pagamento">
+            <button class="payment_method cartao" @click="selecionarMetodo('cartao')">
+              <img class="icon" src="../../assets/card.png" alt="Cartão" /> Cartão
+            </button>
+            <button class="payment_method pix" @click="selecionarMetodo('pix')">
+              <img class="icon" src="../../assets/pix.png" alt="PIX" /> PIX
+            </button>
+            <button class="payment_method boleto" @click="selecionarMetodo('boleto')">
+              <img class="icon" src="../../assets/boleto.png" alt="Boleto" /> Boleto
+            </button>
+          </div>
+        </div>
+
+        <!-- Componente Dinâmico -->
+        
+      </section>
+      <div v-else class="formulario">
+
+          <component :is="componenteAtual" :valor="valor" class="componente-forma-pagamento" @resetar="resetar" @confirmar="resetar" />
+        </div>
+    </div>
+  </div>
+</template>
+
+
+
 <style scoped>
+
+
 .container-pagamento {
-  height: 100vh;
   display: flex;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(225deg, #f1f1ed, #a8a899);
+  background: #f1f1ed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  position: relative;
-  padding: 16px;
-  box-sizing: border-box;
 }
 
 .painel-principal {
-display: flex;
-flex-direction: column;
-width: 100%;
-max-width: 900px;
-height: 100%;
-max-height: 550px;
-background: white;
-border-radius: 12px;
-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 100px), calc(100% - 100px) 100%, 0 100%);
-transition: all 0.6s ease;
-overflow: hidden;
-}
-
-.area-escolha,
-.painel-detalhes {
-  padding: 24px;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.area-escolha-content,
-.painel-detalhes-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: 16px;
-}
-
-.doacao {
+  max-width: 960px;
+  background: white;
   border-radius: 12px;
-  border: 2px solid transparent;
-  border-bottom: 2px solid black;
-  width: 60%;
-  padding: 8px;
-  font-size: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  width: 25%;
-  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  flex-direction: row;
+  height: 80%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
-.doacao:focus {
-  outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
-}
-
-.payment_method {
+.area-esquerda {
+  background-color: #66664b;
   color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.area-direita {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.topo-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 75px;
-  width: 100px;
-  gap: 5px;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
-  transition: background 0.3s ease;
+  margin-bottom: 24px;
 }
 
-.payment_method:hover {
-  background: linear-gradient(315deg, #003973, #E5E5BE);
+.logo__energia {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 12px;
 }
 
-.payment_method.cartao { background-color: #3b82f6; }
-.payment_method.pix { background-color: #10b981; }
-.payment_method.boleto { background-color: #6b7280; }
+h3 {
+  color: #444;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
 
-.icon {
-  width: 32px;
-  height: 32px;
+.input-text {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 .botoes-pagamento {
   display: flex;
+  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+}
+
+.payment_method {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment_method img.icon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 4px;
+}
+
+.payment_method.cartao {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.payment_method.pix {
+  background-color: #10b981;
+  color: white;
+}
+
+.payment_method.boleto {
+  background-color: #6b7280;
+  color: white;
 }
 
 .button__voltar {
-  background-color: transparent;
-  color: #007bff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.voltar {
-  padding-top: 1.5vh;
-  padding-left: 1vh;
   align-self: flex-start;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 16px;
 }
 
-.area-escolha.escondido {
-  display: none;
-  transform: translateX(-30px);
-  pointer-events: none;
-  position: absolute;
-  z-index: 1;
+.texto-promocional {
+  text-align: center;
+  max-width: 300px;
 }
 
-.painel-detalhes {
-  display: none;
-  transform: translateX(30px);
-  pointer-events: none;
+.texto-promocional h2 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  font-weight: bold;
 }
 
-.painel-detalhes.visivel {
-  display: flex;
-  flex-direction: column;
-  transform: translateX(0);
-  pointer-events: auto;
-  z-index: 2;
-}
-
-.componente-forma-pagamento {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  box-sizing: border-box;
+.texto-promocional p {
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
-  .doacao {
-    width: 80%;
-  }
-
-  .payment_method {
-    width: 90px;
-    height: 70px;
-  }
-}
-
-@media (max-width: 480px) {
   .painel-principal {
-    max-height: none;
-    height: auto;
+    flex-direction: column;
   }
 
-  .doacao {
-    width: 90%;
+  .area-esquerda {
+    padding: 20px;
+    order: 2;
   }
 
-  .payment_method {
-    width: 80px;
-    height: 65px;
+  .area-direita {
+    padding: 20px;
+    order: 1;
   }
 }
 </style>

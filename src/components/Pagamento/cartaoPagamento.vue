@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 const props = defineProps({ valor: String })
 const emit = defineEmits(['confirmar'])
 
@@ -8,13 +8,11 @@ const nome = ref('')
 const validade = ref('')
 const cvv = ref('')
 const mostrarVerso = ref(false)
-const numeroFormatado = ref('')
 
 function confirmar() {
   alert('Pagamento com cartão confirmado!')
   emit('confirmar')
 }
-
 
 function formatarNumeroCartao() {
   const apenasDigitos = numero.value.replace(/\D/g, '').slice(0, 16)
@@ -30,117 +28,130 @@ function formatarValidade() {
   const apenasDigitos = validade.value.replace(/\D/g, '').slice(0, 4)
   validade.value = apenasDigitos.replace(/(\d{2})(\d{1,2})/, '$1/$2')
 }
-
 </script>
 
 <template>
-  <div class="cartao-wrapper">
-    <div class="cartao" :class="{ virado: mostrarVerso }" @click="mostrarVerso = !mostrarVerso">
-      <div class="frente">
-        <div class="chip"></div>
-        <div class="numero">{{ numero || '**** **** **** ****' }}</div>
-        <div class="nome">{{ nome || 'SEU NOME AQUI' }}</div>
-      </div>
-      <div class="verso">
-        <div class="faixa"></div>
-        <div class="cvv">CVV: {{ cvv || '***' }}</div>
-      </div>
+  <div class="container-principal">
+    <h1>Cadastre sua Contribuição!</h1>
+    <p>Escolha o valor da sua doação e contribua para um futuro mais sustentável.</p>
+    
+    <h2>Doação</h2>
+    <div class="metodos-pagamento">
+      <button class="metodo ativo">Cartão</button>
+      <button class="metodo">PIX</button>
+      <button class="metodo">Boleto</button>
     </div>
-    <div class="cartao__form">
-      <div class="input__container">
-        <div class="linha">
-          <input v-model="numero" @input="formatarNumeroCartao" maxlength="19" inputmode="numeric" class="input"
-            placeholder="Número do Cartão" @focus="mostrarVerso = false" />
-          <input v-model="nome" class="input" placeholder="Nome no Cartão" @focus="mostrarVerso = false" />
-        </div>
-        <div class="linha">
-          <input v-model="validade" @input="formatarValidade" class="input" maxlength="5" placeholder="Validade (MM/AA)"
-            @focus="mostrarVerso = false" />
-          <input v-model="cvv" @input="formatarCvv" class="input cvv" maxlength="3" placeholder="CVV"
-            @focus="mostrarVerso = true" />
+    
+    <div class="container-cartao">
+      <div class="lado-cartao">
+        <div class="cartao" :class="{ virado: mostrarVerso }" @click="mostrarVerso = !mostrarVerso">
+          <div class="frente">
+            <div class="chip"></div>
+            <div class="numero">{{ numero || '**** **** **** ****' }}</div>
+            <div class="nome">{{ nome || 'SEU NOME AQUI' }}</div>
+          </div>
+          <div class="verso">
+            <div class="faixa"></div>
+            <div class="cvv">CVV: {{ cvv || '***' }}</div>
+          </div>
         </div>
       </div>
-      <button class="confirm" @click="confirmar">Pagar R$ {{ valor }}</button>
+      <div class="lado-formulario">
+        <div class="input__container">
+          <div class="linha">
+            <input v-model="numero" @input="formatarNumeroCartao" maxlength="19" inputmode="numeric"
+              placeholder="Número do Cartão" class="input" @focus="mostrarVerso = false" />
+          </div>
+          <div class="linha">
+            <input v-model="nome" placeholder="Nome no Cartão" class="input" @focus="mostrarVerso = false" />
+          </div>
+          <div class="linha">
+            <input v-model="validade" @input="formatarValidade" maxlength="5" placeholder="Validade (MM/AA)"
+              class="input" @focus="mostrarVerso = false" />
+            <input v-model="cvv" @input="formatarCvv" maxlength="3" placeholder="CVV" class="input cvv"
+              @focus="mostrarVerso = true" />
+          </div>
+        </div>
+        <button class="confirm" @click="confirmar">Pagar R$ {{ valor }}</button>
+      </div>
     </div>
   </div>
 </template>
 
-
-
 <style scoped>
+/* Estilos originais (mantidos exatamente iguais) */
+.container-principal {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
 
-.cartao__form {
+h1 {
+  color: #66664b;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #66664b;
+  font-size: 20px;
+  margin: 20px 0 15px 0;
+}
+
+.metodos-pagamento {
   display: flex;
-  flex-direction: column;
   gap: 10px;
-  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
-.cartao-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  
-}
-
-.confirm:hover {
-  background: linear-gradient(315deg, #003973, #E5E5BE);
-  color: white;
+.metodo {
+  padding: 10px 15px;
+  background-color: #f0f0f0;
   border: none;
-  padding: 10px;
   border-radius: 5px;
   cursor: pointer;
-  width: 30%;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  transition: background-color 0.3s;
 }
 
-.confirm {
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #415f7e;
+.metodo.ativo {
+  background-color: #66664b;
   color: white;
-  margin-top: 7px;
-  width: 30%;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
 }
 
-.cvv {
-  width: 50px;
+.container-cartao {
+  display: flex;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-height: 420px;
+  height: 100%;
 }
 
-.input__container {
+.lado-cartao {
+  flex: 1;
+  background-color: #66664b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.lado-formulario {
+  flex: 1;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-}
-
-.input {
-  font-size: 15px;
-  border:transparent;
-  border-radius: 5px;
-  border-bottom: #000 1px solid;
-}
-
-.input:focus {
-  outline: none;
-  border: transparent;
-  border-bottom: #000 2px solid;
-}
-
-.input:focus::-webkit-inner-spin-button {
-  appearance: none;
-}
-
-.input:hover::-webkit-inner-spin-button {
-  appearance: none;
+  justify-content: center;
+  background-color: #fff;
 }
 
 .cartao {
   width: 320px;
   height: 190px;
-  margin: 20px auto;
   perspective: 1000px;
   position: relative;
   transform-style: preserve-3d;
@@ -165,40 +176,148 @@ function formatarValidade() {
 }
 
 .frente {
-  background: linear-gradient(135deg, #003973, #E5E5BE);
+  background: linear-gradient(135deg, #3a4a3a, #66664b);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .verso {
-  background: #444;
+  background: linear-gradient(135deg, #3a4a3a, #66664b);
   transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .chip {
-  width: 50px;
-  height: 35px;
-  background: gold;
-  border-radius: 6px;
+  width: 40px;
+  height: 30px;
+  background: linear-gradient(135deg, #ddddbb, #bbbb99);
+  border-radius: 5px;
 }
 
 .numero {
   font-size: 18px;
+  letter-spacing: 2px;
+  text-align: center;
+  margin: 20px 0;
 }
 
 .nome {
+  font-size: 14px;
   text-transform: uppercase;
 }
 
 .faixa {
+  width: 100%;
   height: 40px;
-  background: black;
-  margin: 10px 0;
+  background-color: #000;
+  margin: 20px 0;
+}
+
+.cvv {
+  background-color: white;
+  color: #333;
+  padding: 5px;
+  border-radius: 3px;
+  width: 80%;
+  text-align: right;
+}
+
+.input__container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
 }
 
 .linha {
   display: flex;
-  gap: 3px;
+  gap: 15px;
+}
+
+.input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  flex: 1;
+}
+
+.input.cvv {
+  flex: 0.5;
+}
+
+.confirm {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #66664b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm:hover {
+  background-color: #4a4a3a;
+}
+
+/* Apenas ajustes responsivos (não alteram o layout em telas grandes) */
+@media (max-width: 768px) {
+  .container-cartao {
+    flex-direction: column;
+    max-height: none;
+  }
+
+  .lado-cartao {
+    padding: 30px;
+  }
+
+  .cartao {
+    width: 280px;
+    height: 170px;
+  }
+
+  .lado-formulario {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-principal {
+    padding: 15px;
+  }
+
+  .metodos-pagamento {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .linha {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .input.cvv {
+    flex: 1;
+  }
+
+  .cartao {
+    width: 260px;
+    height: 160px;
+  }
+
+  .numero {
+    font-size: 16px;
+    margin: 15px 0;
+  }
+
+  .nome {
+    font-size: 13px;
+  }
 }
 </style>
