@@ -40,9 +40,9 @@ const componenteAtual = computed(() => {
 
           <h3>Escolha a forma de pagamento</h3>
           <div class="botoes-pagamento">
-            <button @click="selecionarMetodo('cartao')"><img id="card_icon" src="../../assets/contactless.png" alt=""> Cartão</button>
-            <button @click="selecionarMetodo('pix')"><img id="card-icon" src="../../assets/pix.png" alt=""> PIX</button>
-            <button @click="selecionarMetodo('boleto')"><img id="card_icon" src="../../assets/icons8-boleto-64.png" alt=""> Boleto</button>
+            <button class="payment_method" @click="selecionarMetodo('cartao')"><img class="icon" src="../../assets/card.png" alt=""> Cartão</button>
+            <button class="payment_method" @click="selecionarMetodo('pix')"><img class="icon" src="../../assets/pix.png" alt=""> PIX</button>
+            <button class="payment_method" @click="selecionarMetodo('boleto')"><img class="icon" src="../../assets/boleto.png" alt=""> Boleto</button>
           </div>
         </div>
       </div>
@@ -53,7 +53,6 @@ const componenteAtual = computed(() => {
           <button class="button__voltar" @click="resetar">← Voltar</button>
         </div>
         <div class="painel-detalhes-content">
-        <h2>Forma de Pagamento: {{ metodoSelecionado }}</h2>
         <component
           :is="componenteAtual"
           :valor="valor"
@@ -74,6 +73,22 @@ const componenteAtual = computed(() => {
   border-radius: 12px;
   border: transparent;
   border-bottom: black 2px solid;
+  width: 20%;
+}
+
+.payment_method{
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+  width: 100px;
+  gap: 5px;
 }
 
 .doacao:focus{
@@ -108,9 +123,9 @@ div.voltar{
 
 
 
-#card_icon {
-  width: 30px;
-  height: 30px;
+.icon {
+  width: 32px;
+  height: 32px;
 }
 
 .container-pagamento {

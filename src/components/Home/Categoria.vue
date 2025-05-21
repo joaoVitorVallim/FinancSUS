@@ -25,6 +25,13 @@
 </template>
 
 <style scoped>
+@font-face {
+    font-family: 'Ancizar Sans';
+    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .categorias {
   background-color: #fff;
   display: flex;
@@ -41,6 +48,7 @@
 
 .categorias-titulo {
   font-size: clamp(3rem, 4vw, 4rem);
+  font-family: Ancizar Sans, sans-serif;
   color: #70705b;
   margin-bottom: 2rem;
 }
@@ -54,6 +62,7 @@
 }
 
 .card {
+  font-family: Ancizar Sans, sans-serif;
   background-color: #ffffff;
   border: 1px solid #dcdcd2;
   border-radius: 12px;
@@ -78,6 +87,7 @@
 }
 
 .botao-projetos {
+  font-family: Ancizar Sans, sans-serif;
   margin-top: 2rem;
   font-size: 1.2rem;
   font-family: Arial, Helvetica, sans-serif;

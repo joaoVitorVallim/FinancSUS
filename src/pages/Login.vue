@@ -15,6 +15,8 @@
         password: password.value
       });
       console.log(response.data);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('name', response.data.user.name);
       router.push('/home');
     } catch (error) {
       if(error.response && error.response.data) {
@@ -24,6 +26,8 @@
       }
     }
   };
+
+ 
 </script>
 
 <template>
@@ -67,6 +71,13 @@
 </template>
 
 <style scoped>
+@font-face {
+    font-family: 'Ancizar Sans';
+    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .login {
   display: flex;
   justify-content: center;
@@ -76,6 +87,7 @@
 }
 
 .login-container {
+  font-family: Ancizar Sans, sans-serif;
   display: flex;
   background-color: white;
   border-radius: 10px;
@@ -188,7 +200,6 @@ input {
   background-color: #70705b;
   color: white;
   border: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: center;
   text-decoration: none;
 }

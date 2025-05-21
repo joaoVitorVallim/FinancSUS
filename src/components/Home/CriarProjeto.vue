@@ -14,6 +14,13 @@
 </template>
 
 <style scoped>
+@font-face {
+  font-family: 'Ancizar Sans';
+  src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
 .cta-container {
   display: flex;
   align-items: center;
@@ -25,6 +32,7 @@
 }
 
 .cta-content {
+  font-family: Ancizar Sans, sans-serif;
   max-width: 700px;
   background: #fdfdf6;
   padding: 3rem;
@@ -47,6 +55,7 @@
 }
 
 .cta-button {
+  font-family: Ancizar Sans, sans-serif;
   background-color: #70705b;
   color: #fff;
   border: none;

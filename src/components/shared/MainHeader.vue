@@ -54,7 +54,7 @@
 <template>
     <header
       class="componente-main-header"
-      :class="{ 'componente-main-header--fixo': props.mudaMenu }, { 'hidden-header': isHidden }"
+      :class="{ 'componente-main-header--fixo': props.mudaMenu ,  'hidden-header': isHidden }"
     >
       <div class="container">
         <div class="componente-main-header__logo">

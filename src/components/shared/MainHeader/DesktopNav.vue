@@ -1,3 +1,17 @@
+<script setup>
+  import { ref, onMounted } from 'vue';
+
+  const user = ref(null);
+
+  onMounted(() => {
+    const storedUser = localStorage.getItem('name');
+    if (storedUser) {
+      user.value = { name: storedUser };
+    }
+
+  });
+</script>
+
 <template>
   <nav class="componente-navbar">
     <section class="componente-navbar-section">
@@ -8,7 +22,16 @@
       </div>
       <div class="componente-navbar-cadastro">
         <a href="/cadastroProjeto" id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</a>
-        <a class="componente-navbar-cadastro-a" href="/register"><img src="../../../assets/user.png" width="30px" color="red">Cadastrar-se</a>
+        <section v-if="user">
+          <span class="componente-navbar-cadastro-a">
+            <img src="../../../assets/user.png" width="30px" /> Olá, {{ user.name }}
+          </span>
+        </section>
+        <section v-else>
+          <a class="componente-navbar-cadastro-a" href="/register">
+            <img src="../../../assets/user.png" width="30px" /> Cadastrar-se
+          </a>
+        </section>
       </div>
     </section>
   </nav>
