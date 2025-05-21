@@ -59,7 +59,7 @@ onMounted(async () => {
   } catch (error) {
     console.error('Erro ao carregar projetos:', error)
 
-    projetos.value = Array.from({ length: 12 }).map((_, i) => ({
+    projetos.value = Array.from({ length: 2 }).map((_, i) => ({
       id: i + 1,
       titulo: `Projeto Temporário ${i + 1}`,
       descricao: 'Descrição do projeto temporário.',

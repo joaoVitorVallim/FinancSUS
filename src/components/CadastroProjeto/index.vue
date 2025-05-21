@@ -1,3 +1,49 @@
+<script setup>
+import { ref } from 'vue'
+
+const projectData = ref({
+  title: '',
+  description: '',
+  goal: 0,
+  image: null,
+  owner: null 
+})
+
+const handleImageUpload = (event) => {
+  const file = event.target.files[0]
+  if (file) {
+    projectData.value.image = file
+  }
+}
+
+const submitProject = async () => {
+  try {
+    const formData = new FormData();
+    formData.append('title', projectData.value.title)
+    formData.append('description', projectData.value.description)
+    formData.append('goal', projectData.value.goal)
+    formData.append('image', projectData.value.image)
+    const response = await fetch('http://localhost:3000/vakinha/', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: formData,
+    })
+
+    if (response.ok) {
+      alert('Projeto cadastrado com sucesso!')
+    } else {
+      const errorData = await response.json()
+      alert(`Erro: ${errorData.message}`)
+    }
+  } catch (error) {
+    console.error('Erro:', error)
+    alert('Erro ao cadastrar o projeto.')
+  }
+}
+</script>
+
 <template>
   <section class="cadastro-projeto">
     <div class="cadastro-projeto-container">
@@ -45,29 +91,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-
-const projectData = ref({
-  title: '',
-  description: '',
-  goal: 0,
-  image: null,
-  owner: null 
-})
-
-const handleImageUpload = (event) => {
-  const file = event.target.files[0]
-  if (file) {
-    projectData.value.image = file
-  }
-}
-
-const submitProject = async () => {
-  //faz a porra do envio aqui caralho
-}
-</script>
 
 <style scoped>
 .cadastro-projeto {
