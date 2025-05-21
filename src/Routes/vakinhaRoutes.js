@@ -1,11 +1,17 @@
 import { Router } from "express";
+import multer from "multer";
+import { createVakinha, deleteVakinha, getAllVakinhas, getVakinhaId, getVakinhaImage } from "../Controllers/vakinhaController.js";
+
 const vakinhaRouter = Router();
-import { createVakinha, deleteVakinha, getAllVakinhas, getVakinhaId } from "../Controllers/vakinhaController.js";
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 vakinhaRouter.get('/all', getAllVakinhas);
 vakinhaRouter.get('/:id', getVakinhaId)
+vakinhaRouter.get('/:id/image', getVakinhaImage);
 
-vakinhaRouter.post('/', createVakinha);
+vakinhaRouter.post('/', upload.single('image'), createVakinha);
 
 vakinhaRouter.delete('/', deleteVakinha);
 

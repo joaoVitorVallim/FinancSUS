@@ -40,7 +40,7 @@ export class UserService {
             }
 
             const token = sign({ data: user }, process.env.SECRET, jwtConfig);
-            return token;
+            return {token, user};
         } catch (error) {
             throw new Error(`Erro no login: ${error.message}`);
         }

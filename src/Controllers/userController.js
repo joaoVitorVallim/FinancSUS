@@ -1,3 +1,4 @@
+import { User } from "mercadopago";
 import { UserService } from "../Services/userService.js";
 
 const userService = new UserService();
@@ -18,8 +19,17 @@ export const createUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const token = await userService.loginUser(email, password);
-        return res.status(200).send(token);
+        const {token, user} = await userService.loginUser(email, password);
+        
+        return res.status(200).send(
+            {
+                message: 'Login realizado com sucesso',
+                token,
+                user: {
+                    name: user.name,
+                    email: user.email,
+                }
+            });
     } catch (error) {
         return res.status(401).send({
             message: "Erro no login",

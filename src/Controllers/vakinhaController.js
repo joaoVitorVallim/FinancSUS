@@ -14,13 +14,15 @@ export const createVakinha = async (req, res) => {
     try {
         const payload = getBearer(req.headers.authorization);
         const { title, description, goal, collectorId } = req.body;
+        const image = req.file ? req.file.buffer : null;
 
         const vakinha = await vakinhaService.createVakinha(
             title,
             description,
             goal,
             payload.data._id,
-            collectorId
+            collectorId,
+            image
         );
         
         return res.status(200).send(vakinha);
@@ -69,3 +71,19 @@ export const deleteVakinha = async (req, res) => {
         });
     }
 };
+
+export const getVakinhaImage = async (req, res) => {
+    try {
+        const vakinha = await vakinhaService.findById(req.params.id);
+        if (!vakinha || !vakinha.image) {
+            return res.status(404).send({ message: "Imagem não encontrada" });
+        }
+        res.set('Content-Type', 'image/jpeg');
+        res.send(vakinha.image);
+    } catch (error) {
+        return res.status(400).send({
+            message: "Erro ao buscar imagem da vakinha",
+            error: error.message
+        });
+    }
+}

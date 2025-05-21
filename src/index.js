@@ -47,7 +47,7 @@ app.use("/auth", router);
 
 app.use("/pay", paymentRouter);
 
-app.use("/", userRouter);
+app.use("/users", userRouter);
 
 app.use('/notifications', notRouter);
 

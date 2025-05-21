@@ -28,7 +28,7 @@ const vakinhaSchema = new Schema({
     description: { type: String, required: true },
     goal: { type: Number, required: true },
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    image: String,
+    image: Buffer,
     received: { type: Number, default: 0 },
     collector: { type: String, required: true },
     active: { type: Boolean, default: true },
