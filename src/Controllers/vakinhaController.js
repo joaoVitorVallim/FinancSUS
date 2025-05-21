@@ -21,7 +21,7 @@ export const createVakinha = async (req, res) => {
             description,
             goal,
             received,
-            payload.data._id,
+            payload._id,
             image
         );
         
@@ -74,15 +74,18 @@ export const deleteVakinha = async (req, res) => {
 
 export const getVakinhaImage = async (req, res) => {
     try {
-        const vakinha = await vakinhaService.findById(req.params.id);
+        const vakinha = await vakinhaService.getVakinhaImage(req.params.id);
         if (!vakinha || !vakinha.image) {
-            return res.status(404).send({ message: "Imagem não encontrada" });
+            return res.status(404).send({
+                message: "Imagem não encontrada"
+            });
         }
-        res.set('Content-Type', 'image/jpeg');
-        res.send(vakinha.image);
+        
+        const base64Image = vakinha.image.toString('base64');
+        const imageSrc = `data:image/png;base64,${base64Image}`;
     } catch (error) {
         return res.status(400).send({
-            message: "Erro ao buscar imagem da vakinha",
+            message: "Erro ao buscar imagem",
             error: error.message
         });
     }
