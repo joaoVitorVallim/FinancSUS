@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="image-container">
-      <div class="image-placeholder"></div>
+      <img src="../../assets/img1-saibamais.png" alt="Imagem de Introdução" class="image-placeholder"/>
     </div>
   </div>
 
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="image-container">
-      <div class="image-placeholder"></div>
+      <img src="../../assets/img2-saibamais.png" alt="Imagem Financiamento" class="image-placeholder"/>
     </div>
   </div>
 
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="image-container">
-      <div class="image-placeholder"></div>
+      <img src="../../assets/img3-saibamais.png" alt="Imagem ODS" class="image-placeholder"/>
     </div>
   </div>
   </section>
@@ -88,7 +88,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: 80px;
-  padding: 110px 10%;
+  padding: 110px 10px;
+  width: 100%;
+  box-sizing: border-box; 
 }
 
 .Intro {
@@ -102,9 +104,14 @@ body {
 }
 
 .image-container {
-  flex: 1;
-  min-width: 300px;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: block;
   max-width: 400px;
+  height: auto;
 }
 
 .text-card {
@@ -183,28 +190,40 @@ strong {
 @media (max-width: 768px) {
   .section {
     flex-direction: column;
-    padding: 60px 5%;
-    gap: 40px;
+    padding: 1.2rem 0.5rem 2.5rem 0.5rem;
+    width: 100vw;
+    overflow-x: hidden;
+    gap: 12px;
+    margin-bottom: 0.5rem;
   }
 
   .WhatIs {
     flex-direction: column;
   }
 
-  .image-container,
   .text-card {
     width: 100%;
     max-width: 100%;
+    margin: 16px 0 8px 0;
+    gap: 12px;
+    padding: 28px 16px;
   }
 
-  
-  .Intro .text-card,
-  .Intro .image-container,
-  .WhatIs .text-card,
-  .WhatIs .image-container,
-  .HowitWorks .text-card,
-  .HowitWorks .image-container {
-    order: unset;
+  .image-container {
+    max-width: 100%;
+    margin-bottom: 8px;
   }
+
+  .image-container img,
+  .image-placeholder {
+    max-width: 100%;
+    aspect-ratio: 2 / 1;
+    height: auto;
+  }
+
+   .text-card{
+    width: 100%;
+    max-width: 100%;
+   }
 }
 </style>
