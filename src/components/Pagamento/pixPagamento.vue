@@ -45,7 +45,7 @@ function novoPagamento() {
   <div class="container-principal">
     <!-- Lado Esquerdo (Verde Oliva) -->
     <div class="lado-esquerdo">
-      <BotaoVoltar @resetar="$emit('resetar')" />
+      <BotaoVoltar class="btn-voltar" @resetar="$emit('resetar')" />
       <div class="conteudo-esquerdo">
         <h1>Cadastre sua Contribuição!</h1>
         <p class="subtitulo">Escolha o valor da sua doação e contribua para um futuro mais sustentável.</p>
@@ -140,6 +140,15 @@ function novoPagamento() {
 </template>
 
 <style scoped>
+
+.btn-voltar {
+  display: flex;
+  width: 20%;
+  top: 16px;
+  left: 16px;
+  width: 20%;
+}
+
 /* Reset básico */
 html, body {
   margin: 0;
@@ -209,8 +218,9 @@ html, body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to{
+    transform: rotate(360deg);
+  }
 }
 
 /* QR Code */

@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import BotaoVoltar from './botaoVoltar.vue'
 const props = defineProps({ valor: String })
 const emit = defineEmits(['confirmar'])
 
@@ -32,6 +33,7 @@ function formatarValidade() {
 
 <template>
   <div class="container-principal">
+    <BotaoVoltar @resetar="$emit('resetar')" />
     <h1>Cadastre sua Contribuição!</h1>
     <p>Escolha o valor da sua doação e contribua para um futuro mais sustentável.</p>
     
@@ -79,6 +81,15 @@ function formatarValidade() {
 </template>
 
 <style scoped>
+
+.btn-voltar {
+  display: flex;
+  width: 20%;
+  top: 16px;
+  left: 16px;
+  width: 20%;
+}
+
 /* Estilos originais (mantidos exatamente iguais) */
 .container-principal {
   max-width: 800px;
