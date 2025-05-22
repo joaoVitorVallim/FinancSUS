@@ -17,11 +17,6 @@ import notRouter from "./Routes/emailRoutes.js";
 
 config();
 
-const corsOptions = {
-    credentials: true,
-    origin: '*'
-}
-
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100
@@ -36,8 +31,10 @@ app.use(ExpressMongoSanitize());
 
 app.use(helmet());
 
-
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: ['http://localhost:5174', "INSERIR SERVER DEPLOYED"],
+    credentials: true
+}));
 
 connect(process.env.CONN);
 

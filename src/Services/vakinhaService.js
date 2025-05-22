@@ -52,15 +52,22 @@ export class VakinhaService {
         }
     }
 
-    async getVakinhaImage(id) {
-        try {
-            const { image } = await Vakinha.findById(id);
-            if (!image) {
-                throw new Error('imagem não encontrada');
-            }
-            return image;
-        } catch(error){
-            throw new Error(`Erro ao encontrar imagem: ${error.message}`);
+    async deleteVakinhaAll(){
+        try{
+            await Vakinha.deleteMany({})
+        }catch(error){
+            throw new Error(error.message)
         }
+    }
+
+    async getVakinhaImage(id) {
+        const vakinha = await Vakinha.findById(id);
+        if(!vakinha){
+            throw new Error('Vakinha não encontrada');
+        }
+        if(!vakinha.image){
+            throw new Error('Imagem não encontrada para essa vakinha');
+        }
+        return vakinha.image;
     }
 } 

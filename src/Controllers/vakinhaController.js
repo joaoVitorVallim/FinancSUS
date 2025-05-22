@@ -60,7 +60,7 @@ export const getVakinhaId = async (req, res) => {
 
 export const deleteVakinha = async (req, res) => {
     try {
-        await vakinhaService.deleteVakinha(req.query.id);
+        await vakinhaService.deleteVakinha(req.params.id);
         return res.status(200).send({
             message: "Vakinha deletada com sucesso"
         });
@@ -72,6 +72,20 @@ export const deleteVakinha = async (req, res) => {
     }
 };
 
+export const deleteVakinhaAll = async (req,res) => {
+    try{
+        await vakinhaService.deleteVakinhaAll();
+        return res.status(200).send({
+            message: "Deletado todas as vakinhas"
+        })
+    } catch (error) {
+        return res.status(400).send({
+            message: "Erro ao deletar todas as vakinhas",
+            error: error.message
+        })
+    }
+}
+
 export const getVakinhaImage = async (req, res) => {
     try {
         const image = await vakinhaService.getVakinhaImage(req.params.id);
@@ -81,8 +95,8 @@ export const getVakinhaImage = async (req, res) => {
             });
         }
         
-        const base64Image = image.toString('base64');
-        const imageSrc = `data:image/png;base64,${base64Image}`;
+        res.set('Content-Type', 'image/png');
+        return res.send(image);
     } catch (error) {
         return res.status(400).send({
             message: "Erro ao buscar imagem",
