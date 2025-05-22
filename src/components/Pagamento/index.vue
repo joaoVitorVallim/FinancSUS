@@ -80,6 +80,7 @@ const componenteAtual = computed(() => {
 .container-pagamento {
   display: flex;
   height: 100vh;
+  width: 100%;
   justify-content: center;
   align-items: center;
   background: #f1f1ed;

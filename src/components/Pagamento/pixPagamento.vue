@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import BotaoVoltar from './BotaoVoltar.vue'
+import BotaoVoltar from './botaoVoltar.vue'
 
 const estado = ref('formulario') // formulario | carregando | qrcode | erro
 const valor = ref('')

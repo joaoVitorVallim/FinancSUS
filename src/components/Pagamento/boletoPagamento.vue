@@ -132,9 +132,8 @@ const copiarLinhaDigitavel = async () => {
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
   background: #f9f9f9;
-  max-width: 900px;
   min-height: 500px;
-  width: 100vw;
+  width: 100%;
   height: 100%;
 }
 
@@ -143,13 +142,13 @@ const copiarLinhaDigitavel = async () => {
   background-color: #6b6f56;
   color: white;
   padding: 2rem;
-  
   flex: 1;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-width: 300px;
+  width: 40vw;
   height: 80vh;
   box-sizing: border-box;
 }
@@ -173,6 +172,7 @@ const copiarLinhaDigitavel = async () => {
   position: absolute;
   top: 16px;
   left: 16px;
+  width: 20%;
 }
 
 /* Lado direito */
@@ -183,7 +183,6 @@ const copiarLinhaDigitavel = async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 300px;
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;
@@ -314,6 +313,12 @@ button:hover {
   .endereco-row {
     flex-direction: column;
     gap: 12px;
+  }
+  .btn-voltar{
+    position: static;
+    width: 100%;
+    margin-bottom: 16px;
+    width: 30%;
   }
 }
 </style>
