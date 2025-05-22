@@ -58,7 +58,7 @@
   <style scoped>
     @font-face {
       font-family: 'CgAthenaeum';
-      src: url(../../assets/CgAthenaeum.ttf) format('truetype'); 
+      src: url(../../../public/fonts/CgAthenaeum.ttf) format('truetype'); 
       font-weight: normal;
       font-style: normal;
     }

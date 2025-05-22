@@ -1,4 +1,5 @@
 <template>
+  <section>
   <div class="section Intro">
     <div class="text-card">
       <div class="IntroContent">
@@ -46,6 +47,7 @@
       <div class="image-placeholder"></div>
     </div>
   </div>
+  </section>
 </template>
 
 <style scoped>
@@ -61,7 +63,14 @@
 
 @font-face {
   font-family: 'Ancizar Sans';
-  src: url(../../assets/AncizarSans-VariableFont_wght.ttf) format('truetype');
+  src: url(../../../public/AncizarSans-VariableFont_wght-v2.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CgAthenaeum';
+  src: url(../../../public/fonts/CgAthenaeum.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }

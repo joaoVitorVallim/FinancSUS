@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios'
 
 const projectData = ref({
   title: '',
   description: '',
   goal: 0,
   image: null,
-  owner: null 
+  owner: null
 })
 
 const handleImageUpload = (event) => {
@@ -18,28 +19,26 @@ const handleImageUpload = (event) => {
 
 const submitProject = async () => {
   try {
-    const formData = new FormData();
+    const formData = new FormData()
     formData.append('title', projectData.value.title)
     formData.append('description', projectData.value.description)
     formData.append('goal', projectData.value.goal)
     formData.append('image', projectData.value.image)
-    const response = await fetch('http://localhost:3000/vakinha/', {
-      method: 'POST',
+
+    const response = await axios.post('http://localhost:3000/vakinha/', formData, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-      body: formData,
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'multipart/form-data'
+      }
     })
 
-    if (response.ok) {
-      alert('Projeto cadastrado com sucesso!')
-    } else {
-      const errorData = await response.json()
-      alert(`Erro: ${errorData.message}`)
-    }
+    alert('Projeto cadastrado com sucesso!')
+    console.log(response.data)
+    
   } catch (error) {
     console.error('Erro:', error)
-    alert('Erro ao cadastrar o projeto.')
+    const message = error.response?.data?.message || 'Erro ao cadastrar o projeto.'
+    alert(`Erro: ${message}`)
   }
 }
 </script>
@@ -95,7 +94,7 @@ const submitProject = async () => {
 <style scoped>
 @font-face {
     font-family: 'Ancizar Sans';
-    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    src: url(../../../public/fonts/AncizarSans-VariableFont_wght-v2.ttf) format('truetype'); 
     font-weight: normal;
     font-style: normal;
   }

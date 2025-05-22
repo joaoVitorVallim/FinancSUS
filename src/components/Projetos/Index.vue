@@ -15,7 +15,7 @@
 
     <div v-else class="projetos-grid">
       <RouterLink v-for="projeto in projetosFiltrados" :key="projeto.id" to="/project-details" class="projeto-card">
-        <img :src="projeto.imagem" alt="Imagem do Projeto" class="projeto-imagem"/>
+        <img :src="`/api/vakinha/${projeto.id}/image`" alt="Imagem do Projeto" class="projeto-imagem"/>
         <h2 class="projeto-titulo">{{ projeto.titulo }}</h2>
         <p class="projeto-descricao">{{ projeto.descricao }}</p>
         <p class="projeto-valor">
@@ -38,23 +38,18 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import axios from 'axios'
 
 const projetos = ref([])
 const projetosVisiveis = ref([])
 const filtro = ref('')
 
-const api_url = 'http://localhost:3000/vakinha/all'
-
 onMounted(async () => {
-  try {
-    const res = await fetch(api_url)
-    const res_image = await fetch('http://localhost:3000/vakinha/682d330c264282ce83ec3855/image')
-    console.log(res_image)
-    if (!res.ok) {
-      throw new Error('Erro ao buscar projetos')
-    }
-    const data = await res.json()
-    console.log(data)
+  try{
+    const { data } = await axios.get('http://localhost:3000/vakinha/all', {
+      withCredentials: true
+    })
+
     projetos.value = data.map(p => ({
       id: p._id,
       titulo: p.title,
@@ -65,9 +60,9 @@ onMounted(async () => {
       status: p.active ? 'Ativo' : 'Inativo'
     }))
 
-    projetosVisiveis.value = projetos.value.slice(0, 12)
+    projetosVisiveis.value = projetos.value.slice(0, 50);
   } catch (error) {
-    console.error('Erro ao carregar projetos:', error)
+    console.error('Erro ao carregar projetos: ', error)
   }
 })
 
@@ -84,7 +79,7 @@ const projetosFiltrados = computed(() => {
 <style scoped>
 @font-face {
     font-family: 'Ancizar Sans';
-    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    src: url(../../../public/fonts/AncizarSans-VariableFont_wght-v2.ttf) format('truetype'); 
     font-weight: normal;
     font-style: normal;
   }
@@ -220,10 +215,7 @@ const projetosFiltrados = computed(() => {
   font-size: 2rem;
   font-weight: 800;
   text-align: start;
-  background: linear-gradient(90deg, #b4b494, #70705b);
-  background-size: 100% auto;
-  color: transparent;
-  -webkit-background-clip: text;
+  color: #70705b;
   margin-bottom: 1rem;
 }
 

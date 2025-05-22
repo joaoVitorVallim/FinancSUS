@@ -85,7 +85,7 @@ onMounted(() => {
 <style scoped>
 @font-face {
     font-family: 'Ancizar Sans';
-    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    src: url(../../../public/fonts/AncizarSans-VariableFont_wght-v2.ttf) format('truetype'); 
     font-weight: normal;
     font-style: normal;
   }

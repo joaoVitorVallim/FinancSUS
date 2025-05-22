@@ -10,7 +10,16 @@
             <a class="mobile-navbar-botoes" href="/projetos">Projetos</a>
             <a id="mobile-cadastre-projeto" class="mobile-navbar-botoes" href="/cadastroProjeto">Cadastre seu projeto!</a>
             <a class="mobile-componente-navbar-cadastro-a" href="/register">
-            <img src="../../../assets/user.png" width="30px">Cadastrar-se
+            <section v-if="user">
+                <span class="componente-navbar-cadastro-a">
+                    <img src="../../../assets/user.png" width="30px" /> Olá, {{ user.name }}
+                </span>
+                </section>
+                <section v-else>
+                <a class="componente-navbar-cadastro-a" href="/register">
+                    <img src="../../../assets/user.png" width="30px" /> Cadastrar-se
+                </a>
+            </section>
             </a>
         </section>
     </Transition>
@@ -21,6 +30,12 @@
 import { ref } from 'vue';
 
 const menuAberto = ref(false);
+
+const user = ref(null);
+const storedUser = localStorage.getItem('name');
+if (storedUser) {
+  user.value = { name: storedUser };
+}
 
 function toggleMenu() {
   menuAberto.value = !menuAberto.value;

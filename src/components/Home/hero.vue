@@ -19,14 +19,14 @@
 <style scoped>
 @font-face {
     font-family: 'CgAthenaeum';
-    src: url(../../assets/CgAthenaeum.ttf) format('truetype'); 
+    src: url(../../../public/fonts/CgAthenaeum.ttf) format('truetype'); 
     font-weight: normal;
     font-style: normal;
   }
 
 @font-face {
     font-family: 'Ancizar Sans';
-    src: url(../../assets/AncizarSans.ttf) format('truetype'); 
+    src: url(../../../public/fonts/AncizarSans-VariableFont_wght-v2.ttf) format('truetype'); 
     font-weight: normal;
     font-style: normal;
   }
