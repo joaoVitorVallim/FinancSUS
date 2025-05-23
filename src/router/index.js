@@ -50,9 +50,9 @@ const router = createRouter({
       component: CadastroProjeto,
     },
     {
-      path: '/project-details',
+      path: '/project-details/:id',
       name: 'project-details',
-      component: ProjectDetails,
+      component: () => import('../pages/ProjectDetails.vue'),
     },
     {
       path: '/termos',
