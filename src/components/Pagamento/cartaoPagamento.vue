@@ -29,6 +29,11 @@ function formatarValidade() {
   const apenasDigitos = validade.value.replace(/\D/g, '').slice(0, 4)
   validade.value = apenasDigitos.replace(/(\d{2})(\d{1,2})/, '$1/$2')
 }
+
+async function (params) {
+  
+}
+
 </script>
 
 <template>
