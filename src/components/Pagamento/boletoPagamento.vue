@@ -67,7 +67,6 @@ const copiarLinhaDigitavel = async () => {
 
 <template>
   <div class="boleto-container">
-    <!-- Lado esquerdo -->
     <div class="left-section">
       <BotaoVoltar class="btn-voltar" @resetar="$emit('resetar')" />
       <div class="texto-promocional">
@@ -102,8 +101,6 @@ const copiarLinhaDigitavel = async () => {
               </select>
             </div>
           </div>
-          
-          <input type="number" v-model="valor" placeholder="Valor (R$)" min="1" step="0.01" required />
 
           <button type="submit">GERAR BOLETO</button>
         </form>

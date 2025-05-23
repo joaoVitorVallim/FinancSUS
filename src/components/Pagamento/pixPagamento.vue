@@ -90,18 +90,6 @@ function novoPagamento() {
         </div>
         
         <div class="campo-formulario">
-          <label for="valor">Valor (R$)</label>
-          <input 
-            id="valor" 
-            v-model="valor" 
-            type="number" 
-            placeholder="Ex: 50,00" 
-            min="1"
-            step="0.01"
-          >
-        </div>
-        
-        <div class="campo-formulario">
           <label for="nome">Seu Nome</label>
           <input 
             id="nome" 
