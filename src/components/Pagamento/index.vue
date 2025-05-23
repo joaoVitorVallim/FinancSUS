@@ -177,17 +177,17 @@ h3 {
 }
 
 .payment_method.cartao {
-  background-color: #3b82f6;
+  background-color: #66664b;
   color: white;
 }
 
 .payment_method.pix {
-  background-color: #10b981;
+  background-color: #66664b;
   color: white;
 }
 
 .payment_method.boleto {
-  background-color: #6b7280;
+  background-color: #66664b;
   color: white;
 }
 

@@ -90,7 +90,6 @@ function formatarValidade() {
   width: 20%;
 }
 
-/* Estilos originais (mantidos exatamente iguais) */
 .container-principal {
   max-width: 800px;
   margin: 0 auto;
@@ -184,17 +183,16 @@ h2 {
   backface-visibility: hidden;
   color: white;
   box-sizing: border-box;
+  background: linear-gradient(135deg,rgba(123, 227, 168, 1) 0%, rgba(42, 153, 155, 1) 50%, rgba(83, 237, 227, 1) 100%);
 }
 
 .frente {
-  background: linear-gradient(135deg, #3a4a3a, #66664b);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .verso {
-  background: linear-gradient(135deg, #3a4a3a, #66664b);
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
@@ -277,7 +275,6 @@ h2 {
   background-color: #4a4a3a;
 }
 
-/* Apenas ajustes responsivos (não alteram o layout em telas grandes) */
 @media (max-width: 768px) {
   .container-cartao {
     flex-direction: column;

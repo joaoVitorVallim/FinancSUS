@@ -2,15 +2,14 @@
 import { ref } from 'vue'
 import BotaoVoltar from './botaoVoltar.vue'
 
-const estado = ref('formulario') // formulario | carregando | qrcode | erro
-const valor = ref('')
+const estado = ref('formulario')
 const nome = ref('')
 const email = ref('')
 const qrCode = ref('')
 const mensagemErro = ref('')
 
 async function gerarQRCode() {
-  if (!valor.value || !nome.value || !email.value) {
+  if ( !nome.value || !email.value) {
     mensagemErro.value = 'Preencha todos os campos'
     return
   }
@@ -19,10 +18,9 @@ async function gerarQRCode() {
   mensagemErro.value = ''
 
   try {
-    // Simulação de requisição ao backend
+
     await new Promise(resolve => setTimeout(resolve, 1500))
     
-    // Simulando retorno do backend
     qrCode.value = 'data:image/svg+xml;base64,...'
     estado.value = 'qrcode'
   } catch (error) {
@@ -43,7 +41,7 @@ function novoPagamento() {
 
 <template>
   <div class="container-principal">
-    <!-- Lado Esquerdo (Verde Oliva) -->
+    
     <div class="lado-esquerdo">
       <BotaoVoltar class="btn-voltar" @resetar="$emit('resetar')" />
       <div class="conteudo-esquerdo">
@@ -52,27 +50,23 @@ function novoPagamento() {
         
         <h2>Doação via PIX</h2>
         
-        <!-- Estado: Carregando -->
         <div v-if="estado === 'carregando'" class="loader-container">
           <div class="loader"></div>
           <p>Gerando QR Code...</p>
         </div>
         
-        <!-- Estado: QR Code Gerado -->
         <div v-else-if="estado === 'qrcode'" class="qr-code-container">
           <img :src="qrCode" alt="QR Code PIX" class="qr-code-image">
           <p>Escaneie este QR Code com seu app bancário</p>
           <button @click="novoPagamento" class="btn-novo">Nova Doação</button>
         </div>
         
-        <!-- Estado: Erro -->
         <div v-else-if="estado === 'erro'" class="erro-container">
           <div class="erro-icon">!</div>
           <p>{{ mensagemErro }}</p>
           <button @click="estado = 'formulario'" class="btn-tentar-novamente">Tentar Novamente</button>
         </div>
         
-        <!-- Estado: Formulário (Padrão) -->
         <div v-else class="ilustracao-pix">
           <div class="icone-pix">PIX</div>
           <p>Preencha os dados ao lado para gerar seu QR Code</p>
@@ -80,7 +74,7 @@ function novoPagamento() {
       </div>
     </div>
     
-    <!-- Lado Direito (Branco) -->
+    
     <div class="lado-direito">
       <div class="formulario-container">
         <h3>Informações para Pagamento</h3>
@@ -90,22 +84,20 @@ function novoPagamento() {
         </div>
         
         <div class="campo-formulario">
-          <label for="nome">Seu Nome</label>
           <input 
             id="nome" 
             v-model="nome" 
             type="text" 
-            placeholder="Como deve aparecer no comprovante"
+            placeholder="Nome Completo"
           >
         </div>
         
         <div class="campo-formulario">
-          <label for="email">E-mail</label>
           <input 
             id="email" 
             v-model="email" 
             type="email" 
-            placeholder="Para envio do comprovante"
+            placeholder="Email"
           >
         </div>
         
@@ -137,7 +129,6 @@ function novoPagamento() {
   width: 20%;
 }
 
-/* Reset básico */
 html, body {
   margin: 0;
   padding: 0;
@@ -152,7 +143,6 @@ html, body {
   flex-direction: row;
 }
 
-/* Lado Esquerdo - Verde Oliva */
 .lado-esquerdo {
   flex: 1;
   background-color: #66664b;
@@ -189,7 +179,6 @@ html, body {
   padding: 1rem;
 }
 
-/* Loader */
 .loader-container {
   text-align: center;
   padding: 2rem;
@@ -211,7 +200,6 @@ html, body {
   }
 }
 
-/* QR Code */
 .qr-code-container {
   text-align: center;
   padding: 1rem;
@@ -226,7 +214,6 @@ html, body {
   display: block;
 }
 
-/* Ilustração Pix */
 .ilustracao-pix {
   text-align: center;
   padding: 1rem;
@@ -246,7 +233,6 @@ html, body {
   font-weight: bold;
 }
 
-/* Erro */
 .erro-container {
   text-align: center;
   padding: 1rem;
@@ -265,7 +251,6 @@ html, body {
   font-weight: bold;
 }
 
-/* Lado Direito - Branco */
 .lado-direito {
   flex: 1;
   background-color: white;
@@ -376,7 +361,6 @@ html, body {
   color: #555;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .container-principal {
     flex-direction: column;
