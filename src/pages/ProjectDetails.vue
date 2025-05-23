@@ -1,16 +1,19 @@
 <template>
-  <section class="project-details">
-    <!-- ADICIONAR V-IF COM LOADING E ERROR AQUI -->
+  <section class="project-details" v-if="projeto">
+    <div v-if="loading" class="loading">
+      <h1>Carregando projeto...</h1>
+    </div>
+    <div v-else-if="error" class="error">{{ error }}</div>
 
-    <div   class="project-details-container"> <!--NÃO ESQUECER DE ADICIONAR V-ELSE AQUI-->
+    <div class="project-details-container"> 
       <div class="project-header">
-        <h1 class="project-title">{{ project.title }}</h1>
+        <h1 class="project-title">{{ projeto.title }}</h1>
         <RouterLink to="/projetos" class="close-button">&times;</RouterLink>
       </div>
 
       <div class="project-content">
         <div class="project-image">
-          <img :src="project.image" :alt="project.title">
+          <img :src="`/api/vakinha/${projeto._id}/image`" :alt="projeto.title">
         </div>
 
         <div class="project-info">
@@ -18,11 +21,11 @@
             <div class="progress-stats">
               <div class="progress-amount">
                 <h3>Arrecadado</h3>
-                <p>R$ {{ project.received }}</p>
+                <p>R$ {{ projeto.received.toFixed(2) }}</p>
               </div>
               <div class="progress-goal">
                 <h3>Meta</h3>
-                <p>R$ {{ project.goal }}</p>
+                <p>R$ {{ projeto.goal.toFixed(2) }}</p>
               </div>
             </div>
             
@@ -34,7 +37,7 @@
 
           <div class="project-description">
             <h2>Sobre o Projeto</h2>
-            <p>{{ project.description }}</p>
+            <p>{{ projeto.description }}</p>
           </div>
 
           <RouterLink to="/doar" class="donate-button">FAZER DOAÇÃO</RouterLink>
@@ -46,40 +49,31 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-//import axios from 'axios'
+import { useRoute } from 'vue-router';
+import axios from "axios";
 
-const route = useRoute()
-const project = ref({
-  title: 'Lorem Ipsum',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  image: '',
-  goal: 100000,
-  received: 20000
-})
-const loading = ref(true)
-const error = ref(null)
+const projeto = ref(null)
+const route = useRoute();
+const loading = ref(true);
+const error = ref('')
 
 const progressPercentage = computed(() => {
-  return Math.round((project.value.received / project.value.goal) * 100)
-})
+  if (!projeto.value) return 0;
+  const porcentagem = (projeto.value.received / projeto.value.goal) * 100;
+  return porcentagem > 100 ? 100 : porcentagem.toFixed(1);
+});
 
-/*const fetchProjectDetails = async () => {
-  try {
-    loading.value = true
-    const response = await axios.get()//ADICIONAR A URL DO BACKEND AQUI CARALHO
-    project.value = response.data
-  } catch (err) {
-    error.value = 'Erro ao carregar detalhes do projeto'
-    console.error('Erro:', err)
+onMounted(async () => {
+  try{
+    const id = route.params.id;
+    const { data } = await axios.get(`http://localhost:3000/vakinha/${id}`);
+    projeto.value = data;
+  } catch (e) {
+    error.value = 'Erro ao carregar o projeto. Tente novamente';
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
-
-onMounted(() => {
-  fetchProjectDetails()
-})*/
+});
 </script>
 
 <style scoped>
@@ -93,7 +87,9 @@ onMounted(() => {
 .project-details {
   min-height: 100vh;
   background-color: #f1f1ed;
-  padding: clamp(2rem, 4vw, 4rem);
+  display: block;
+  justify-content: center;
+  align-content: center;
 }
 
 .project-details-container {
@@ -147,6 +143,7 @@ onMounted(() => {
 
 .project-image img {
   width: 100%;
+  max-height: 400px;
   border-radius: 10px;
   object-fit: cover;
 }

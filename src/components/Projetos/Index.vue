@@ -14,7 +14,7 @@
     </div>
 
     <div v-else class="projetos-grid">
-      <RouterLink v-for="projeto in projetosFiltrados" :key="projeto.id" to="/project-details" class="projeto-card">
+      <RouterLink v-for="projeto in projetosFiltrados" :key="projeto.id" :to="`/project-details/${projeto.id}`" class="projeto-card">
         <img :src="`/api/vakinha/${projeto.id}/image`" alt="Imagem do Projeto" class="projeto-imagem"/>
         <h2 class="projeto-titulo">{{ projeto.titulo }}</h2>
         <p class="projeto-descricao">{{ projeto.descricao }}</p>
