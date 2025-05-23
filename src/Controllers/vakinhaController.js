@@ -48,7 +48,7 @@ export const getAllVakinhas = async (req, res) => {
 
 export const getVakinhaId = async (req, res) => {
     try {
-        const vakinha = await vakinhaService.getVakinhaById(req.query.id);
+        const vakinha = await vakinhaService.getVakinhaById(req.params.id);
         return res.status(200).send(vakinha);
     } catch (error) {
         return res.status(400).send({
