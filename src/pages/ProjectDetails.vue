@@ -1,6 +1,8 @@
 <template>
-  <section class="project-details">
-    <div v-if="loading" class="loading">Carregando projeto...</div>
+  <section class="project-details" v-if="projeto">
+    <div v-if="loading" class="loading">
+      <h1>Carregando projeto...</h1>
+    </div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
     <div class="project-details-container"> 
@@ -11,7 +13,7 @@
 
       <div class="project-content">
         <div class="project-image">
-          <img :src="`/api/vakinha/${projeto.id}/image`" :alt="projeto.title">
+          <img :src="`/api/vakinha/${projeto._id}/image`" :alt="projeto.title">
         </div>
 
         <div class="project-info">
@@ -65,11 +67,9 @@ onMounted(async () => {
   try{
     const id = route.params.id;
     const { data } = await axios.get(`http://localhost:3000/vakinha/${id}`);
-    console.log(data);
     projeto.value = data;
   } catch (e) {
-    e.value = 'Erro ao carregar o projeto. Tente novamente';
-    console.log(e);
+    error.value = 'Erro ao carregar o projeto. Tente novamente';
   } finally {
     loading.value = false;
   }
@@ -87,7 +87,9 @@ onMounted(async () => {
 .project-details {
   min-height: 100vh;
   background-color: #f1f1ed;
-  padding: clamp(2rem, 4vw, 4rem);
+  display: block;
+  justify-content: center;
+  align-content: center;
 }
 
 .project-details-container {
@@ -141,6 +143,7 @@ onMounted(async () => {
 
 .project-image img {
   width: 100%;
+  max-height: 400px;
   border-radius: 10px;
   object-fit: cover;
 }
