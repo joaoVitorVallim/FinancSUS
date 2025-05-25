@@ -7,7 +7,7 @@
           <h1 class="Title-Intro plain-title">Quem Somos Nós?</h1>
         </div>
         <p>
-          Somos um grupo de jovens comprometidos com um futuro mais justo, verde e colaborativo. Acreditamos que ideias sustentáveis merecem sair do papel e ganhar o mundo — e que, com a ajuda de todos, é possível transformar boas intenções em ações concretas. Por isso, criamos o <strong>FinancSus</strong>, uma plataforma que conecta pessoas com grandes ideias a quem deseja fazer parte de algo maior.
+          Somos um grupo de jovens comprometidos com um futuro mais limpo e colaborativo. Acreditamos que ideias sustentáveis merecem sair do papel e ganhar o mundo — e que, com a ajuda de todos, é possível transformar boas intenções em ações concretas. Por isso, criamos o <strong>FinancSUS</strong>, uma plataforma que conecta pessoas com grandes ideias a quem deseja fazer parte de algo maior.
         </p>
       </div>
     </div>
@@ -20,10 +20,10 @@
     <div class="text-card">
       <div class="WhatIsContent">
         <div class="TitleBox">
-          <h1 class="Title-WhatIs plain-title">O que é o FinancSus?</h1>
+          <h1 class="Title-WhatIs plain-title">O que é o FinancSUS?</h1>
         </div>
         <p>
-          O FinancSus é uma plataforma de vaquinhas online dedicada exclusivamente a projetos de desenvolvimento sustentável. Aqui, qualquer pessoa ou grupo com uma iniciativa sustentável — seja ela ambiental, social ou econômica — pode cadastrar seu projeto, contar sua história e buscar apoio financeiro para tirá-lo do papel. Ao mesmo tempo, qualquer pessoa interessada em apoiar boas causas pode contribuir de forma simples, segura e transparente. O FinancSus não é apenas uma plataforma de vaquinha online. É uma ponte entre quem tem uma boa ideia e quem quer fazer parte da mudança. Com tecnologia, propósito e engajamento social, damos vida a projetos que contribuem para um mundo mais justo, equilibrado e sustentável.
+          O FinancSUS é uma plataforma de crowdfunding voltada para projetos sustentáveis. Aqui, você pode cadastrar sua ideia e torná-la realidade com a ajuda de pessoas que acreditam no seu potencial. O FinancSUS é um espaço colaborativo onde todos podem contribuir para um futuro mais sustentável. Através do financiamento coletivo, buscamos unir forças para transformar sonhos em ações concretas.
         </p>
       </div>
     </div>
@@ -39,7 +39,7 @@
           <h1 class="Title-HowitWorks plain-title">Como funciona?</h1>
         </div>
         <p>
-          Para participar ativamente da plataforma, o usuário deve se cadastrar como proponente ou como investidor. O proponente é quem deseja cadastrar um projeto sustentável. Após o cadastro, ele poderá inserir detalhes sobre sua iniciativa, selecionar os ODS relacionados, definir metas financeiras, prazos e possíveis recompensas aos apoiadores. O sistema oferece uma área administrativa completa, permitindo que o proponente acompanhe as doações, publique atualizações e veja quem doou.
+          Nossa plataforma permite que você cadastre sua ideia de projeto sustentável e a publique para que pessoas interessadas possam apoiá-la financeiramente. O processo é simples: você cria sua conta em nosso site, descreve sua ideia de projeto, define uma quantia como meta de arrecadação, adiciona uma foto que achar relevante e compartilha em suas redes sociais para potencializar a visibilidade. Outras pessoas podem contribuir com qualquer quantia, e quando a meta é alcançada, o projeto é realizado!
         </p>
       </div>
     </div>
