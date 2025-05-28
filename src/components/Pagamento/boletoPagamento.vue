@@ -29,21 +29,22 @@ function formatarCEP() {
 const gerarBoleto = async () => {
   loading.value = true
   try {
-    const response = await fetch('/api/gerar-boleto', {
+    const response = await fetch('http://', {
       method: 'POST',
       body: JSON.stringify({ 
-        nome: nome.value, 
-        email: email.value,
-        endereco: {
-          cep: cep.value,
-          logradouro: logradouro.value,
-          numero: numero.value,
-          complemento: complemento.value,
-          bairro: bairro.value,
-          cidade: cidade.value,
-          estado: estado.value
+        payer:{
+          name: nome.value,
+          email: email.value,
+          address: {
+            zaip_code: cep.value,
+            street_name: logradouro.value,
+            street_number: numero.value,
+            neighborhood: bairro.value,
+            city: cidade.value,
+            federal_unit: estado.value
+          }
         },
-        valor: valor.value 
+        transaction_amount: valor.value 
       }),
       headers: { 'Content-Type': 'application/json' }
     })
