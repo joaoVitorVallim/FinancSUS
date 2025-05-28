@@ -8,6 +8,12 @@ const email = ref('')
 const qrCode = ref('')
 const mensagemErro = ref('')
 
+const props = defineProps({
+  valor: {
+    type: Number,
+  }
+})
+
 async function gerarQRCode() {
   if ( !nome.value || !email.value) {
     mensagemErro.value = 'Preencha todos os campos'
@@ -19,14 +25,28 @@ async function gerarQRCode() {
 
   try {
 
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    const data = await fetch('http://localhost:3000/pay/payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        transaction_amount: props.valor,
+        payment_method_id:'pix',
+        payer:{
+          email: email.value,
+        }
+      })
+    })
+
+    const res = await data.json();
     
-    qrCode.value = 'data:image/svg+xml;base64,...'
+    qrCode.value = `data:image/png;base64,${res.qr_code_base64}`
     estado.value = 'qrcode'
   } catch (error) {
     mensagemErro.value = 'Erro ao gerar QR Code. Tente novamente.'
     estado.value = 'erro'
-    console.error(error)
+    console.log(error.message)
   }
 }
 
@@ -203,11 +223,12 @@ html, body {
 .qr-code-container {
   text-align: center;
   padding: 1rem;
+  border-radius: 12px
 }
 
 .qr-code-image {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background: #f0f0f0;
   margin: 0 auto 1rem;
   border: 10px solid white;

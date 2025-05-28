@@ -96,7 +96,7 @@ const componenteAtual = computed(() => {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   flex-direction: row;
   height: 80%;
-  width: 100%;
+  width: 80%;
   justify-content: center;
   align-items: center;
 }

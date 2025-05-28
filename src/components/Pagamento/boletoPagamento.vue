@@ -29,22 +29,28 @@ function formatarCEP() {
 const gerarBoleto = async () => {
   loading.value = true
   try {
-    const response = await fetch('http://', {
+    const response = await fetch('http://localhost:3000/pay/payment', {
       method: 'POST',
       body: JSON.stringify({ 
         payer:{
-          name: nome.value,
-          email: email.value,
+          first_name: 'vinicius',
+          last_name:"butrico",
+          email: 'butrico0@gmail.com',
+          identification:{
+            type: "CPF",
+            number:"12345678909"
+          },
           address: {
-            zaip_code: cep.value,
-            street_name: logradouro.value,
-            street_number: numero.value,
-            neighborhood: bairro.value,
-            city: cidade.value,
-            federal_unit: estado.value
+            zip_code: "13844060",
+            street_name: "princesa isabel",
+            street_number: "590",
+            neighborhood: "vila ricci",
+            city: "Mogi guacu",
+            federal_unit: "SP"
           }
         },
-        transaction_amount: valor.value 
+        transaction_amount: 10,
+        payment_method_id:'bolbradesco'
       }),
       headers: { 'Content-Type': 'application/json' }
     })
@@ -75,8 +81,6 @@ const copiarLinhaDigitavel = async () => {
         <p>Gere um boleto bancário<br />e apoie um projeto sustentável</p>
       </div>
     </div>
-
-    <!-- Lado direito -->
     <div class="right-section">
       <div class="form-container" v-if="!boletoData && !loading">
         <h2>Pagamento Boleto</h2>
@@ -85,7 +89,7 @@ const copiarLinhaDigitavel = async () => {
           <input type="text" v-model="nome" placeholder="Nome completo" required />
           <input type="email" v-model="email" placeholder="E-mail" required />
           
-          <!-- Campos de endereço divididos -->
+          
           <div class="endereco-grid">
             <input type="text" v-model="cep" placeholder="CEP" @input="formatarCEP" maxlength="9" required />
             <input type="text" v-model="logradouro" placeholder="Rua/Avenida" required />
