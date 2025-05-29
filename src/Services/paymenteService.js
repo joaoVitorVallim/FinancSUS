@@ -40,7 +40,6 @@ export const createPayment = async ({ headers, body }) => {
         payer: body.payer,
         token: body.token,
         issuer_id: body.issuer_id,
-
         additional_info: {
           items: [
             {
