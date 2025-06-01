@@ -139,7 +139,6 @@ const copiarLinhaDigitavel = async () => {
   height: 100%;
 }
 
-/* Lado esquerdo */
 .left-section {
   background-color: #6b6f56;
   color: white;
@@ -169,7 +168,6 @@ const copiarLinhaDigitavel = async () => {
   line-height: 1.5;
 }
 
-/* Botão voltar no canto superior esquerdo */
 .btn-voltar {
   position: absolute;
   top: 16px;
@@ -177,7 +175,6 @@ const copiarLinhaDigitavel = async () => {
   width: 20%;
 }
 
-/* Lado direito */
 .right-section {
   background: white;
   flex: 1;
@@ -190,7 +187,6 @@ const copiarLinhaDigitavel = async () => {
   box-sizing: border-box;
 }
 
-/* Formulário */
 .form-container {
   max-width: 320px;
   width: 100%;
@@ -256,14 +252,12 @@ button:hover {
   background-color: #5a5d4a;
 }
 
-/* Carregando */
 .carregando {
   font-size: 1.2rem;
   font-weight: bold;
   color: #6b6f56;
 }
 
-/* Resultado do boleto */
 .boleto-gerado {
   display: flex;
   flex-direction: column;
@@ -296,7 +290,6 @@ button:hover {
   word-break: break-all;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .boleto-container {
     flex-direction: column;

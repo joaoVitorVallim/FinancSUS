@@ -29,7 +29,6 @@ const componenteAtual = computed(() => {
   <div class="container-pagamento">
     <div class="painel-principal">
 
-
       <section class="area-esquerda" v-if="!metodoSelecionado">
         <div class="texto-promocional">
           <h2>Cadastre sua Contribuição!</h2>
@@ -38,7 +37,6 @@ const componenteAtual = computed(() => {
         </div>
       </section>
 
-      <!-- LADO DIREITO: Formulário -->
       <section v-if="!metodoSelecionado" class="area-direita">
         <div class="topo-form">
           <img class="logo__energia" src="../../assets/LogoPequenoEnergia.png" alt="Logo do projeto" />
@@ -49,25 +47,24 @@ const componenteAtual = computed(() => {
           <input class="input-text" v-model="valor" type="number" placeholder="Valor em R$" min="0.01" step="0.01" />
 
           <div class="botoes-pagamento">
-            <button class="payment_method cartao" @click="selecionarMetodo('cartao')">
+            <button class="payment_method" @click="selecionarMetodo('cartao')">
               <img class="icon" src="../../assets/card.png" alt="Cartão" /> Cartão
             </button>
-            <button class="payment_method pix" @click="selecionarMetodo('pix')">
+            <button class="payment_method" @click="selecionarMetodo('pix')">
               <img class="icon" src="../../assets/pix.png" alt="PIX" /> PIX
             </button>
-            <button class="payment_method boleto" @click="selecionarMetodo('boleto')">
+            <button class="payment_method" @click="selecionarMetodo('boleto')">
               <img class="icon" src="../../assets/boleto.png" alt="Boleto" /> Boleto
             </button>
           </div>
         </div>
 
-        <!-- Componente Dinâmico -->
-        
       </section>
-      <div v-else class="formulario">
+      <div v-else class="painel-principal">
 
-          <component :is="componenteAtual" :valor="valor" class="componente-forma-pagamento" @resetar="resetar" @confirmar="resetar" />
-        </div>
+        <component :is="componenteAtual" :valor="valor" class="componente-forma-pagamento" @resetar="resetar"
+          @confirmar="resetar" />
+      </div>
     </div>
   </div>
 </template>
@@ -75,161 +72,205 @@ const componenteAtual = computed(() => {
 
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+
 
 
 .container-pagamento {
   display: flex;
-  height: 100vh;
-  width: 100%;
   justify-content: center;
   align-items: center;
-  background: #f1f1ed;
+  width: 100vw;
+  height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f1f1ed;
+  
 }
 
 .painel-principal {
+  width: 60vw;
+  height: 80vh;
+  background-color: white;
+  border-radius: 20px;
   display: flex;
-  max-width: 960px;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   flex-direction: row;
-  height: 80%;
-  width: 80%;
   justify-content: center;
   align-items: center;
 }
 
 .area-esquerda {
-  background-color: #66664b;
-  color: white;
-  flex: 1;
+  width: 50%;
+  background-color: #666e5f;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   height: 100%;
+  color: white;
 }
 
 .area-direita {
-  flex: 1;
-  padding: 40px;
+  width: 50%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.topo-form {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-bottom: 24px;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10vh;
 }
 
 .logo__energia {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 12px;
+  width: 90px;
 }
 
-h3 {
-  color: #444;
-  font-size: 1.5rem;
-  margin-bottom: 12px;
+.formulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .input-text {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  margin-bottom: 15%;
+  width: 50%;
+  height: 40px;
+  border: transparent;
+  border-bottom: black 2px solid;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  text-align: center;
+}
+
+.input-text:focus {
+  outline: none;
+
+}
+
+.input-text::-webkit-inner-spin-button,
+.input-text::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 .botoes-pagamento {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 2.5%;
 }
 
 .payment_method {
-  flex: 1;
-  min-width: 100px;
-  padding: 12px;
-  background-color: #e0e0e0;
-  border: none;
-  border-radius: 8px;
+  padding: 1vh 1vw;
+  border-radius: 5px;
+  background-color: #666e5f;
+  border: transparent;
   cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.payment_method img.icon {
-  width: 28px;
-  height: 28px;
-  margin-bottom: 4px;
-}
-
-.payment_method.cartao {
-  background-color: #66664b;
   color: white;
 }
 
-.payment_method.pix {
-  background-color: #66664b;
-  color: white;
+.icon {
+  width: 30px;
 }
 
-.payment_method.boleto {
-  background-color: #66664b;
-  color: white;
+.componente-forma-pagamento{
+  height: 100%;
+  width: 100%;
+  justify-content: center;
 }
 
-.button__voltar {
-  align-self: flex-start;
-  background-color: transparent;
-  border: none;
-  color: #007bff;
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 16px;
-}
+@media (max-width: 1024px) {
+  .painel-principal {
+    width: 80vw;
+    height: 85vh;
+  }
 
-.texto-promocional {
-  text-align: center;
-  max-width: 300px;
-}
+  .input-text {
+    width: 60%;
+  }
 
-.texto-promocional h2 {
-  font-size: 1.8rem;
-  margin-bottom: 12px;
-  font-weight: bold;
-}
+  .logo__energia {
+    width: 70px;
+  }
 
-.texto-promocional p {
-  font-size: 1rem;
-  line-height: 1.5;
+  .icon {
+    width: 25px;
+  }
 }
 
 @media (max-width: 768px) {
   .painel-principal {
+    width: 90vw;
+    height: auto;
     flex-direction: column;
   }
 
+  .area-esquerda, .area-direita {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
   .area-esquerda {
-    padding: 20px;
-    order: 2;
+    padding: 40px 20px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   .area-direita {
-    padding: 20px;
-    order: 1;
+    gap: 5vh;
+    padding: 30px 20px;
+  }
+
+  .input-text {
+    width: 70%;
+    margin-bottom: 10%;
+  }
+
+  .botoes-pagamento {
+    gap: 15px;
+  }
+
+  .payment_method {
+    width: 60%;
+  }
+
+  .logo__energia {
+    width: 60px;
+  }
+
+  .icon {
+    width: 25px;
   }
 }
+
+@media (max-width: 480px) {
+  .painel-principal {
+    width: 95vw;
+  }
+
+  .input-text {
+    width: 80%;
+  }
+
+  .payment_method {
+    width: 70%;
+    font-size: 14px;
+  }
+
+  .logo__energia {
+    width: 50px;
+  }
+
+  .icon {
+    width: 20px;
+  }
+}
+
 </style>

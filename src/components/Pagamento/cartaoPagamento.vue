@@ -40,11 +40,6 @@ function formatarValidade() {
     <p>Escolha o valor da sua doação e contribua para um futuro mais sustentável.</p>
     
     <h2>Doação</h2>
-    <div class="metodos-pagamento">
-      <button class="metodo ativo">Cartão</button>
-      <button class="metodo">PIX</button>
-      <button class="metodo">Boleto</button>
-    </div>
     
     <div class="container-cartao">
       <div class="lado-cartao">
@@ -63,6 +58,9 @@ function formatarValidade() {
       <div class="lado-formulario">
         <div class="input__container">
           <div class="linha">
+            <input v-model="email" class="input" placeholder="Email" />
+          </div>
+          <div class="linha">
             <input v-model="numero" @input="formatarNumeroCartao" maxlength="19" inputmode="numeric"
               placeholder="Número do Cartão" class="input" @focus="mostrarVerso = false" />
           </div>
@@ -72,7 +70,7 @@ function formatarValidade() {
           <div class="linha">
             <input v-model="validade" @input="formatarValidade" maxlength="5" placeholder="Validade (MM/AA)"
               class="input" @focus="mostrarVerso = false" />
-            <input v-model="cvv" @input="formatarCvv" maxlength="3" placeholder="CVV" class="input cvv"
+            <input v-model="cvv" @input="formatarCvv" maxlength="3" placeholder="CVV" class="input input-cvv"
               @focus="mostrarVerso = true" />
           </div>
         </div>
@@ -84,81 +82,73 @@ function formatarValidade() {
 
 <style scoped>
 
-.btn-voltar {
-  display: flex;
-  width: 20%;
-  top: 16px;
-  left: 16px;
-  width: 20%;
-}
-
 .container-principal {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-}
-
-h1 {
-  color: #66664b;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-h2 {
-  color: #66664b;
-  font-size: 20px;
-  margin: 20px 0 15px 0;
-}
-
-.metodos-pagamento {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.metodo {
-  padding: 10px 15px;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.metodo.ativo {
-  background-color: #66664b;
-  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 2vw;
 }
 
 .container-cartao {
   display: flex;
-  background-color: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  max-height: 420px;
-  height: 100%;
+  flex-direction: row;
+  gap: 20px;
+  width: 50vw;
+  height: 35vh;
+  justify-content: center;
+  align-self: center;
 }
 
 .lado-cartao {
-  flex: 1;
-  background-color: #66664b;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 32px;
+  align-items: center;
+  background-color: #6b6f56;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  height: 100%;
+  width: 50%;
 }
 
 .lado-formulario {
-  flex: 1;
-  padding: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #fff;
+  align-items: center;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  height: 100%;
+  width: 50%;
+}
+
+.input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.input-cvv {
+  width: 30%;
+}
+
+.linha{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+}
+
+.confirm{
+  background-color: #6b6f56;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .cartao {
@@ -237,54 +227,58 @@ h2 {
   text-align: right;
 }
 
-.input__container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-}
-
-.linha {
-  display: flex;
-  gap: 15px;
-}
-
-.input {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
-  flex: 1;
-}
-
-.input.cvv {
-  flex: 0.5;
-}
-
-.confirm {
-  margin-top: 20px;
-  padding: 12px;
-  background-color: #66664b;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.confirm:hover {
-  background-color: #4a4a3a;
-}
-
-@media (max-width: 768px) {
+@media (min-width: 1024px) {
   .container-cartao {
-    flex-direction: column;
-    max-height: none;
+    flex-direction: row;
+    width: 50vw;
+    height: 35vh;
+  }
+
+  .lado-cartao,
+  .lado-formulario {
+    width: 50%;
+    height: 100%;
   }
 
   .lado-cartao {
-    padding: 30px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .lado-formulario {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .container-cartao {
+    flex-direction: column;
+    width: 80vw;
+    height: auto;
+  }
+
+  .lado-cartao,
+  .lado-formulario {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+
+  .lado-cartao {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .lado-formulario {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
   .cartao {
@@ -292,28 +286,47 @@ h2 {
     height: 170px;
   }
 
-  .lado-formulario {
-    padding: 25px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container-principal {
-    padding: 15px;
-  }
-
-  .metodos-pagamento {
-    flex-wrap: wrap;
-    justify-content: center;
+  .input {
+    width: 90%;
   }
 
   .linha {
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    gap: 10px;
   }
 
-  .input.cvv {
-    flex: 1;
+  .input-cvv {
+    width: 35%;
+  }
+
+  .confirm {
+    width: 90%;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .container-cartao {
+    flex-direction: column;
+    width: 90vw;
+    height: auto;
+  }
+
+  .lado-cartao,
+  .lado-formulario {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+
+  .lado-cartao {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .lado-formulario {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
   .cartao {
@@ -321,13 +334,24 @@ h2 {
     height: 160px;
   }
 
-  .numero {
-    font-size: 16px;
-    margin: 15px 0;
+  .input {
+    width: 100%;
   }
 
-  .nome {
-    font-size: 13px;
+  .linha {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .input-cvv {
+    width: 100%;
+  }
+
+  .confirm {
+    width: 100%;
   }
 }
+
+
+
 </style>
