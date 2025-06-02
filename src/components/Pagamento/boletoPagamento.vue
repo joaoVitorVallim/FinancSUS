@@ -55,9 +55,11 @@ const gerarBoleto = async () => {
       headers: { 'Content-Type': 'application/json' }
     })
     const data = await response.json()
+
+    console.log(data)
     boletoData.value = {
-      url: data.url,
-      linhaDigitavel: data.linhaDigitavel
+      url: data.ticket_url,
+      linhaDigitavel: data.barcode
     }
   } catch (e) {
     alert('Erro ao gerar boleto.')
