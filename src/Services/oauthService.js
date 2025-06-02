@@ -44,8 +44,10 @@ export const link = async (req, res) => {
   try {
 
     const payload = getBearer(req.headers.authorization);
-    return res.redirect(`https://auth.mercadopago.com.br/authorization?client_id=${process.env.MP_CLIENT_ID}
-      &response_type=code&platform_id=mp&redirect_uri=${process.env.REDIRECT_URI}&state=${id}`);
+    
+    const id = payload.id
+    return res.status(200).send({url:`https://auth.mercadopago.com.br/authorization?client_id=${process.env.MP_CLIENT_ID}
+      &response_type=code&platform_id=mp&redirect_uri=${process.env.REDIRECT_URI}&state=${id}`});
   } catch (error) {
     return res.status(500).send(error.message);
   }  
