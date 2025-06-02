@@ -130,6 +130,14 @@ const copiarLinhaDigitavel = async () => {
 
 
 <style scoped>
+
+@font-face {
+    font-family: 'Ancizar Sans';
+    src: url(../../../public/fonts/AncizarSans-VariableFont_wght-v2.ttf) format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .boleto-container {
   display: flex;
   border-radius: 14px;

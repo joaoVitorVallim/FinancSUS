@@ -137,6 +137,13 @@ function novoPagamento() {
   box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Ancizar Sans';
+    src: url(../../../public/fonts/AncizarSans-VariableFont_wght-v2.ttf) format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .btn-novo{
   padding: 10px;
   background: transparent;

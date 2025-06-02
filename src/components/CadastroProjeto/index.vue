@@ -17,6 +17,17 @@ const handleImageUpload = (event) => {
   }
 }
 
+const registro = async () =>{
+  const res = await axios.get('http://localhost:3000/oauth/link', {
+     headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      } 
+    })
+
+    window.open(res.data.url, 'blank');
+}
+
 const submitProject = async () => {
   try {
     const formData = new FormData()
@@ -61,13 +72,13 @@ const submitProject = async () => {
             v-model="projectData.title"
             type="text" 
             placeholder="Título do Projeto" 
-            required 
+            
           />
           <textarea 
             v-model="projectData.description"
             placeholder="Descrição detalhada do projeto" 
             rows="4" 
-            required
+            
           ></textarea>
           <label for="number" id="label-number">Meta de Financiamento:</label>
           <input 
@@ -76,16 +87,17 @@ const submitProject = async () => {
             placeholder="Meta de Financiamento (R$)" 
             min="0"
             step="0.01"
-            required 
+            
           />
           <input 
             type="file" 
             accept="image/*" 
             @change="handleImageUpload"
-            required 
+            
           />
           <button type="submit" class="botao-cadastrar">CADASTRAR PROJETO</button>
         </form>
+        <button @click="registro">Não tem cadastro de destinatario? Cadastre-se aqui</button>
       </div>
     </div>
   </section>
@@ -107,6 +119,11 @@ const submitProject = async () => {
   min-height: 100vh;
   background-color: #f1f1ed;
   width: 100%;
+}
+
+.cadastro{
+  color: #70705b;
+  text-decoration-line: none;
 }
 
 .cadastro-projeto-container {
