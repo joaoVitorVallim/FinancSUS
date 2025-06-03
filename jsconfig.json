@@ -7,7 +7,7 @@
   "exclude": ["node_modules", "dist"],
   "redirect": {
     "source": "./*",
-    "destination": "./index.html"
+    "destination": "./dist"
   }
 }
 
