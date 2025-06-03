@@ -89,3 +89,19 @@ export const getAll = async (req, res) => {
     }
 };
 
+export const getUserByEmail = async (req, res) => {
+    try {
+        const { email } = req.query;
+        const user = await userService.getUserByEmail(email);
+        if (!user) {
+            return res.status(404).send({ message: 'Usuário não encontrado' });
+        }
+        return res.status(200).send(user);
+    } catch (error) {
+        return res.status(400).send({
+            message: "Erro ao buscar usuário por email",
+            error: error.message
+        });
+    }
+}
+

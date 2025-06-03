@@ -89,4 +89,16 @@ export class UserService {
             throw new Error(error.message);
         }
     }
-} 
+
+    async getUserByEmail(email) {
+        try {
+            const user = await User.findOne({ email });
+            if (!user) {
+                throw new Error('Usuário não encontrado');
+            }
+            return user;
+        } catch (error) {
+            throw new Error(`Erro ao buscar usuário por email: ${error.message}`);
+        }
+    };
+}
