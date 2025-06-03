@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import axios from 'axios'
 
 const projectData = ref({
@@ -52,52 +52,88 @@ const submitProject = async () => {
     alert(`Erro: ${message}`)
   }
 }
+
+const user = ref({ data: {} });
+
+const getUser = async () => {
+
+  try {
+    const email = localStorage.getItem('email')
+
+    const response = await axios.get('http://localhost:3000/users/email/find', {
+      params: { email },
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+
+    user.value.data = response.data;
+
+  } catch (error) {
+    console.error('Erro ao obter usuário:', error)
+  }
+}
+
+onMounted(() => {
+  getUser();
+});
+
+    
 </script>
 
 <template>
-  <section class="cadastro-projeto">
-    <div class="cadastro-projeto-container">
-      <div class="cadastro-projeto-esquerda">
-        <h1>Cadastre seu Projeto!</h1>
-        <p>Compartilhe sua ideia sustentável</p>
-        <p>e ajude a construir um futuro mais verde</p>
+  <section>
+    <div v-if="!user.data.refresh_token" class="cadastro-projeto">
+      <div class="mensagem-cadastro">
+        <h1>Ops! Você ainda não possui cadastro no Mercado Pago.</h1>
+        <p>Para prosseguir, é necessário concluir seu cadastro.</p>
+        <button @click="registro" class="botao-cadastrar">Cadastrar-se</button>
       </div>
+    </div>
+    <div v-else class="cadastro-projeto">
+      <div class="cadastro-projeto-container">
+        <div class="cadastro-projeto-esquerda">
+          <h1>Cadastre seu Projeto!</h1>
+          <p>Compartilhe sua ideia sustentável</p>
+          <p>e ajude a construir um futuro mais verde</p>
+        </div>
 
-      <div class="cadastro-projeto-direita">
-        <router-link to="/projetos" class="fechar-button">&times;</router-link>
-        <img id="cadastro-projeto-img" src="../../assets/LogoPequenoEnergia.png" alt="">
-        <h1>Novo Projeto</h1>
-        <form class="formulario-cadastro-projeto" @submit.prevent="submitProject">
-          <input 
-            v-model="projectData.title"
-            type="text" 
-            placeholder="Título do Projeto" 
-            
-          />
-          <textarea 
-            v-model="projectData.description"
-            placeholder="Descrição detalhada do projeto" 
-            rows="4" 
-            
-          ></textarea>
-          <label for="number" id="label-number">Meta de Financiamento:</label>
-          <input 
-            v-model.number="projectData.goal"
-            type="number" 
-            placeholder="Meta de Financiamento (R$)" 
-            min="0"
-            step="0.01"
-            
-          />
-          <input 
-            type="file" 
-            accept="image/*" 
-            @change="handleImageUpload"
-            
-          />
-          <button type="submit" class="botao-cadastrar">CADASTRAR PROJETO</button>
-        </form>
-        <button @click="registro">Não tem cadastro de destinatario? Cadastre-se aqui</button>
+        <div class="cadastro-projeto-direita">
+          <router-link to="/projetos" class="fechar-button">&times;</router-link>
+          <img id="cadastro-projeto-img" src="../../assets/LogoPequenoEnergia.png" alt="">
+          <h1>Novo Projeto</h1>
+          <form class="formulario-cadastro-projeto" @submit.prevent="submitProject">
+            <input 
+              v-model="projectData.title"
+              type="text" 
+              placeholder="Título do Projeto" 
+              
+            />
+            <textarea 
+              v-model="projectData.description"
+              placeholder="Descrição detalhada do projeto" 
+              rows="4" 
+              
+            ></textarea>
+            <label for="number" id="label-number">Meta de Financiamento:</label>
+            <input 
+              v-model.number="projectData.goal"
+              type="number" 
+              placeholder="Meta de Financiamento (R$)" 
+              min="0"
+              step="0.01"
+              
+            />
+            <input 
+              type="file" 
+              accept="image/*" 
+              @change="handleImageUpload"
+              
+            />
+            <button type="submit" class="botao-cadastrar">CADASTRAR PROJETO</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -244,6 +280,44 @@ const submitProject = async () => {
   background-color: #70705b;
   color: white;
 }
+
+.mensagem-cadastro {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+  margin: 1rem;
+}
+
+.mensagem-cadastro h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.mensagem-cadastro p {
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.botao-cadastrar {
+  background-color: #6d6d57;
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-cadastrar:hover {
+  background-color: #4d4d3f;
+}
+
 
 @media (max-width: 768px) {
   .cadastro-projeto-container {

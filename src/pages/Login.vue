@@ -17,6 +17,7 @@
       console.log(response.data);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('name', response.data.user.name);
+      localStorage.setItem('email', response.data.user.email);
       router.push('/home');
     } catch (error) {
       if(error.response && error.response.data) {

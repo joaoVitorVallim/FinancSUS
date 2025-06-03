@@ -64,7 +64,6 @@ const router = createRouter({
       name: 'pay',
       component: Pagamento,
     },
-
   ],
 })
 
