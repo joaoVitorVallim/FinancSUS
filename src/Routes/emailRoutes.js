@@ -1,8 +1,8 @@
 import express from "express";
-import { email } from '../Controllers/notController.js'
+import { emailNot } from '../Controllers/notController.js'
 
 const notRouter = express.Router();
 
-notRouter.post('/', email);
+notRouter.post('/', emailNot);
 
 export default notRouter;

@@ -19,6 +19,7 @@ const userSchema = new Schema({
     admin: { type: Boolean, required: true },
     vakinhas: [{ type: Schema.Types.ObjectId, ref: 'Vakinha' }],
     refresh_token: { type: String },
+    access_token:  String ,
 });
 
 const User = model("User", userSchema);

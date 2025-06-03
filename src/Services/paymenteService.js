@@ -1,16 +1,17 @@
-import { CardToken, MercadoPagoConfig, Payment } from "mercadopago";
-import { config, parse } from "dotenv";
-import { User } from "../Model/userModel.js";
-import { getBearer } from "../Fixtures/bearer.js";
+import { MercadoPagoConfig, Payment } from "mercadopago";
+import { config } from "dotenv";
+import { User, Vakinha } from "../Model/userModel.js";
 import axios from "axios";
 config();
 
-export const createPayment = async ({ headers, body }) => {
+export const createPayment = async ({ query, body }) => {
   try {
 
-    //const payload = await getBearer(headers.authorization);
-    //const user = await User.findOne({ _id: payload._id });
+    
 
+    const payload = await Vakinha.findById(query.id)
+    
+    const user = await User.findById(payload.owner._id);
 
 
     const data = await axios.post(
@@ -19,7 +20,7 @@ export const createPayment = async ({ headers, body }) => {
         grant_type: 'refresh_token',
         client_id: process.env.MP_CLIENT_ID,
         client_secret: process.env.MP_CLIENT_SECRET,
-        refresh_token: "TG-6834f914ba50b1000104b533-451032726",
+        refresh_token: user.refresh_token,
         redirect_uri: process.env.REDIRECT_URI,
       }
     );
@@ -34,11 +35,12 @@ export const createPayment = async ({ headers, body }) => {
       body: {
         transaction_amount: body.transaction_amount,
         description: "doacao",
-        notification_url: 'https://renewing-evidently-skunk.ngrok-free.app/notifications',
+        notification_url: 'https://renewing-evidently-skunk.ngrok-free.app/notifications?email='+ body.payer.email + '&vid=' + query.id + '&name=' + body.payer.first_name,
         installments: 1,
         payment_method_id: body.payment_method_id,
         payer: body.payer,
         token: body.token,
+        
         issuer_id: body.issuer_id,
         additional_info: {
           items: [
@@ -51,17 +53,22 @@ export const createPayment = async ({ headers, body }) => {
           ]
         },
       },
-
+    
     });
+
+    await sleep(20000)
+
+  
     const formatters = {
       pix: () => ({
         method: 'pix',
         qr_code: response.point_of_interaction.transaction_data.qr_code,
         qr_code_base64: response.point_of_interaction.transaction_data.qr_code_base64,
       }),
-      credit_card: () => ({
+      visa: () => ({
         method: 'credit_card',
         transaction_data: response.point_of_interaction.transaction_data,
+        details: response.status_detail,
       }),
       bolbradesco: () => ({
         method: 'ticket',
@@ -71,10 +78,16 @@ export const createPayment = async ({ headers, body }) => {
       }),
     }
 
+    console.log(response.status_detail)
+    
     
     return formatters[body.payment_method_id]();
 
   } catch (error) {
+    console.log(error)
     throw new Error(error.message);
   }
 };
+
+
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
