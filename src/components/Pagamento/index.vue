@@ -1,11 +1,19 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import CartaoPagamento from './cartaoPagamento.vue'
 import PixPagamento from './pixPagamento.vue'
 import BoletoPagamento from './boletoPagamento.vue'
+import { useRoute } from 'vue-router';
 
-const valor = ref('')
-const metodoSelecionado = ref(null)
+const valor = ref('');
+const metodoSelecionado = ref(null);
+const route = useRoute();
+const id = ref('');
+
+onMounted(async () => {
+  id.value = route.query.param;
+})
+
 
 function selecionarMetodo(metodo) {
   metodoSelecionado.value = metodo
@@ -62,7 +70,7 @@ const componenteAtual = computed(() => {
       </section>
       <div v-else class="painel-principal">
 
-        <component :is="componenteAtual" :valor="valor" class="componente-forma-pagamento" @resetar="resetar"
+        <component :is="componenteAtual" :valor="valor" :id="id" class="componente-forma-pagamento" @resetar="resetar"
           @confirmar="resetar" />
       </div>
     </div>

@@ -40,7 +40,7 @@
             <p>{{ projeto.description }}</p>
           </div>
 
-          <RouterLink to="/doar" class="donate-button">FAZER DOAÇÃO</RouterLink>
+          <RouterLink :to="{ path:'/pay', query: { param:route.params.id } }" class="donate-button">FAZER DOAÇÃO</RouterLink>
         </div>
       </div>
     </div>

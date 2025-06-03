@@ -1,12 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 import BotaoVoltar from './botaoVoltar.vue'
+import axios from 'axios'
 
 const estadosBR = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO']
 
 const nome = ref('')
 const email = ref('')
 const cep = ref('')
+const cpf = ref('')
 const logradouro = ref('')
 const numero = ref('')
 const complemento = ref('')
@@ -17,6 +19,15 @@ const valor = ref('')
 const loading = ref(false)
 const boletoData = ref(null)
 
+const props = defineProps({
+  valor: {
+    type: Number,
+  },
+  id: {
+    type: String,
+  }
+})
+
 function formatarCEP() {
   let cepLimpo = cep.value.replace(/\D/g, '')
   if (cepLimpo.length > 5) {
@@ -26,30 +37,44 @@ function formatarCEP() {
   }
 }
 
+async function procurarEndereco() {
+  if (cep.value.length < 9) return
+
+  const cepLimpo = cep.value.replace('-', '')
+  const endereco = await axios.get(`https://viacep.com.br/ws/${cepLimpo}/json/`)
+
+  logradouro.value = endereco.data.logradouro
+  bairro.value = endereco.data.bairro
+  cidade.value = endereco.data.localidade
+  estado.value = endereco.data.uf
+    
+    
+}
+
 const gerarBoleto = async () => {
   loading.value = true
   try {
-    const response = await fetch('http://localhost:3000/pay/payment', {
+    const response = await fetch('http://localhost:3000/pay/payment?id=' + props.id, {
       method: 'POST',
       body: JSON.stringify({ 
         payer:{
-          first_name: 'vinicius',
-          last_name:"butrico",
-          email: 'butrico0@gmail.com',
+          first_name: nome.value.split(' ')[0],
+          last_name: nome.value.split(' ').slice(1).join(' '),
+          email: email.value,
           identification:{
             type: "CPF",
-            number:"12345678909"
+            number:cpf.value,
           },
           address: {
-            zip_code: "13844060",
-            street_name: "princesa isabel",
-            street_number: "590",
-            neighborhood: "vila ricci",
-            city: "Mogi guacu",
-            federal_unit: "SP"
+            zip_code: cep.value.replace('-', ''),
+            street_name: logradouro.value,
+            street_number: numero.value,
+            neighborhood: bairro.value,
+            city: cidade.value,
+            federal_unit: estado.value
           }
         },
-        transaction_amount: 10,
+        transaction_amount: props.valor,
         payment_method_id:'bolbradesco'
       }),
       headers: { 'Content-Type': 'application/json' }
@@ -89,11 +114,12 @@ const copiarLinhaDigitavel = async () => {
 
         <form @submit.prevent="gerarBoleto">
           <input type="text" v-model="nome" placeholder="Nome completo" required />
+          <input type="text" v-model="cpf" placeholder="CPF" required />
           <input type="email" v-model="email" placeholder="E-mail" required />
           
           
           <div class="endereco-grid">
-            <input type="text" v-model="cep" placeholder="CEP" @input="formatarCEP" maxlength="9" required />
+            <input type="text" v-model="cep" placeholder="CEP" @input="formatarCEP(); procurarEndereco()" maxlength="9" required />
             <input type="text" v-model="logradouro" placeholder="Rua/Avenida" required />
             <div class="endereco-row">
               <input type="text" v-model="numero" placeholder="Número" required class="numero-input" />

@@ -1,19 +1,21 @@
 <script setup>
 import { ref } from 'vue'
 import BotaoVoltar from './botaoVoltar.vue'
-const props = defineProps({ valor: String })
+import axios from 'axios'
+
+const props = defineProps({
+  valor: String,
+  id: String
+})
 const emit = defineEmits(['confirmar'])
 
 const numero = ref('')
 const nome = ref('')
+const email = ref('')
 const validade = ref('')
 const cvv = ref('')
 const mostrarVerso = ref(false)
 
-function confirmar() {
-  alert('Pagamento com cartão confirmado!')
-  emit('confirmar')
-}
 
 function formatarNumeroCartao() {
   const apenasDigitos = numero.value.replace(/\D/g, '').slice(0, 16)
@@ -31,6 +33,74 @@ function formatarValidade() {
 }
 
 
+
+async function confirmar() {
+  const oauth = await axios.get('http://localhost:3000/oauth/token?id=' + props.id);
+
+  const bin = numero.value.replace(/\s/g, '').slice(0, 6);
+  const metodoResponse = await axios.get(
+    `https://api.mercadopago.com/v1/payment_methods/search?public_key=${oauth.data.public_key}&bin=${bin}`
+  );
+
+  
+
+
+  const metodo = metodoResponse.data.results[0];
+  const paymentMethodId = metodo.id;
+
+  console.log(paymentMethodId)
+
+
+
+  const tokenResponse = await axios.post(
+    `https://api.mercadopago.com/v1/card_tokens?public_key=${oauth.data.public_key}`,
+    {
+      card_number: numero.value.replace(/\s/g, ''),
+      security_code: cvv.value,
+      expiration_month: validade.value.split('/')[0],
+      expiration_year: '20' + validade.value.split('/')[1],
+      cardholder: {
+        name: "VINICIUS B FR",
+        identification: {
+          type: "CPF",
+          number: "44963326809"
+        }
+      } 
+
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+
+  const token = tokenResponse.data.id;
+
+  await new Promise(resolve => setTimeout(resolve, 1000))
+
+  const paymentResponse = await axios.post(
+    'https://renewing-evidently-skunk.ngrok-free.app/pay/payment?id=' + props.id,
+    {
+      transaction_amount: parseFloat(props.valor),
+      token: token,
+      payment_method_id: 'visa',
+      payer: {
+        first_name: 'Vinicius',
+        last_name: 'Freitas',
+        identification: {
+          type: 'CPF',
+          number: '44963326809'
+        },
+        email: email.value
+      }
+    }
+  );
+
+
+}
+
+
 </script>
 
 <template>
@@ -38,9 +108,9 @@ function formatarValidade() {
     <BotaoVoltar @resetar="$emit('resetar')" />
     <h1>Cadastre sua Contribuição!</h1>
     <p>Escolha o valor da sua doação e contribua para um futuro mais sustentável.</p>
-    
+
     <h2>Doação</h2>
-    
+
     <div class="container-cartao">
       <div class="lado-cartao">
         <div class="cartao" :class="{ virado: mostrarVerso }" @click="mostrarVerso = !mostrarVerso">
@@ -81,13 +151,12 @@ function formatarValidade() {
 </template>
 
 <style scoped>
-
 @font-face {
-    font-family: 'Ancizar Sans';
-    src: url(../../../public/fonts/AncizarSans-VariableFont_wght-v2.ttf) format('truetype'); 
-    font-weight: normal;
-    font-style: normal;
-  }
+  font-family: 'Ancizar Sans';
+  src: url(../../../public/fonts/AncizarSans-VariableFont_wght-v2.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 .container-principal {
   display: flex;
@@ -129,7 +198,7 @@ function formatarValidade() {
   width: 50%;
 }
 
-.input{
+.input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -141,14 +210,14 @@ function formatarValidade() {
   width: 30%;
 }
 
-.linha{
+.linha {
   display: flex;
   flex-direction: row;
   width: 100%;
   gap: 10px;
 }
 
-.confirm{
+.confirm {
   background-color: #6b6f56;
   color: white;
   border: none;
@@ -182,7 +251,7 @@ function formatarValidade() {
   backface-visibility: hidden;
   color: white;
   box-sizing: border-box;
-  background: linear-gradient(135deg,rgba(123, 227, 168, 1) 0%, rgba(42, 153, 155, 1) 50%, rgba(83, 237, 227, 1) 100%);
+  background: linear-gradient(135deg, rgba(123, 227, 168, 1) 0%, rgba(42, 153, 155, 1) 50%, rgba(83, 237, 227, 1) 100%);
 }
 
 .frente {
@@ -358,7 +427,4 @@ function formatarValidade() {
     width: 100%;
   }
 }
-
-
-
 </style>

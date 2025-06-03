@@ -11,8 +11,12 @@ const mensagemErro = ref('')
 const props = defineProps({
   valor: {
     type: Number,
+  },
+  id: {
+    type: String,
   }
 })
+
 
 async function gerarQRCode() {
   if (!nome.value || !email.value) {
@@ -20,12 +24,13 @@ async function gerarQRCode() {
     return
   }
 
+
   estado.value = 'carregando'
   mensagemErro.value = ''
 
   try {
 
-    const data = await fetch('http://localhost:3000/pay/payment', {
+    const data = await fetch('http://localhost:3000/pay/payment?id=' + props.id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -34,7 +39,13 @@ async function gerarQRCode() {
         transaction_amount: props.valor,
         payment_method_id: 'pix',
         payer: {
-          email: email.value,
+          first_name: 'vinicius',
+          last_name: "butrico",
+          identification: {
+            type: 'CPF',
+            number: '44963326809'
+          },
+          email: 'butrico0@gmail.com',
         }
       })
     })
