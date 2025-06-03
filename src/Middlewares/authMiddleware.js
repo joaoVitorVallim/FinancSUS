@@ -6,7 +6,7 @@ dotenv.config();
 export const autenticar = async (req, res, next) => {
 
   if(req.path === "/auth/register" || req.path === "/auth/login" 
-    || req.path === "/vakinha/all" || req.path === "/vakinha/getId" 
+    || req.path === "/vakinha/all" || req.path === "/vakinha/:id" 
     || req.path === "/search"){
     return next();
   }
