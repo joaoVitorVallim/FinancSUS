@@ -66,7 +66,7 @@ const progressPercentage = computed(() => {
 onMounted(async () => {
   try{
     const id = route.params.id;
-    const { data } = await axios.get(`http://localhost:3000/vakinha/${id}`);
+    const { data } = await axios.get(`https://financsus-backend.onrender.com/vakinha/${id}`);
     projeto.value = data;
   } catch (e) {
     error.value = 'Erro ao carregar o projeto. Tente novamente';

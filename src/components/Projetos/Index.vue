@@ -46,7 +46,7 @@ const filtro = ref('')
 
 onMounted(async () => {
   try{
-    const { data } = await axios.get('http://localhost:3000/vakinha/all', {
+    const { data } = await axios.get('https://financsus-backend.onrender.com/vakinha/all', {
       withCredentials: true
     })
 

@@ -80,7 +80,7 @@ async function confirmar() {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
   const paymentResponse = await axios.post(
-    'https://renewing-evidently-skunk.ngrok-free.app/pay/payment?id=' + props.id,
+    'https://financsus-backend.onrender.com/pay/payment?id=' + props.id,
     {
       transaction_amount: parseFloat(props.valor),
       token: token,

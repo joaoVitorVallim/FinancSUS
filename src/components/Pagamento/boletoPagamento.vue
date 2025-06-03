@@ -54,7 +54,7 @@ async function procurarEndereco() {
 const gerarBoleto = async () => {
   loading.value = true
   try {
-    const response = await fetch('http://localhost:3000/pay/payment?id=' + props.id, {
+    const response = await fetch('https://financsus-backend.onrender.com/pay/payment?id=' + props.id, {
       method: 'POST',
       body: JSON.stringify({ 
         payer:{

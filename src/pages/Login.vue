@@ -10,7 +10,7 @@
   
   const login = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/auth/login', {
+      const response = await axios.post('https://financsus-backend.onrender.com/auth/login', {
         email: email.value,
         password: password.value
       });

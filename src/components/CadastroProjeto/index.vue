@@ -18,7 +18,7 @@ const handleImageUpload = (event) => {
 }
 
 const registro = async () =>{
-  const res = await axios.get('http://localhost:3000/oauth/link', {
+  const res = await axios.get('https://financsus-backend.onrender.com/oauth/link', {
      headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ const submitProject = async () => {
     formData.append('goal', projectData.value.goal)
     formData.append('image', projectData.value.image)
 
-    const response = await axios.post('http://localhost:3000/vakinha/', formData, {
+    const response = await axios.post('https://financsus-backend.onrender.com/vakinha/', formData, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'multipart/form-data'

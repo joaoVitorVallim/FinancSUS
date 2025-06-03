@@ -30,7 +30,7 @@ async function gerarQRCode() {
 
   try {
 
-    const data = await fetch('http://localhost:3000/pay/payment?id=' + props.id, {
+    const data = await fetch('https://financsus-backend.onrender.com/pay/payment?id=' + props.id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
