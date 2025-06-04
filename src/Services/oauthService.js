@@ -8,6 +8,8 @@ dotenv.config();
 export const oauth = async (req, res) => {
   const { code, state } = req.query;
 
+  console.log('foi');
+
   if (!code) {
     return res.status(400).send("Código de autorização não encontrado.");
   }
@@ -26,7 +28,7 @@ export const oauth = async (req, res) => {
 
     const { refresh_token } = response.data;
 
-    
+    console.log("Refresh Token:", refresh_token);
 
     const doc = await User.findByIdAndUpdate(
       state,
