@@ -13,7 +13,7 @@
 
       <div class="project-content">
         <div class="project-image">
-          <img :src="`/api/vakinha/${projeto._id}/image`" :alt="projeto.title">
+          <img :src="imageSrc" :alt="projeto.title">
         </div>
 
         <div class="project-info">
@@ -57,6 +57,8 @@ const route = useRoute();
 const loading = ref(true);
 const error = ref('')
 
+const imageSrc = ref('');
+
 const progressPercentage = computed(() => {
   if (!projeto.value) return 0;
   const porcentagem = (projeto.value.received / projeto.value.goal) * 100;
@@ -66,8 +68,18 @@ const progressPercentage = computed(() => {
 onMounted(async () => {
   try{
     const id = route.params.id;
-    const { data } = await axios.get(`https://financsus-backend.onrender.com/vakinha/${id}`);
+    const { data } = await axios.get(`https://financsus-backend.onrender.com/vakinha/${id}`, {
+      headers: {
+        Authorization : `Bearer ${localStorage.getItem('token')}`
+      }
+    })
     projeto.value = data;
+    
+    const imageResponse = await axios.get(`https://financsus-backend.onrender.com/vakinha/${id}/image`, {
+      responseType: 'blob',
+    });
+
+    imageSrc.value = URL.createObjectURL(imageResponse.data);
   } catch (e) {
     error.value = 'Erro ao carregar o projeto. Tente novamente';
   } finally {
