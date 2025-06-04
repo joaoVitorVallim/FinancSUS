@@ -32,7 +32,7 @@ app.use(ExpressMongoSanitize());
 app.use(helmet());
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://financsus-fnb0.onrender.com',
     credentials: true
 }));
 
