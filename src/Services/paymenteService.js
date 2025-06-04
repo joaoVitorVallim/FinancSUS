@@ -35,7 +35,7 @@ export const createPayment = async ({ query, body }) => {
       body: {
         transaction_amount: body.transaction_amount,
         description: "doacao",
-        notification_url: 'https://renewing-evidently-skunk.ngrok-free.app/notifications?email='+ body.payer.email + '&vid=' + query.id + '&name=' + body.payer.first_name,
+        notification_url: 'https://financsus-backend.onrender.com/notifications?email='+ body.payer.email + '&vid=' + query.id + '&name=' + body.payer.first_name,
         installments: 1,
         payment_method_id: body.payment_method_id,
         payer: body.payer,
