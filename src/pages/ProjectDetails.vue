@@ -1,5 +1,5 @@
 <template>
-  <section class="project-details" v-if="projeto">
+  <section class="project-details">
     <div v-if="loading" class="loading">
       <h1>Carregando projeto...</h1>
     </div>
