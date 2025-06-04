@@ -19,7 +19,7 @@
 
   const goToCadastroProjeto = () => {
       if (token.value) {
-        router.push('/cadastro-projeto');
+        router.push('/cadastroProjeto');
       } else {
         router.push('/login');
       }
