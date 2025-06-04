@@ -15,15 +15,15 @@
     
     token.value = localStorage.getItem('token');
 
-    const goToCadastroProjeto = () => {
+  });
+
+  const goToCadastroProjeto = () => {
       if (token.value) {
         router.push('/cadastro-projeto');
       } else {
         router.push('/login');
       }
     };
-
-  });
 </script>
 
 <template>
@@ -35,7 +35,7 @@
         <a class="navbar-botoes" href="/projetos">Projetos</a>
       </div>
       <div class="componente-navbar-cadastro">
-        <button @click="goToCadastroProjeto" id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</button>
+        <button @click="goToCadastroProjeto()" id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</button>
         <section v-if="user">
           <span class="componente-navbar-cadastro-a">
             <img src="../../../assets/user.png" width="30px" /> Olá, {{ user.name }}
