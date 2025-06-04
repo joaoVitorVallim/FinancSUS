@@ -13,8 +13,10 @@ export const autenticar = async (req, res, next) => {
 
   const auth = req.headers.authorization;
 
-  if(!auth){
-    return res.status(401).json({ mensagem: 'Sem autorização necessaria' });
+  if(!req.path.endsWith('/image')) {
+    if(!auth){
+      return res.status(401).json({ mensagem: 'Sem autorização necessaria' });
+    }
   }
 
   const bearer = auth.split(' ');
