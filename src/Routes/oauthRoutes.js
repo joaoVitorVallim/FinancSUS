@@ -5,7 +5,9 @@ import cors from "cors";
 
 oauthRouter.get("/callback", oauth);
 
-oauthRouter.get("/link", cors(),link);
+oauthRouter.get("/link", cors({
+    origin:'*',
+}),link);
 
 oauthRouter.get("/token", refreshToken);
 
