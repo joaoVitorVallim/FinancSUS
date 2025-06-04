@@ -18,53 +18,69 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: Home,
+      meta: {title: 'Home'},
     },
     {
       path: '/login',
       name: 'login',
       component: Login,
+      meta: {title: 'Login'},
     },
     {
       path: '/register',
       name: 'register',
       component: Register,
+      meta: {title: 'Cadastro'},
     },
     {
       path: '/',
       name: 'apresentacao',
       component: Apresentacao,
+      meta: {title: 'Seja bém-vindo(a)'},
     },
     {
       path: '/saibaMais',
       name: 'SaibaMais',
       component: ComoFunciona,
+      meta: {title: 'Saiba mais'},
     },
     {
       path: '/projetos',
       name: 'projetos',
       component: Projetos,
+      meta: {title: 'Projetos'},
     },
     {
       path: '/cadastroProjeto',
       name: 'cadastroProjeto',
       component: CadastroProjeto,
+      meta: {title: 'Cadastro de Projeto'},
     },
     {
       path: '/project-details/:id',
       name: 'project-details',
       component: () => import('../pages/ProjectDetails.vue'),
+      meta: {title: 'Detalhes do Projeto'},
     },
     {
       path: '/termos',
       name: 'termos',
       component: Termos,
+      meta: {title: 'Termos de Uso'},
     },
     {
       path: '/pay',
       name: 'pay',
       component: Pagamento,
+      meta: {title: 'Pagamento'},
     },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  const defaultTitle = 'Minha Aplicação'
+  document.title = to.meta.title || defaultTitle
+  next()
 })
 
 export default router

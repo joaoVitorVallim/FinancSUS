@@ -15,7 +15,7 @@
 
     <div v-else class="projetos-grid">
       <RouterLink v-for="projeto in projetosFiltrados" :key="projeto.id" :to="`/project-details/${projeto.id}`" class="projeto-card">
-        <img :src="`/api/vakinha/${projeto.id}/image`" alt="Imagem do Projeto" class="projeto-imagem"/>
+        <img :src="getImageUrl(projeto.id)" alt="Imagem do Projeto" class="projeto-imagem"/>
         <h2 class="projeto-titulo">{{ projeto.titulo }}</h2>
         <p class="projeto-descricao">{{ projeto.descricao }}</p>
         <p class="projeto-valor">
@@ -44,6 +44,8 @@ const projetos = ref([])
 const projetosVisiveis = ref([])
 const filtro = ref('')
 
+const imageBlobUrls = ref({})
+
 onMounted(async () => {
   try{
     const { data } = await axios.get('https://financsus-backend.onrender.com/vakinha/all', {
@@ -61,6 +63,19 @@ onMounted(async () => {
     }))
 
     projetosVisiveis.value = projetos.value.slice(0, 50);
+
+    projetosVisiveis.value.forEach(async (projeto) => {
+      try{
+        const response = await axios.get(`https://financsus-backend.onrender.com/vakinha/${projeto.id}/image`, {
+          responseType: 'blob',
+          withCredentials: true
+        });
+        imageBlobUrls.value[projeto.id] = URL.createObjectURL(response.data);
+      } catch (error) {
+        console.error(`Erro ao carregar imagem do projeto ${projeto.id}: `, error);
+        imageBlobUrls.value[projeto.id] = '';
+      }
+    });
   } catch (error) {
     console.error('Erro ao carregar projetos: ', error)
   }
@@ -72,8 +87,12 @@ const projetosFiltrados = computed(() => {
   if (!filtro.value.trim()) {
     return projetosAtivos
   } 
-  return projetosAtivos.filter(projeto => projeto.titulo.toLowerCase().includes(filtro.value.toLowerCase()))
-})
+    return projetosAtivos.filter(projeto => projeto.titulo.toLowerCase().includes(filtro.value.toLowerCase()))
+  })
+
+  const getImageUrl = (id) => {
+    return imageBlobUrls.value[id] || '';
+  }
 </script>
 
 <style scoped>

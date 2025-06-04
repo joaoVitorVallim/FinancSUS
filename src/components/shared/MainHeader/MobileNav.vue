@@ -6,7 +6,7 @@
     </div>
     <Transition name="slide-fade">
         <section class="mobile-componente-navbar-section" v-if="menuAberto">
-            <a class="mobile-navbar-botoes" href="/saibamais">Saiba Mais +</a>
+            <a class="mobile-navbar-botoes" href="/saibamais">Saiba Mais</a>
             <a class="mobile-navbar-botoes" href="/projetos">Projetos</a>
             <a id="mobile-cadastre-projeto" class="mobile-navbar-botoes" href="/cadastroProjeto">Cadastre seu projeto!</a>
             <a class="mobile-componente-navbar-cadastro-a" href="/register">

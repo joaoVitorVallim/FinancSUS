@@ -17,7 +17,7 @@
     <section class="componente-navbar-section">
       <div class="componente-navbar-nav">
         <a href="/home"><img src="../../../assets/LogoPequenoEnergia.png" alt="Logo" width="75px"></a>
-        <a class="navbar-botoes" href="/saibamais">Saiba Mais +</a>
+        <a class="navbar-botoes" href="/saibamais">Saiba Mais</a>
         <a class="navbar-botoes" href="/projetos">Projetos</a>
       </div>
       <div class="componente-navbar-cadastro">

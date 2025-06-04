@@ -35,7 +35,7 @@ function formatarValidade() {
 
 
 async function confirmar() {
-  const oauth = await axios.get('http://localhost:3000/oauth/token?id=' + props.id);
+  const oauth = await axios.get('https://financsus-backend.onrender.com/oauth/token?id=' + props.id);
 
   const bin = numero.value.replace(/\s/g, '').slice(0, 6);
   const metodoResponse = await axios.get(
