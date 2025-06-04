@@ -60,7 +60,7 @@ const getUser = async () => {
   try {
     const email = localStorage.getItem('email')
 
-    const response = await axios.get('http://localhost:3000/users/email/find', {
+    const response = await axios.get('https://financsus-backend.onrender.com/users/email/find', {
       params: { email },
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
