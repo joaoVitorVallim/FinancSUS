@@ -32,11 +32,13 @@ app.use(ExpressMongoSanitize());
 app.use(helmet());
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://financsus-fnb0.onrender.com',
     credentials: true
 }));
 
 connect(process.env.CONN);
+
+app.options("/oauth/callback", cors())
 
 app.use("/search", searchRouter);
 
