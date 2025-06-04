@@ -5,7 +5,7 @@
     </div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
-    <div class="project-details-container"> 
+    <div v-else class="project-details-container"> 
       <div class="project-header">
         <h1 class="project-title">{{ projeto.title }}</h1>
         <RouterLink to="/projetos" class="close-button">&times;</RouterLink>
