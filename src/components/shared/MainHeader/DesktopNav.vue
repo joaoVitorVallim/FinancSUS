@@ -3,11 +3,24 @@
 
   const user = ref(null);
 
+  const token = ref(null);
+  const router = useRouter();
+
   onMounted(() => {
     const storedUser = localStorage.getItem('name');
     if (storedUser) {
       user.value = { name: storedUser };
     }
+    
+    token.value = localStorage.getItem('token');
+
+    const goToCadastroProjeto = () => {
+      if (token.value) {
+        router.push('/cadastro-projeto');
+      } else {
+        router.push('/login');
+      }
+    };
 
   });
 </script>
@@ -21,7 +34,7 @@
         <a class="navbar-botoes" href="/projetos">Projetos</a>
       </div>
       <div class="componente-navbar-cadastro">
-        <a href="/cadastroProjeto" id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</a>
+        <button v-if="token" @click="goToCadastroProjeto()" id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</button>
         <section v-if="user">
           <span class="componente-navbar-cadastro-a">
             <img src="../../../assets/user.png" width="30px" /> Olá, {{ user.name }}
