@@ -1,7 +1,7 @@
 <template>
   <section class="project-details">
     <div v-if="loading" class="loading">
-      <h1>Carregando projeto...</h1>
+      <div class="loader"></div>
     </div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
@@ -240,11 +240,20 @@ onMounted(async () => {
   }
 }
 
-.loading, .error {
-  text-align: center;
-  padding: 2rem;
-  color: #70705b;
-  font-size: 1.2rem;
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #66664b;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .error {
