@@ -11,12 +11,12 @@
             <a id="mobile-cadastre-projeto" class="mobile-navbar-botoes" href="/cadastroProjeto">Cadastre seu projeto!</a>
             <a class="mobile-componente-navbar-cadastro-a" href="/register">
 
-            <section v-if="user">
+            <section v-if="user" @click="logout">
                 <span class="componente-navbar-cadastro-a">
-                    <img src="../../../assets/user.png" width="30px" @click="logout" /> Olá, {{ user.name }}
+                    <img src="../../../assets/user.png" width="30px"/> Olá, {{ user.name }}
                 </span>
-                </section>
-                <section v-else>
+            </section>
+            <section v-else>
                 <a class="componente-navbar-cadastro-a" href="/register">
                     <img src="../../../assets/user.png" width="30px" /> Cadastrar-se
                 </a>
