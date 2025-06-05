@@ -60,10 +60,10 @@ async function confirmar() {
       expiration_month: validade.value.split('/')[0],
       expiration_year: '20' + validade.value.split('/')[1],
       cardholder: {
-        name: "VINICIUS B FR",
+        name: nome,
         identification: {
           type: "CPF",
-          number: "44963326809"
+          number: "12345678909"
         }
       } 
 
