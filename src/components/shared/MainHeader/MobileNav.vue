@@ -53,7 +53,7 @@ function toggleMenu() {
 
 const logout = () => {
   localStorage.clear();
-  router.push('/login');
+  location.reload();
 };
 
 const goToCadastroProjeto = () => {
@@ -132,7 +132,6 @@ const goToCadastroProjeto = () => {
   border-radius: 8px;
 }
 
-/* Dropdown */
 .mobile-dropdown-container {
   position: relative;
 }
@@ -165,7 +164,6 @@ const goToCadastroProjeto = () => {
   text-decoration: underline;
 }
 
-/* Transição */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
