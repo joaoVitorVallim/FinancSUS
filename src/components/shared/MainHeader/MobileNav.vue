@@ -11,7 +11,7 @@
         <a id="mobile-cadastre-projeto" class="mobile-navbar-botoes" @click="goToCadastroProjeto()">Cadastre seu projeto!</a>
 
         <div v-if="user" class="mobile-dropdown-container">
-          <div class="mobile-componente-navbar-cadastro-a" @click="showDropdown = !showDropdown">
+          <div class="mobile-componente-navbar-cadastro-a" @click="showDropdown = !showDropdown" cursor="pointer">
             <img src="../../../assets/user.png" width="30px" /> Olá, {{ user.name }}
           </div>
           <div v-if="showDropdown" class="mobile-dropdown-menu">

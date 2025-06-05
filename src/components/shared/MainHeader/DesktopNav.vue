@@ -44,7 +44,7 @@
         <button @click="goToCadastroProjeto()" id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</button>
 
         <section v-if="user" class="dropdown-container">
-          <div class="componente-navbar-cadastro-a" @click="showDropdown = !showDropdown">
+          <div class="componente-navbar-cadastro-a" @click="showDropdown = !showDropdown" cursor="pointer">
             <img src="../../../assets/user.png" width="30px" />Olá, {{ user.name }}
           </div>
           <div v-if="showDropdown" class="dropdown-menu">
