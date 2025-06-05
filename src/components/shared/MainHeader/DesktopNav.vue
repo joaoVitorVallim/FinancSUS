@@ -6,6 +6,7 @@
 
   const token = ref(null);
   const router = useRouter();
+  const showDropdown = ref(false);
 
   onMounted(() => {
     const storedUser = localStorage.getItem('name');
@@ -24,6 +25,11 @@
         router.push('/login');
       }
     };
+
+  const logout = () => {
+    localStorage.clear();
+    location.reload();
+  }
 </script>
 
 <template>
@@ -36,11 +42,16 @@
       </div>
       <div class="componente-navbar-cadastro">
         <button @click="goToCadastroProjeto()" id="cadastre-projeto" class="componente-navbar-cadastro-a">Cadastre seu projeto!</button>
-        <section v-if="user">
-          <span class="componente-navbar-cadastro-a">
-            <img src="../../../assets/user.png" width="30px" /> Olá, {{ user.name }}
-          </span>
+
+        <section v-if="user" class="dropdown-container">
+          <div class="componente-navbar-cadastro-a" @click="showDropdown = !showDropdown">
+            <img src="../../../assets/user.png" width="30px" />Olá, {{ user.name }}
+          </div>
+          <div v-if="showDropdown" class="dropdown-menu">
+            <button @click="logout" class="dropdown-item">Deslogar</button>
+          </div>
         </section>
+
         <section v-else>
           <a class="componente-navbar-cadastro-a" href="/register">
             <img src="../../../assets/user.png" width="30px" /> Cadastrar-se
@@ -98,5 +109,37 @@
     border: 2px solid #70705b;
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
+  }
+
+  .dropdown-container {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #70705b;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .dropdown-menu button {
+    background: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    color: #70705b;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .dropdown-menu button:hover {
+    text-decoration: underline;
   }
 </style>
