@@ -10,9 +10,10 @@
             <a class="mobile-navbar-botoes" href="/projetos">Projetos</a>
             <a id="mobile-cadastre-projeto" class="mobile-navbar-botoes" href="/cadastroProjeto">Cadastre seu projeto!</a>
             <a class="mobile-componente-navbar-cadastro-a" href="/register">
+
             <section v-if="user">
                 <span class="componente-navbar-cadastro-a">
-                    <img src="../../../assets/user.png" width="30px" /> Olá, {{ user.name }}
+                    <img src="../../../assets/user.png" width="30px" @click="logout" /> Olá, {{ user.name }}
                 </span>
                 </section>
                 <section v-else>
@@ -20,6 +21,7 @@
                     <img src="../../../assets/user.png" width="30px" /> Cadastrar-se
                 </a>
             </section>
+
             </a>
         </section>
     </Transition>
@@ -39,6 +41,11 @@ if (storedUser) {
 
 function toggleMenu() {
   menuAberto.value = !menuAberto.value;
+}
+
+const logout = () => {
+  localStorage.clear();
+  location.reload();
 }
 </script>
 
